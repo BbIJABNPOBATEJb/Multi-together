@@ -1,125 +1,133 @@
 # Multi Together
 
-Плагин для **Paper 1.21.11** (Java 21): связывает игроков цепью, общим здоровьем, общим голодом
-и общим инвентарём. Сделан для съёмок и челленджей: закинул jar в `plugins`, зашли двое или больше,
-админ пишет `/link Игрок1 Игрок2` — готово.
+A **Paper 1.21.11** plugin (Java 21) that links players with a chain, shared health, shared hunger
+and a shared inventory. Built for videos and challenges: drop the jar into `plugins`, get two or more
+players online, run `/link Player1 Player2` — done.
 
-Связи живут в памяти до остановки сервера. Никаких файлов и баз.
+Links live in memory until the server stops. No files, no database.
 
-## Что умеет
+## Features
 
-| Вид | Как работает |
+| Type | How it works |
 |---|---|
-| ⛓ **CHAIN** — цепь | Настоящая цепь из блоков-отображений между игроками: провисает, ложится на землю, натягивается. Дальше длины не разойтись: убегающий тащит напарника, падающий повисает на цепи. Портал, смена мира, `/tp` или жемчуг далеко — переносит всю цепочку. |
-| ❤ **HP** — здоровье | Одна полоска здоровья на всех. Ударили одного — у всех вспышка и звук удара. Умер один — умерли все («Bob погиб вместе с Alice»). |
-| ☕ **FOOD** — голод | Общие сытость и насыщение: ест один — сыты все, бегает один — голодают все. |
-| ⚒ **INVENTORY** — инвентарь | Один инвентарь с бронёй и второй рукой: игрокам подставляется один и тот же список предметов, поэтому без копирования и без дюпа. Основная рука у каждого своя (своя выбранная ячейка). |
+| ⛓ **CHAIN** | A real chain made of display entities between players: it sags, lies on the ground and pulls tight. You can't get farther apart than its length: a runner drags their partner, a player who falls off a ledge hangs on the chain. A portal, a world change, `/tp` or an ender pearl far away brings the whole chain along. |
+| ❤ **HP** | One health bar for everyone. Hit one player — everyone flinches and hears the hurt sound. One dies — everyone dies ("Bob died together with Alice"). |
+| ☕ **FOOD** | Shared hunger and saturation: one eats — everyone is fed, one sprints — everyone gets hungry. |
+| ⚒ **INVENTORY** | One inventory, armor and offhand included. Players are handed the very same item list, so nothing is copied and nothing can be duplicated. The main hand stays personal (each player keeps their own selected hotbar slot). |
 
-Связь по здоровью, голоду и инвентарю общая на всю группу: `A—B` и `B—C` дают одну полоску на троих.
-Цепь — попарная: `A—B—C` — это две цепи, средний держит обоих.
+Health, hunger and inventory are shared across the whole group: `A—B` plus `B—C` means one health bar
+for all three. The chain is pairwise: `A—B—C` is two chains, and the one in the middle holds both.
 
-Смерть и переход между мирами связи не рвут.
+Death and switching worlds do not break links.
 
-### Физика цепи
+### Chain physics
 
-Не пружина на всю длину, а ограничение: пока цепь провисает, она никого не трогает. Натянулась —
-каждый тик обоим игрокам выдаётся импульс навстречу: часть перетяжки плюс гашение скорости, с которой
-они расходятся. Импульс делится по «массе»:
+It is a length constraint, not a spring along the whole chain: while the chain sags it does not touch
+anyone. Once it is taut, both players get an impulse towards each other every tick — a share of the
+overstretch plus damping of the speed at which they separate. The impulse is split by "mass":
 
-- кто стоит на земле, тяжелее того, кто в воздухе;
-- **присевший на земле упирается** — его тянет в разы слабее. Так держат напарника над обрывом;
-- скорость берётся из реального смещения игрока с тем же трением, что считает клиент, — игроков не
-  разгоняет, как на льду.
+- a player standing on the ground is heavier than one in the air;
+- **a player sneaking on the ground braces** and is pulled several times weaker — that is how you hold
+  a partner hanging over a cliff;
+- speed is taken from the player's real movement with the same friction the client applies, so players
+  never accelerate as if on ice.
 
-Цепь, поймавшая падающего, обнуляет высоту падения — урона нет. Висящего на цепи не кикает за полёт,
-даже если на сервере `allow-flight=false`.
+When the chain catches a falling player, their fall distance is reset — no fall damage. A player hanging
+on the chain is not kicked for flying, even with `allow-flight=false`.
 
-### Картинка
+### Visuals
 
-Каждое звено — `BlockDisplay` блока цепи, повёрнутый и растянутый вдоль своего отрезка. Позиция
-сглаживается через teleport duration, поворот и длина — через интерполяцию трансформации: цепь движется
-плавно, хотя обновляется раз в тик. Провис — парабола по длине цепи, а если провис уходит в блок,
-звено ложится на его верх. Вид цепи — железная или медная (4 стадии окисления).
+Every link is a `BlockDisplay` of a chain block, rotated and stretched along its own segment. Position is
+smoothed with teleport duration, rotation and length with transformation interpolation, so the chain moves
+smoothly even though it updates once per tick. The sag follows a parabola based on the chain length, and
+where it would dip into a block, the link rests on top of it instead. The chain can be iron or copper
+(all four oxidation stages).
 
-## Команды
+## Commands
 
-Все команды требуют `multitogether.admin` (по умолчанию — операторы).
+Every command requires `multitogether.admin` (operators by default).
 
-| Команда | Что делает |
+| Command | What it does |
 |---|---|
-| `/multitogether` | Меню (сундук на 54 слота) |
-| `/link <игрок1> <игрок2> [тип]` | Связать двоих |
-| `/link all [тип]` | Связать всех онлайн цепочкой по алфавиту |
-| `/link list` | Все связи |
-| `/link length <блоки>` | Длина цепи, 1.5–32 |
-| `/link settings` | Меню настроек |
-| `/unlink <игрок1> <игрок2> [тип]` | Разъединить пару |
-| `/unlink <игрок> [тип]` | Отвязать игрока ото всех |
-| `/unlink all [тип]` | Снять все связи |
+| `/multitogether` | Menu (54-slot chest) |
+| `/link <player1> <player2> [type]` | Link two players |
+| `/link all [type]` | Link everyone online into one chain, alphabetically |
+| `/link list` | Show all links |
+| `/link length <blocks>` | Chain length, 1.5–32 |
+| `/link settings` | Settings menu |
+| `/unlink <player1> <player2> [type]` | Unlink a pair |
+| `/unlink <player> [type]` | Unlink a player from everyone |
+| `/unlink all [type]` | Remove all links |
 
-**Тип:** `ALL` (по умолчанию), `CHAIN`, `HP`, `FOOD`, `INVENTORY` или несколько через запятую —
-`HP,FOOD`. По-русски тоже понимает: `цепь`, `здоровье`, `голод`, `инвентарь`, `все`.
+**Type:** `ALL` (default), `CHAIN`, `HP`, `FOOD`, `INVENTORY`, or several separated by commas —
+`HP,FOOD`. Russian names work too: `цепь`, `здоровье`, `голод`, `инвентарь`, `все`.
 
-**Алиасы.** `/multitogether` = `/together` = `/link` = `/mt` = `/связать`, и то же в русской
-раскладке: `/ьгдешещпуерук`, `/ещпуерук`, `/дштл`, `/ье`. `/unlink` = `/отвязать` = `/развязать`
-= `/гтдштл`. Подкоманды тоже: `/дштл фдд` = `/link all`.
+**Aliases.** `/multitogether` = `/together` = `/link` = `/mt` = `/связать`, and the same typed with a
+Russian keyboard layout: `/ьгдешещпуерук`, `/ещпуерук`, `/дштл`, `/ье`. `/unlink` = `/отвязать` =
+`/развязать` = `/гтдштл`. Subcommands too: `/дштл фдд` = `/link all`.
 
-## Меню
+In-game messages are in Russian.
 
-`/link` без аргументов открывает сундук на 54 слота:
+## Menu
 
-- **головы онлайн-игроков** — ЛКМ выбрать (номер на голове — порядок в цепи), ПКМ отвязать ото всех,
-  Shift+ЛКМ телепортироваться к игроку. В описании головы — с кем он связан;
-- **переключатели видов** — цепь, здоровье, «всё сразу», голод, инвентарь;
-- **кнопки** — выбрать всех, сбросить выбор, связать выбранных, текущие связи, разъединить выбранных,
-  снять все связи (Shift), настройки.
+`/link` with no arguments opens a 54-slot chest:
 
-**Настройки** (действуют сразу, до перезапуска): длина цепи, жёсткость, вид цепи, видимость, упор
-присевшего, возрождение рядом с напарником, телепорт всей цепочкой, звуки цепи.
+- **heads of online players** — left click to select (the number on the head is the position in the
+  chain), right click to unlink them from everyone, Shift + left click to teleport to them. The head's
+  tooltip lists who they are linked with;
+- **type toggles** — chain, health, "everything", hunger, inventory;
+- **buttons** — select all, clear selection, link selected, current links, unlink selected,
+  remove all links (Shift), settings.
 
-## Как устроены крайние случаи
+**Settings** apply immediately and last until restart: chain length, stiffness, chain style, visibility,
+sneak bracing, respawn next to a partner, teleport the whole chain, chain sounds.
 
-- **Связали игроков с разными инвентарями** — вещи сливаются в один инвентарь, что не влезло, падает
-  под ноги. Ничего не пропадает.
-- **Разъединили** — каждый уносит копию того, что было в общем инвентаре.
-- **Смерть без keepInventory** — общий инвентарь выпадает один раз, у того, кто умер.
-- **Вышел и зашёл** — получает общий инвентарь заново: сохранённый при выходе снимок устарел.
-- **Возрождение** — рядом с живым напарником по цепи (отключается в настройках). Выход из Энда
-  через портал — наоборот, напарников тащит следом.
-- **Креатив и наблюдатель** в полоске здоровья и голода не участвуют; наблюдатель выпадает и из физики.
-- **При связывании** напарника, который в другом мире или далеко, переносит к первому игроку.
+## Edge cases
 
-## Установка
+- **Linking players with different inventories** — items are merged into one inventory, whatever does
+  not fit drops at the owner's feet. Nothing is lost.
+- **Unlinking** — every player keeps a copy of what was in the shared inventory.
+- **Death without keepInventory** — the shared inventory drops once, where the dead player was.
+- **Leaving and rejoining** — the player gets the shared inventory back: the snapshot saved on quit is
+  outdated.
+- **Respawn** — next to a living chain partner (can be disabled in settings). Leaving the End through
+  the exit portal works the other way round: partners are pulled along.
+- **Creative and spectator** players do not take part in shared health and hunger; spectators are also
+  excluded from chain physics.
+- **On linking**, a partner who is in another world or far away is brought to the first player.
 
-1. Скачать `MultiTogether-<версия>.jar` из релизов или собрать.
-2. Положить в `plugins` сервера **Paper 1.21.11** на Java 21.
-3. Перезапустить сервер.
+## Installation
 
-Зависимостей нет. LiteCommands внутри jar перенесён в свой пакет
-(`me.bbijabnpobatejb.multitogether.libs`), поэтому с другими плагинами на LiteCommands не конфликтует.
+1. Download `MultiTogether-<version>.jar` from the releases or build it.
+2. Put it into the `plugins` folder of a **Paper 1.21.11** server running Java 21.
+3. Restart the server.
 
-Общий инвентарь работает через внутренние классы сервера (мэппинги Mojang), поэтому плагин собран
-именно под Paper 1.21.11. Если на другой версии поля не найдутся, плагин всё равно запустится —
-без общего инвентаря, с ошибкой в логе.
+No dependencies. LiteCommands is relocated inside the jar
+(`me.bbijabnpobatejb.multitogether.libs`), so it does not clash with other plugins that use LiteCommands.
 
-## Сборка
+The shared inventory relies on server internals (Mojang mappings), which is why the plugin targets
+Paper 1.21.11 specifically. If those fields are not found on another version, the plugin still starts —
+without the shared inventory, with an error in the log.
+
+## Building
 
 ```bash
 ./gradlew shadowJar
 ```
 
-Готовый jar — `build/libs/MultiTogether-1.0.0.jar`.
+The jar ends up in `build/libs/MultiTogether-1.0.0.jar`.
 
-## Проверено
+## Tested
 
-На Paper 1.21.11-132 в docker с ботами mineflayer:
+On Paper 1.21.11-132 in Docker with mineflayer bots:
 
-- цепь тянет (бегущий тащит стоящего на ~5.2 блока при длине 5), цепочка из трёх тянется по очереди;
-- висение над обрывом и в открытом воздухе 10 секунд — без урона и без кика за полёт;
-- телепорт `/tp` далеко, через портал в Незер, в Энд и обратно — переносит напарника;
-- общее здоровье (среднее при связывании, урон по одному — у всех), смерть вдвоём с сообщением,
-  возрождение рядом;
-- общий голод и еда, общий инвентарь с бронёй и второй рукой, слияние без потерь, копии при
-  разъединении, выпадение без дюпа, возврат после перезахода;
-- меню и настройки кликами бота; команды и алиасы в русской раскладке;
-- геометрия звеньев: концы сходятся без зазоров от пояса до пояса.
+- the chain pulls (a runner drags a standing player at ~5.2 blocks with length 5), a chain of three
+  pulls link by link;
+- hanging over a cliff and in open air for 10 seconds — no damage, no flying kick;
+- `/tp` far away, a nether portal, the End and back — the partner is brought along;
+- shared health (averaged on link, damage to one hits everyone), dying together with a message,
+  respawning together;
+- shared hunger and eating, shared inventory with armor and offhand, lossless merge, copies on unlink,
+  dropping without duplication, reattaching after rejoin;
+- menu and settings via bot clicks; commands and Russian-layout aliases;
+- link geometry: segment ends meet with no gaps from waist to waist.
