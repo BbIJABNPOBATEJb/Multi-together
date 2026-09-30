@@ -12,7 +12,7 @@
 <p align="center">
   <a href="https://modrinth.com/plugin/multi-together"><img src="https://img.shields.io/modrinth/dt/multi-together?logo=modrinth&label=Modrinth&color=00AF5C" alt="Modrinth downloads"></a>
   <a href="https://hangar.papermc.io/BbIJABNPOBATEJb/Multi-Together"><img src="https://img.shields.io/hangar/dt/Multi-Together?label=Hangar&color=1F6FEB" alt="Hangar downloads"></a>
-  <a href="https://www.curseforge.com/minecraft/bukkit-plugins/multi-together"><img src="https://img.shields.io/badge/CurseForge-Multi%20Together-F16436?logo=curseforge&logoColor=white" alt="CurseForge"></a>
+  <a href="https://www.curseforge.com/minecraft/bukkit-plugins/multi-together"><img src="https://img.shields.io/curseforge/dt/1719842?logo=curseforge&label=CurseForge&color=F16436" alt="CurseForge downloads"></a>
   <a href="https://github.com/BbIJABNPOBATEJb/Multi-together/releases"><img src="https://img.shields.io/github/downloads/BbIJABNPOBATEJb/Multi-together/total?logo=github&label=GitHub" alt="GitHub downloads"></a>
 </p>
 
