@@ -242,3 +242,7 @@ On Paper 1.21.11-132 in Docker with mineflayer bots, and by real players:
 - switching the language by command and from the menu, wrapping of long descriptions (Latin and Japanese);
 - link geometry: segment ends meet with no gaps from waist to waist, and the chain does not climb a tree
   trunk between the players.
+
+## License
+
+[MIT](LICENSE)
