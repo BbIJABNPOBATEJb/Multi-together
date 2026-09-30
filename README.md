@@ -1,12 +1,18 @@
-# Multi Together
+<p align="center">
+  <img src="https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/icon.png" alt="Multi Together" width="160">
+</p>
 
-A **Paper 1.21.11** plugin (Java 21) that links players with a chain, shared health, shared hunger
-and a shared inventory. Built for videos and challenges: drop the jar into `plugins`, get two or more
-players online, run `/link Player1 Player2` — done.
+<h1 align="center">Multi Together</h1>
 
-Links live in memory until the server stops. The only file is `config.yml` with the language.
+<p align="center">
+  Chain players together, share health, hunger and inventory.<br>
+  A <b>Paper 1.21.11</b> plugin for videos and challenges. 18 languages.
+</p>
 
-Messages and menus are available in **18 languages**, English by default.
+![Three players chained together](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/three-players-copper.webp)
+
+Drop the jar into `plugins`, get two or more players online, run `/link Player1 Player2` — done.
+Links live in memory until the server stops; the only file is `config.yml` with the language.
 
 ## Features
 
@@ -17,10 +23,21 @@ Messages and menus are available in **18 languages**, English by default.
 | ☕ **FOOD** | Shared hunger and saturation: one eats — everyone is fed, one sprints — everyone gets hungry. |
 | ⚒ **INVENTORY** | One inventory, armor and offhand included. Players are handed the very same item list, so nothing is copied and nothing can be duplicated. The main hand stays personal (each player keeps their own selected hotbar slot). |
 
-Health, hunger and inventory are shared across the whole group: `A—B` plus `B—C` means one health bar
-for all three. The chain is pairwise: `A—B—C` is two chains, and the one in the middle holds both.
+Link any combination: everything at once, only the chain, only health and hunger — whatever the
+challenge needs. Health, hunger and inventory are shared across the whole group: `A—B` plus `B—C` means
+one health bar for all three. The chain is pairwise: `A—B—C` is two chains, and the one in the middle
+holds both.
 
 Death and switching worlds do not break links.
+
+| | |
+|---|---|
+| ![Chain from behind](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/three-players-iron.webp) | ![Chain to a player on a pillar](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/pillar.webp) |
+| Three players, iron chain | The chain climbs to a player standing higher |
+
+![First-person view of an oxidized copper chain](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/first-person.webp)
+
+*First person: the chain starts at your own waist (oxidized copper style).*
 
 ### Chain physics
 
@@ -35,7 +52,8 @@ overstretch plus damping of the speed at which they separate. The impulse is spl
   never accelerate as if on ice.
 
 When the chain catches a falling player, their fall distance is reset — no fall damage. A player hanging
-on the chain is not kicked for flying, even with `allow-flight=false`.
+on the chain is not kicked for flying, even with `allow-flight=false`. If players still end up too far
+apart (lag, a teleport by another plugin), the one who ran away is pulled back to the chain length.
 
 ### Visuals
 
@@ -44,7 +62,7 @@ smoothed with teleport duration, rotation and length with transformation interpo
 smoothly even though it updates once per tick. The sag follows a parabola based on the chain length, and
 where it would dip into a block, the link rests on top of it instead — but never above the straight line
 between the players, so a chain passing through a tree trunk or a wall does not climb up along it.
-The chain can be iron or copper (all four oxidation stages).
+The chain can be iron or copper (all four oxidation stages), and it clanks when jerked tight.
 
 ## Commands
 
@@ -52,56 +70,112 @@ Every command requires `multitogether.admin` (operators by default).
 
 | Command | What it does |
 |---|---|
-| `/multitogether` | Menu (54-slot chest) |
+| `/link` | Open the menu (from the console: show help) |
 | `/link <player1> <player2> [type]` | Link two players |
 | `/link all [type]` | Link everyone online into one chain, alphabetically |
-| `/link list` | Show all links |
-| `/link length <blocks>` | Chain length, 1.5–32 |
-| `/link settings` | Settings menu |
-| `/link language [code]` | Show or change the language (saved to `config.yml`) |
+| `/link list` | Show all links and the chain length |
+| `/link length <blocks>` | Set the chain length, 1.5–32 (default 5) |
+| `/link settings` | Open the settings menu |
+| `/link language` | Show the current language and all available ones |
+| `/link language <code>` | Change the language (saved to `config.yml`) |
 | `/link reload` | Reload `config.yml` and the language files |
+| `/link help` | Short help in chat |
+| `/link debug` | Link counts, chain display count, current settings |
+| `/unlink` | Short help for unlinking |
 | `/unlink <player1> <player2> [type]` | Unlink a pair |
 | `/unlink <player> [type]` | Unlink a player from everyone |
 | `/unlink all [type]` | Remove all links |
 
 **Type:** `ALL` (default), `CHAIN`, `HP`, `FOOD`, `INVENTORY`, or several separated by commas —
-`HP,FOOD`. Type names in the server language and in Russian work too: `kette`, `цепь`, `голод`, `все`.
+`HP,FOOD`. Also accepted: `health`, `hunger`, `inv`, the type names in the server language (`kette`,
+`chaîne`, ...) and in Russian (`цепь`, `здоровье`, `голод`, `инвентарь`, `все`). Tab completion suggests
+players, types and language codes.
 
-**Aliases.** `/multitogether` = `/together` = `/link` = `/mt` = `/связать`, and the same typed with a
-Russian keyboard layout: `/ьгдешещпуерук`, `/ещпуерук`, `/дштл`, `/ье`. `/unlink` = `/отвязать` =
-`/развязать` = `/гтдштл`. Subcommands too: `/дштл фдд` = `/link all`.
+### Aliases
+
+Every command also works under Russian names and when typed with a Russian keyboard layout by mistake.
+
+| Command | Aliases |
+|---|---|
+| `/link` | `/multitogether`, `/together`, `/mt`, `/mtogether`, `/связать`, `/связь`, `/сковать`, `/дштл`, `/ьгдешещпуерук`, `/ещпуерук`, `/ье` |
+| `/unlink` | `/multiunlink`, `/untogether`, `/отвязать`, `/развязать`, `/расковать`, `/гтдштл`, `/гтещпуерук` |
+| `all` | `все`, `всех`, `фдд` |
+| `list` | `список`, `дшые` |
+| `length` | `длина`, `дутпер` |
+| `settings` | `настройки`, `ыуеештпы` |
+| `language` | `lang`, `язык`, `дфтп`, `дфтпгфпу` |
+| `reload` | `перезагрузить`, `кудщфв` |
+| `help` | `помощь`, `рудз` |
+
+## Menu
+
+`/link` opens a 54-slot chest menu. It refreshes every second, so players who join or leave show up
+right away. Every button that changes something answers in chat.
+
+![Main menu](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/menu.webp)
+
+**Main menu**
+
+- **Player heads** (36 per page, arrows for more pages). The tooltip lists who the player is linked with,
+  type by type.
+  - Left click — select or deselect. The number on the head is the position in the chain: players
+    selected 1, 2, 3 are chained 1—2—3.
+  - Right click — unlink the player from everyone (for the selected types).
+  - Shift + left click — teleport to the player.
+- **Type toggles** — chain, health, hunger, inventory, and a nether star for "everything at once".
+  The selected types are used by the link and unlink buttons.
+- **Select all** — adds every online player alphabetically after the ones already selected.
+- **Clear selection**.
+- **Link selected** (lead) — shows how many are selected, the types and the chain order.
+- **Current links** (book) — every link on the server and the chain length.
+- **Unlink selected** (shears) — breaks the selected types between all selected players; with one player
+  selected, unlinks them from everyone.
+- **Remove all links** (TNT) — Shift + click to confirm.
+- **Chain settings** (comparator).
+
+![Settings menu](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/settings.webp)
+
+**Chain settings** — apply to all chains at once and last until restart:
+
+- **Chain length** — −1, −0.5, +0.5, +1 blocks (1.5–32, default 5).
+- **Stiffness** — −10%, −5%, +5%, +10% (5–100%, default 35%): softer is springy, harder is jerky.
+- **Chain style** — iron, copper, exposed, weathered or oxidized copper.
+- **Chain visible** — hide the links; the physics keeps working.
+- **Sneak bracing** — a sneaking player on the ground is pulled several times weaker.
+- **Respawn together** — a dead player respawns next to a living chain partner.
+- **Teleport together** — a portal, world change or far teleport brings the whole chain along.
+- **Chain sounds** — the clank when the chain is jerked tight.
+- **Language** (book and quill) — opens the language menu.
+- **Reset settings** (water bucket) — Shift + click to confirm.
+
+**Language menu** — every available language by its own name; the current one is marked. A click switches
+the language at once, saves it to `config.yml` and reopens the menu in the new language.
 
 ## Languages
 
-English by default. Bundled: English, Русский, Українська, Deutsch, Français, Español, Português, Italiano,
-Polski, Türkçe, Nederlands, Čeština, Svenska, 简体中文, 日本語, 한국어, Tiếng Việt, Bahasa Indonesia.
+English by default. Bundled translations, with their codes:
 
-Change it in any of three ways — the choice is saved to `config.yml`:
+| Code | Language | Code | Language | Code | Language |
+|---|---|---|---|---|---|
+| `en` | English | `it` | Italiano | `sv` | Svenska |
+| `ru` | Русский | `pl` | Polski | `zh` | 简体中文 (Simplified Chinese) |
+| `uk` | Українська | `tr` | Türkçe | `ja` | 日本語 |
+| `de` | Deutsch | `nl` | Nederlands | `ko` | 한국어 |
+| `fr` | Français | `cs` | Čeština | `vi` | Tiếng Việt |
+| `es` | Español | `pt` | Português (Brazil) | `id` | Bahasa Indonesia |
+
+Everything is translated: chat messages, the menus, command help and usage errors, death messages.
+Change the language in any of three ways — the choice is saved to `config.yml`:
 
 - `config.yml` → `language: de`, then `/link reload` or a restart;
 - `/link language de`;
-- settings menu → the book button → pick a language.
+- settings menu → the book and quill → pick a language.
 
 The language files are copied to `plugins/MultiTogether/lang/` on first start and can be edited there.
 A key missing from a file falls back to the bundled translation, then to English. Put a new file there
 (for example `fi.yml`, copied from `en.yml`) and it shows up as another language.
 
-Long descriptions in menus are wrapped automatically; CJK text is wrapped by width.
-
-## Menu
-
-`/link` with no arguments opens a 54-slot chest:
-
-- **heads of online players** — left click to select (the number on the head is the position in the
-  chain), right click to unlink them from everyone, Shift + left click to teleport to them. The head's
-  tooltip lists who they are linked with;
-- **type toggles** — chain, health, "everything", hunger, inventory;
-- **buttons** — select all, clear selection, link selected, current links, unlink selected,
-  remove all links (Shift), settings.
-
-**Settings** apply immediately and last until restart: chain length, stiffness, chain style, visibility,
-sneak bracing, respawn next to a partner, teleport the whole chain, chain sounds. The language is picked
-there too and is saved to `config.yml`. Every click answers in chat with what changed.
+Long descriptions in menus are wrapped onto several lines; Chinese, Japanese and Korean are wrapped by width.
 
 ## Edge cases
 
@@ -119,7 +193,8 @@ there too and is saved to `config.yml`. Every click answers in chat with what ch
 
 ## Installation
 
-1. Download `MultiTogether-<version>.jar` from the releases or build it.
+1. Download `MultiTogether-<version>.jar` from the
+   [releases](https://github.com/BbIJABNPOBATEJb/Multi-together/releases) or build it.
 2. Put it into the `plugins` folder of a **Paper 1.21.11** server running Java 21.
 3. Restart the server.
 
@@ -129,6 +204,19 @@ No dependencies. LiteCommands is relocated inside the jar
 The shared inventory relies on server internals (Mojang mappings), which is why the plugin targets
 Paper 1.21.11 specifically. If those fields are not found on another version, the plugin still starts —
 without the shared inventory, with an error in the log.
+
+### config.yml
+
+```yaml
+# Language of chat messages and menus: en, ru, uk, de, fr, es, pt, it, pl, tr, nl, cs, sv, zh, ja, ko, vi, id
+language: en
+```
+
+### Permissions
+
+| Permission | Default | Gives |
+|---|---|---|
+| `multitogether.admin` | op | all commands and menus |
 
 ## Building
 
@@ -140,7 +228,7 @@ The jar ends up in `build/libs/MultiTogether-<version>.jar`.
 
 ## Tested
 
-On Paper 1.21.11-132 in Docker with mineflayer bots:
+On Paper 1.21.11-132 in Docker with mineflayer bots, and by real players:
 
 - the chain pulls (a runner drags a standing player at ~5.2 blocks with length 5), a chain of three
   pulls link by link;
