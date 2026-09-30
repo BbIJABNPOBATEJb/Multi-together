@@ -2,6 +2,7 @@ package me.bbijabnpobatejb.multitogether.settings;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 
 /**
  * Настройки живут в памяти, как и связи: меняются из меню и командой, сбрасываются перезапуском.
@@ -49,11 +50,11 @@ public final class Settings {
     private boolean sounds = true;
 
     public void setChainLength(double chainLength) {
-        this.chainLength = Math.clamp(Math.round(chainLength * 2) / 2.0, MIN_LENGTH, MAX_LENGTH);
+        this.chainLength = Compat.clamp(Math.round(chainLength * 2) / 2.0, MIN_LENGTH, MAX_LENGTH);
     }
 
     public void setStiffness(double stiffness) {
-        this.stiffness = Math.clamp(Math.round(stiffness * 100) / 100.0, MIN_STIFFNESS, MAX_STIFFNESS);
+        this.stiffness = Compat.clamp(Math.round(stiffness * 100) / 100.0, MIN_STIFFNESS, MAX_STIFFNESS);
     }
 
     /**

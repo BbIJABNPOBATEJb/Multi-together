@@ -1,8 +1,8 @@
 package me.bbijabnpobatejb.multitogether.chain;
 
 import me.bbijabnpobatejb.multitogether.settings.ChainStyle;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.BlockDisplay;
@@ -60,7 +60,7 @@ final class ChainRenderer {
             }
         }
 
-        int count = Math.clamp((int) Math.ceil(length / SEGMENT_LENGTH), 2, MAX_SEGMENTS);
+        int count = Compat.clamp((int) Math.ceil(length / SEGMENT_LENGTH), 2, MAX_SEGMENTS);
         resize(count);
 
         Vector[] points = curve(world, from, to, length, count);
@@ -71,8 +71,8 @@ final class ChainRenderer {
 
     private void resize(int count) {
         while (segments.size() > count) {
-            BlockDisplay display = segments.removeLast();
-            lastTransformations.removeLast();
+            BlockDisplay display = segments.remove(segments.size() - 1);
+            lastTransformations.remove(lastTransformations.size() - 1);
             if (display != null) display.remove();
         }
         while (segments.size() < count) {
@@ -122,18 +122,19 @@ final class ChainRenderer {
     }
 
     private BlockDisplay spawn(Location location, Transformation transformation) {
-        Material material = style.getMaterial();
-        return world.spawn(location, BlockDisplay.class, display -> {
-            display.setPersistent(false);
-            display.addScoreboardTag(ChainService.DISPLAY_TAG);
-            display.setBlock(material.createBlockData());
-            display.setBillboard(Display.Billboard.FIXED);
-            display.setShadowRadius(0);
-            display.setViewRange(2f);
-            display.setTransformation(transformation);
-            display.setTeleportDuration(SMOOTH_TICKS);
-            display.setInterpolationDuration(SMOOTH_TICKS);
-        });
+        // spawn с Consumer сменил сигнатуру в 1.20.2 — спавн без него. Клиентам сущность уходит
+        // в конце тика, уже настроенной, а до setBlock это воздух и её не видно
+        BlockDisplay display = world.spawn(location, BlockDisplay.class);
+        display.setPersistent(false);
+        display.addScoreboardTag(ChainService.DISPLAY_TAG);
+        display.setBlock(style.getMaterial().createBlockData());
+        display.setBillboard(Display.Billboard.FIXED);
+        display.setShadowRadius(0);
+        display.setViewRange(2f);
+        display.setTransformation(transformation);
+        display.setInterpolationDuration(SMOOTH_TICKS);
+        Compat.setTeleportDuration(display, SMOOTH_TICKS);
+        return display;
     }
 
     /**

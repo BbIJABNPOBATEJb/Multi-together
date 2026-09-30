@@ -1,7 +1,7 @@
 name: ${name}
 version: ${version}
 main: ${main}
-api-version: '1.21'
+api-version: '1.20'
 authors: [ BbIJABNPOBATEJb ]
 description: Links players with a chain, shared health, hunger and inventory - for videos and challenges.
 website: https://github.com/BbIJABNPOBATEJb/Multi-together

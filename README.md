@@ -6,7 +6,7 @@
 
 <p align="center">
   Chain players together, share health, hunger and inventory.<br>
-  A <b>Paper 1.21.11</b> plugin for videos and challenges. 18 languages.
+  A <b>Paper 1.20 – 26.3</b> plugin for videos and challenges. 18 languages.
 </p>
 
 ![Three players chained together](https://raw.githubusercontent.com/BbIJABNPOBATEJb/Multi-together/main/docs/screenshots/three-players-copper.webp)
@@ -195,15 +195,28 @@ Long descriptions in menus are wrapped onto several lines; Chinese, Japanese and
 
 1. Download `MultiTogether-<version>.jar` from the
    [releases](https://github.com/BbIJABNPOBATEJb/Multi-together/releases) or build it.
-2. Put it into the `plugins` folder of a **Paper 1.21.11** server running Java 21.
+2. Put it into the `plugins` folder of a **Paper** server, any version from **1.20 to 26.3**
+   One jar for all versions. Paper forks such as Purpur should work as well, but were not tested.
 3. Restart the server.
 
 No dependencies. LiteCommands is relocated inside the jar
 (`me.bbijabnpobatejb.multitogether.libs`), so it does not clash with other plugins that use LiteCommands.
 
-The shared inventory relies on server internals (Mojang mappings), which is why the plugin targets
-Paper 1.21.11 specifically. If those fields are not found on another version, the plugin still starts —
-without the shared inventory, with an error in the log.
+### Supported versions
+
+| Paper | Java | Notes |
+|---|---|---|
+| 1.20 – 1.20.1 | 17+ | chain links move in 1-tick steps: display entities have no teleport smoothing before 1.20.2 |
+| 1.20.2 – 1.20.4 | 17+ | |
+| 1.20.5 – 1.21.8 | 21+ | |
+| 1.21.9 – 1.21.11 | 21+ | copper chain styles (they don't exist in earlier versions) |
+| 26.1 – 26.3 | 25+ | |
+
+The jar is built for Java 17 against the 1.20.1 API. Anything newer is called only when the server has it.
+The shared inventory swaps the server's own item lists, and those changed over the years (armor moved out
+of the inventory in 1.21.5, field names differ between Spigot and Mojang mappings), so the plugin finds
+them by their type and contents instead of names. If it ever meets a layout it does not recognise, the
+plugin still starts — without the shared inventory, with an error in the log.
 
 ### config.yml
 
@@ -228,7 +241,21 @@ The jar ends up in `build/libs/MultiTogether-<version>.jar`.
 
 ## Tested
 
-On Paper 1.21.11-132 in Docker with mineflayer bots, and by real players:
+**Every version.** The same jar is run on Paper 1.20.1 and 1.20.4 (Java 17), 1.20.6, 1.21.1, 1.21.4,
+1.21.8 and 1.21.11 (Java 21), 26.1.2 and 26.2 (Java 25), each in Docker with two mineflayer bots
+(on 26.x they join through ViaVersion and ViaBackwards). On every version: the plugin loads, the chain
+spawns and drags a running partner, health, hunger, inventory, armor and offhand are shared, a teleport
+brings the partner along, unlinking leaves each player a copy, linked players die together, the menu opens,
+the chain styles match the version, and the language switches.
+
+Paper 26.3 is still in beta, and bots cannot play on it through ViaBackwards yet (they are kicked for
+invalid movement even without the plugin). There the plugin is checked to load, the static check below
+passes, and the server internals the shared inventory relies on were compared with 26.2 — they match.
+
+A static check also resolves every Bukkit and Paper method, field and class the jar uses against the API
+of each of these versions, including classes that turned into interfaces over time.
+
+**In depth, on 1.21.11**, with bots and by real players:
 
 - the chain pulls (a runner drags a standing player at ~5.2 blocks with length 5), a chain of three
   pulls link by link;

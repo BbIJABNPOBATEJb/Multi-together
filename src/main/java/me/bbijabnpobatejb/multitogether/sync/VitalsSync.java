@@ -5,13 +5,12 @@ import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import me.bbijabnpobatejb.multitogether.link.LinkListener;
 import me.bbijabnpobatejb.multitogether.link.LinkService;
 import me.bbijabnpobatejb.multitogether.link.LinkType;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -104,7 +103,7 @@ public final class VitalsSync implements LinkListener, Listener {
         if (members.isEmpty()) return;
 
         if (members.size() < 2) {
-            Player single = members.getFirst();
+            Player single = members.get(0);
             lastHealth.put(single.getUniqueId(), single.getHealth());
             return;
         }
@@ -148,7 +147,7 @@ public final class VitalsSync implements LinkListener, Listener {
         if (members.isEmpty()) return;
 
         if (members.size() < 2) {
-            Player single = members.getFirst();
+            Player single = members.get(0);
             rememberFood(single);
             return;
         }
@@ -178,8 +177,8 @@ public final class VitalsSync implements LinkListener, Listener {
             baseSaturation = saturationSum / members.size();
         }
 
-        int food = Math.clamp(baseFood + foodDelta, 0, 20);
-        float saturation = Math.clamp(baseSaturation + saturationDelta, 0f, (float) food);
+        int food = Compat.clamp(baseFood + foodDelta, 0, 20);
+        float saturation = Compat.clamp(baseSaturation + saturationDelta, 0f, (float) food);
 
         for (Player player : members) {
             if (player.getFoodLevel() != food) player.setFoodLevel(food);
@@ -314,7 +313,6 @@ public final class VitalsSync implements LinkListener, Listener {
     }
 
     private static double maxHealth(Player player) {
-        AttributeInstance attribute = player.getAttribute(Attribute.MAX_HEALTH);
-        return attribute == null ? 20 : attribute.getValue();
+        return Compat.maxHealth(player);
     }
 }

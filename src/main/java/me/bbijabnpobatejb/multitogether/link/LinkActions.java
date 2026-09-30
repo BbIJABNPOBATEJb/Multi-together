@@ -92,7 +92,7 @@ public final class LinkActions {
             return;
         }
 
-        if (added.contains(LinkType.CHAIN)) chains.gather(players.getFirst());
+        if (added.contains(LinkType.CHAIN)) chains.gather(players.get(0));
 
         String order = players.stream().map(p -> Msg.name(p.getName())).collect(Collectors.joining(" — "));
         actor.sendMessage(Msg.success(Lang.mm("link.pairs-done",
@@ -142,7 +142,7 @@ public final class LinkActions {
      */
     public void unlinkAmong(CommandSender actor, List<UUID> players, LinkTypes types) {
         if (players.size() == 1) {
-            unlinkPlayer(actor, players.getFirst(), types);
+            unlinkPlayer(actor, players.get(0), types);
             return;
         }
 

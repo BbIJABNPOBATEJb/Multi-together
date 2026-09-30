@@ -2,6 +2,7 @@ package me.bbijabnpobatejb.multitogether.link;
 
 import lombok.Getter;
 import me.bbijabnpobatejb.multitogether.i18n.Lang;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 import org.bukkit.Material;
 
 import java.util.List;
@@ -15,13 +16,13 @@ import java.util.Locale;
 @Getter
 public enum LinkType {
 
-    CHAIN("CHAIN", "chain", "⛓", Material.IRON_CHAIN,
+    CHAIN("CHAIN", "chain", "⛓", new String[]{"IRON_CHAIN", "CHAIN"},
             List.of("chain", "chains", "цепь", "цепи", "цепью", "цеп")),
-    HEALTH("HP", "health", "❤", Material.RED_DYE,
+    HEALTH("HP", "health", "❤", new String[]{"RED_DYE"},
             List.of("hp", "health", "heal", "life", "хп", "здоровье", "жизнь", "жизни", "хелс")),
-    FOOD("FOOD", "food", "☕", Material.COOKED_BEEF,
+    FOOD("FOOD", "food", "☕", new String[]{"COOKED_BEEF"},
             List.of("food", "hunger", "еда", "голод", "сытость", "фуд")),
-    INVENTORY("INVENTORY", "inventory", "⚒", Material.CHEST,
+    INVENTORY("INVENTORY", "inventory", "⚒", new String[]{"CHEST"},
             List.of("inventory", "inv", "items", "инвентарь", "инв", "вещи"));
 
     /**
@@ -36,15 +37,24 @@ public enum LinkType {
      * Значок в чате и меню. Только из BMP: эмодзи вроде 🍖 шрифт Minecraft не рисует.
      */
     private final String icon;
-    private final Material material;
+    /**
+     * Предмет в меню — по имени: цепь до 1.21.9 называлась CHAIN.
+     */
+    @Getter(lombok.AccessLevel.NONE)
+    private final String[] materials;
     private final List<String> aliases;
 
-    LinkType(String key, String langKey, String icon, Material material, List<String> aliases) {
+    LinkType(String key, String langKey, String icon, String[] materials, List<String> aliases) {
         this.key = key;
         this.langKey = langKey;
         this.icon = icon;
-        this.material = material;
+        this.materials = materials;
         this.aliases = aliases;
+    }
+
+    public Material getMaterial() {
+        Material material = Compat.material(materials);
+        return material == null ? Material.PAPER : material;
     }
 
     /**

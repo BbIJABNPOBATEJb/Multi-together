@@ -4,6 +4,7 @@ import me.bbijabnpobatejb.multitogether.link.Edge;
 import me.bbijabnpobatejb.multitogether.link.LinkService;
 import me.bbijabnpobatejb.multitogether.link.LinkType;
 import me.bbijabnpobatejb.multitogether.settings.Settings;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -319,7 +320,7 @@ public final class ChainService implements Listener {
             velocity.setX(velocity.getX() * scale);
             velocity.setZ(velocity.getZ() * scale);
         }
-        velocity.setY(Math.clamp(velocity.getY(), -MAX_DOWN_SPEED, MAX_UP_SPEED));
+        velocity.setY(Compat.clamp(velocity.getY(), -MAX_DOWN_SPEED, MAX_UP_SPEED));
         return velocity;
     }
 

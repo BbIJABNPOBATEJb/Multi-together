@@ -72,7 +72,7 @@ public class GuiListener implements Listener {
         if (gui == null) return;
 
         if (gui.isAllowItemMovement()) {
-            boolean isPlayerInventory = event.getView().getBottomInventory() == event.getInventory();
+            boolean isPlayerInventory = event.getWhoClicked().getInventory() == event.getInventory();
             if (isPlayerInventory) {
                 event.setCancelled(false);
                 return;

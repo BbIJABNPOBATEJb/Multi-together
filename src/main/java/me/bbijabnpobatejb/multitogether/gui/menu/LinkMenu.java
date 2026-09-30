@@ -6,6 +6,7 @@ import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import me.bbijabnpobatejb.multitogether.link.LinkActions;
 import me.bbijabnpobatejb.multitogether.link.LinkType;
 import me.bbijabnpobatejb.multitogether.link.LinkTypes;
+import me.bbijabnpobatejb.multitogether.util.Compat;
 import me.bbijabnpobatejb.multitogether.util.ItemBuilder;
 import me.bbijabnpobatejb.multitogether.util.Msg;
 import org.bukkit.Bukkit;
@@ -67,7 +68,7 @@ public class LinkMenu extends Gui {
         online.sort(Comparator.comparing(Player::getName, String.CASE_INSENSITIVE_ORDER));
 
         int pages = Math.max(1, (online.size() + PLAYERS_PER_PAGE - 1) / PLAYERS_PER_PAGE);
-        page = Math.clamp(page, 0, pages - 1);
+        page = Compat.clamp(page, 0, pages - 1);
 
         int from = page * PLAYERS_PER_PAGE;
         int to = Math.min(online.size(), from + PLAYERS_PER_PAGE);

@@ -1,16 +1,17 @@
-import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
-
 plugins {
     id 'java'
     id 'com.gradleup.shadow' version '8.3.8'
-    id 'io.papermc.paperweight.userdev' version '2.0.0-beta.17'
 }
 
 group = pluginGroup
 version = pluginVersion
 
+// Один jar на Paper 1.20–26.3. Компиляция против самого старого API (1.20.1) и под Java 17:
+// 1.20.1–1.20.4 работают на Java 17. Всё, чего в 1.20.1 нет, вызывается через Compat,
+// а внутренности сервера — рефлексией по типам полей, без имён: у 1.20.1–1.20.4
+// в рантайме мэппинги Spigot, у 1.20.5+ — Mojang.
 java {
-    toolchain.languageVersion = JavaLanguageVersion.of(javaVer)
+    toolchain.languageVersion = JavaLanguageVersion.of(21)
 }
 
 repositories {
@@ -19,12 +20,8 @@ repositories {
     maven { url = 'https://repo.panda-lang.org/releases' }
 }
 
-// Paper с 1.20.5 работает на мэппингах Mojang: реобфускация не нужна, продакшн-артефакт —
-// shadowJar с пометкой в манифесте, что классы уже в мэппингах Mojang.
-paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
-
 dependencies {
-    paperweight.paperDevBundle(libs.versions.paper.get())
+    compileOnly libs.paper.api
 
     implementation libs.litecommands.bukkit
 
@@ -40,6 +37,7 @@ configurations.runtimeClasspath {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release.set(javaVer.toInteger())
+    options.compilerArgs.add('-Xlint:deprecation')
     // LiteCommands берёт имена аргументов из байткода
     options.compilerArgs.add('-parameters')
 }
@@ -69,6 +67,10 @@ def libsPackage = 'me.bbijabnpobatejb.multitogether.libs'
 
 tasks.shadowJar {
     archiveClassifier = ''
+    // Классов сервера плагин напрямую не трогает: Paper 1.20.5+ не нужно его перемаппливать
+    manifest {
+        attributes('paperweight-mappings-namespace': 'mojang')
+    }
     archiveFileName = "${pluginName}-${project.version}.jar"
 
     relocate 'dev.rollczi.litecommands', "${libsPackage}.litecommands"

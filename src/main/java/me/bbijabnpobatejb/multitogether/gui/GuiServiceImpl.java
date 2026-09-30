@@ -31,8 +31,9 @@ public class GuiServiceImpl implements GuiService {
         }
 
         IGui gui = inventoryMap.get(player.getUniqueId());
-        // Меню в карте, но открыто уже другое окно — это не наш клик
-        if (gui == null || event.getView().getTopInventory() != gui.getInventory()) return null;
+        // Меню в карте, но открыто уже другое окно — это не наш клик. Верхнее окно берётся у
+        // события, а не у InventoryView: в 1.20 это класс, с 1.21 — интерфейс, и вызов бы не слинковался
+        if (gui == null || event.getInventory() != gui.getInventory()) return null;
         return gui;
     }
 

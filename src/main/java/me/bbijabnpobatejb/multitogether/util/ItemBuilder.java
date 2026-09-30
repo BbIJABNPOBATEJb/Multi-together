@@ -87,7 +87,7 @@ public final class ItemBuilder {
 
     public ItemBuilder amount(int amount) {
         // У ножниц и прочего с прочностью стак — один предмет, число на них не нарисовать
-        item.setAmount(Math.clamp(amount, 1, item.getMaxStackSize()));
+        item.setAmount(Compat.clamp(amount, 1, item.getMaxStackSize()));
         return this;
     }
 
@@ -100,7 +100,7 @@ public final class ItemBuilder {
         ItemMeta meta = item.getItemMeta();
         if (name != null) meta.displayName(name);
         if (!lore.isEmpty()) meta.lore(lore);
-        if (glint) meta.setEnchantmentGlintOverride(true);
+        if (glint) Compat.glint(meta);
         meta.addItemFlags(ItemFlag.values());
 
         if (headOwner != null && meta instanceof SkullMeta skull) {
