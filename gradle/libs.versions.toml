@@ -1,0 +1,8 @@
+[versions]
+paper = "1.21.11-R0.1-SNAPSHOT"
+litecommands = "3.10.9"
+lombok = "1.18.38"
+
+[libraries]
+litecommands-bukkit = { module = "dev.rollczi:litecommands-bukkit", version.ref = "litecommands" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }

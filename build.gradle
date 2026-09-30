@@ -1,0 +1,92 @@
+import io.papermc.paperweight.userdev.ReobfArtifactConfiguration
+
+plugins {
+    id 'java'
+    id 'com.gradleup.shadow' version '8.3.8'
+    id 'io.papermc.paperweight.userdev' version '2.0.0-beta.17'
+}
+
+group = pluginGroup
+version = pluginVersion
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVer)
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+    maven { url = 'https://repo.panda-lang.org/releases' }
+}
+
+// Paper с 1.20.5 работает на мэппингах Mojang: реобфускация не нужна, продакшн-артефакт —
+// shadowJar с пометкой в манифесте, что классы уже в мэппингах Mojang.
+paperweight.reobfArtifactConfiguration = ReobfArtifactConfiguration.getMOJANG_PRODUCTION()
+
+dependencies {
+    paperweight.paperDevBundle(libs.versions.paper.get())
+
+    implementation libs.litecommands.bukkit
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+}
+
+// Аннотации JetBrains нужны только компилятору: в рантайме их никто не читает
+configurations.runtimeClasspath {
+    exclude group: 'org.jetbrains', module: 'annotations'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(javaVer.toInteger())
+    // LiteCommands берёт имена аргументов из байткода
+    options.compilerArgs.add('-parameters')
+}
+
+processResources {
+    filteringCharset = 'UTF-8'
+
+    def props = [
+            version: project.version,
+            name   : pluginName,
+            main   : pluginMainClass,
+    ]
+    inputs.properties props
+
+    filesMatching('plugin.yml') {
+        expand props
+    }
+}
+
+tasks.jar {
+    archiveClassifier = 'dev'
+}
+
+// Всё чужое уезжает в свой пакет: на сервере рядом может стоять другой плагин
+// с LiteCommands другой версии, и без релокации выиграл бы тот, что загрузился первым.
+def libsPackage = 'me.bbijabnpobatejb.multitogether.libs'
+
+tasks.shadowJar {
+    archiveClassifier = ''
+    archiveFileName = "${pluginName}-${project.version}.jar"
+
+    relocate 'dev.rollczi.litecommands', "${libsPackage}.litecommands"
+    relocate 'panda.std', "${libsPackage}.panda.std"
+    relocate 'panda.utilities', "${libsPackage}.panda.utilities"
+
+    exclude 'META-INF/maven/**'
+    exclude 'META-INF/*.kotlin_module'
+    exclude 'META-INF/versions/**'
+    exclude 'META-INF/LICENSE*'
+    exclude 'META-INF/NOTICE*'
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+
+    mergeServiceFiles()
+}
+
+tasks.assemble {
+    dependsOn tasks.shadowJar
+}
