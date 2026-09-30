@@ -14,6 +14,11 @@ import java.util.List;
 
 public final class ItemBuilder {
 
+    /**
+     * Ширина строки описания в символах латиницы: шире подсказка растягивается на пол-экрана.
+     */
+    public static final int WRAP_WIDTH = 34;
+
     private final ItemStack item;
     private final List<Component> lore = new ArrayList<>();
     private Component name;
@@ -48,6 +53,35 @@ public final class ItemBuilder {
 
     public ItemBuilder lore(List<String> lines) {
         lore.addAll(Msg.lore(lines));
+        return this;
+    }
+
+    /**
+     * Подсказка вида «ЛКМ — выбрать»: до тире — клавиша цветом плагина, после — серым.
+     * Длинная переносится, продолжение серое.
+     */
+    public ItemBuilder hint(String plain) {
+        List<String> lines = Msg.wrap(plain, WRAP_WIDTH);
+        for (int i = 0; i < lines.size(); i++) {
+            String line = lines.get(i);
+            int dash = line.indexOf(" — ");
+            if (i == 0 && dash > 0) {
+                lore.add(Msg.item("<" + Msg.MAIN + ">" + Msg.name(line.substring(0, dash)) + "</" + Msg.MAIN + "> <gray>"
+                        + Msg.name(line.substring(dash + 1))));
+            } else {
+                lore.add(Msg.item("<gray>" + Msg.name(line)));
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Описание обычным текстом: переносится по словам и красится серым.
+     */
+    public ItemBuilder description(String plain) {
+        for (String line : Msg.wrap(plain, WRAP_WIDTH)) {
+            lore.add(Msg.item("<gray>" + Msg.name(line)));
+        }
         return this;
     }
 

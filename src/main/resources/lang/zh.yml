@@ -1,0 +1,183 @@
+# MultiTogether — 简体中文
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "简体中文"
+  changed: "语言：{language}"
+  current: "当前语言：{language}"
+  available: "可用语言：{languages}"
+  unknown: "未知语言 {input}。可用语言：{languages}"
+
+types:
+  all: "全部"
+  chain:
+    name: "锁链"
+    title: "锁链"
+    description: "玩家被锁链连在一起：彼此之间的距离不能超过锁链长度，其中一人被传送时会把所有人一起带走。"
+  health:
+    name: "生命值"
+    title: "生命值"
+    description: "所有人共用一条生命值。一人死亡，全员死亡。"
+  food:
+    name: "饥饿值"
+    title: "饥饿值"
+    description: "共享饥饿值和饱和度：一人进食，全员吃饱。"
+  inventory:
+    name: "物品栏"
+    title: "物品栏"
+    description: "所有人共用一个物品栏（含盔甲）：一名玩家手中的物品，也在所有人手中。"
+
+styles:
+  iron: "铁"
+  copper: "铜"
+  exposed: "斑驳的铜"
+  weathered: "锈蚀的铜"
+  oxidized: "氧化的铜"
+
+# Argument names in command usage lines
+args:
+  player1: "玩家1"
+  player2: "玩家2"
+  player: "玩家"
+  type: "类型"
+  blocks: "格数"
+  language: "语言"
+
+command:
+  player-not-found: "找不到玩家 {player}，或该玩家不在线"
+  player-only: "该命令仅限玩家使用"
+  no-permission: "权限不足：{permission}"
+  not-a-number: "{input} 不是数字"
+  usage: "用法："
+  unknown-type: "未知的绑定类型 {input}。请使用 {types}，或用逗号分隔多个类型"
+
+help:
+  header: "Multi Together — 玩家绑定"
+  menu: "打开菜单"
+  link: "绑定两名玩家"
+  link-all: "将所有在线玩家绑定成一条锁链"
+  list: "显示所有绑定"
+  length: "锁链长度（{min}–{max}）"
+  language: "插件语言"
+  unlink: "解绑一对玩家"
+  unlink-player: "解除一名玩家与所有人的绑定"
+  unlink-all: "移除所有绑定"
+  types: "类型：{all}（默认）、{others}；可同时指定多个：{example}"
+  unlink-header: "解绑："
+
+link:
+  self: "不能将玩家与其自身绑定"
+  already: "{first} 和 {second} 已经绑定：{types}"
+  done: "已绑定 {first} 和 {second}：{types}"
+  too-few: "至少需要两名玩家"
+  all-already: "这些玩家已经绑定：{types}"
+  pairs-done: "已绑定的玩家对：{count}（{types}）"
+  notify: "你已与 {player} 绑定：{types}"
+  length-set: "锁链长度：{length} 格"
+
+unlink:
+  different: "请指定两名不同的玩家"
+  not-linked: "{first} 和 {second} 之间没有绑定：{types}"
+  done: "已解绑 {first} 和 {second}：{types}"
+  notify: "你与 {player} 的绑定已解除：{types}"
+  among-none: "所选玩家之间没有绑定：{types}"
+  among-done: "已解绑的玩家对：{count}（{types}）"
+  among-notify: "你的部分绑定已解除：{types}"
+  player-none: "{player} 没有任何绑定：{types}"
+  player-done: "{player} 已与所有人解绑：{types}"
+  player-notify: "你已与所有人解绑：{types}"
+  everything-none: "当前没有任何绑定：{types}"
+  everything-done: "已移除所有绑定（{types}），玩家对：{count}"
+
+list:
+  header: "玩家绑定："
+  none: "无"
+  length: "锁链长度：{length} 格"
+
+death:
+  together: "{player} 与 {with} 一同死去"
+
+menu:
+  title: "Multi Together"
+  select: "左键 — 选择"
+  deselect: "左键 — 取消选择"
+  unlink-player: "右键 — 与所有人解绑（所选类型）"
+  teleport: "Shift+左键 — 传送到该玩家"
+  enabled: "● 已启用"
+  disabled: "○ 已禁用"
+  in-commands: "命令中写作：{key}"
+  type-on: "{type}：开"
+  type-off: "{type}：关"
+  all: "全部类型"
+  all-selected: "● 已选择所有类型"
+  all-not-selected: "○ 未选择全部类型"
+  all-click-select: "点击全选"
+  all-click-deselect: "点击取消全选"
+  page-previous: "‹ 第 {page} 页"
+  page-next: "第 {page} 页 ›"
+  select-all: "全选"
+  select-all-hint: "按字母顺序，排在已选玩家之后"
+  clear-selection: "清除选择"
+  link: "绑定所选"
+  selected: "已选择：{count}"
+  types: "类型：{types}"
+  types-none: "未选择"
+  order: "锁链：{order}"
+  need-two: "请至少选择两名玩家"
+  order-hint: "选择顺序即锁链顺序"
+  no-types: "未选择绑定类型"
+  nobody-selected: "未选择任何玩家"
+  current-links: "当前绑定"
+  chain-length: "锁链长度：{length} 格"
+  unlink: "解绑所选"
+  unlink-hint: "解除所有已选玩家之间所选类型的绑定。如果只选择了一名玩家，则将其与所有人解绑。"
+  unlink-all: "移除所有绑定"
+  unlink-all-hint: "所有玩家之间所选类型的全部绑定。"
+  shift-confirm: "Shift+点击 — 确认"
+  unlink-all-shift: "按住 Shift 点击以移除所有绑定"
+  settings: "锁链设置"
+  settings-hint: "长度、硬度、锁链样式、传送和语言"
+
+settings:
+  title: "锁链设置"
+  info: "同时作用于所有锁链，服务器重启后恢复默认。"
+  length: "锁链长度：{length} 格"
+  length-hint: "当两名玩家腰部之间的距离达到该值时，锁链会绷紧。"
+  length-range: "范围 {min} 至 {max}，默认 {default}"
+  length-step: "长度 {delta}"
+  stiffness: "硬度：{value}%"
+  stiffness-hint: "锁链每游戏刻收回多少超出的拉伸量。越软越有弹性，越硬拉扯越猛。"
+  stiffness-default: "默认 {value}%"
+  stiffness-step: "硬度 {delta}%"
+  style: "锁链样式：{style}"
+  click-to-change: "点击更改"
+  visible: "显示锁链"
+  visible-hint: "锁链的链节是展示实体。即使不显示，物理效果照样生效。"
+  anchor: "潜行稳住"
+  anchor-hint: "在地面上潜行的玩家受到的拉力会弱好几倍：这样就能拉住悬空的队友。"
+  respawn: "一起重生"
+  respawn-hint: "死亡的玩家会在存活的锁链同伴身旁重生。"
+  teleport: "一起传送"
+  teleport-hint: "穿过传送门、切换世界或远距离传送时，整条锁链上的玩家都会被一起带走。"
+  sounds: "锁链音效"
+  sounds-hint: "锁链被猛然拉紧时发出哐啷声。"
+  toggled-on: "{setting}：开"
+  toggled-off: "{setting}：关"
+  length-changed: "锁链长度：{length} 格"
+  stiffness-changed: "锁链硬度：{value}%"
+  style-changed: "锁链样式：{style}"
+  reset: "重置设置"
+  reset-shift: "按住 Shift 点击以重置设置"
+  reset-done: "设置已恢复为默认值"
+  language: "语言：{language}"
+  language-hint: "插件消息和菜单所用的语言。保存在 config.yml 中。"
+  back: "‹ 返回"
+
+language-menu:
+  title: "语言"
+  current: "● 当前语言"
+  select: "点击选择"

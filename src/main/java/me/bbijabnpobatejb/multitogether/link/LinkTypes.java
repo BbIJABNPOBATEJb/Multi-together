@@ -1,5 +1,7 @@
 package me.bbijabnpobatejb.multitogether.link;
 
+import me.bbijabnpobatejb.multitogether.i18n.Lang;
+
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -60,10 +62,10 @@ public record LinkTypes(Set<LinkType> types) {
     }
 
     /**
-     * «цепь, здоровье» — для сообщений.
+     * «цепь, здоровье» на языке сервера, обычным текстом — для сообщений.
      */
     public String describe() {
-        if (isAll()) return "всё (цепь, здоровье, голод, инвентарь)";
-        return types.stream().map(LinkType::getDisplayName).collect(Collectors.joining(", "));
+        String names = types.stream().map(LinkType::displayName).collect(Collectors.joining(", "));
+        return isAll() ? Lang.plain("types.all") + " (" + names + ")" : names;
     }
 }

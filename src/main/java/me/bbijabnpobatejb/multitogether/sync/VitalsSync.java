@@ -1,6 +1,7 @@
 package me.bbijabnpobatejb.multitogether.sync;
 
 import com.destroystokyo.paper.event.player.PlayerPostRespawnEvent;
+import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import me.bbijabnpobatejb.multitogether.link.LinkListener;
 import me.bbijabnpobatejb.multitogether.link.LinkService;
 import me.bbijabnpobatejb.multitogether.link.LinkType;
@@ -235,7 +236,7 @@ public final class VitalsSync implements LinkListener, Listener {
 
         String with = linkedDeaths.remove(uuid);
         if (with != null) {
-            event.deathMessage(Component.text(dead.getName() + " погиб вместе с " + with));
+            event.deathMessage(Component.text(Lang.plain("death.together", "player", dead.getName(), "with", with)));
             // Волну запустил тот, кто умер первым, эта смерть её не продолжает
             return;
         }

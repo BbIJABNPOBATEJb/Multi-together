@@ -1,0 +1,183 @@
+# MultiTogether — Polski
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Polski"
+  changed: "Język: {language}"
+  current: "Obecny język: {language}"
+  available: "Dostępne: {languages}"
+  unknown: "Nieznany język {input}. Dostępne: {languages}"
+
+types:
+  all: "wszystko"
+  chain:
+    name: "łańcuch"
+    title: "Łańcuch"
+    description: "Gracze są skuci łańcuchem: nie mogą oddalić się od siebie bardziej, niż pozwala długość łańcucha, a teleportacja jednego przenosi wszystkich."
+  health:
+    name: "zdrowie"
+    title: "Zdrowie"
+    description: "Jeden pasek zdrowia dla wszystkich. Ginie jeden — giną wszyscy."
+  food:
+    name: "głód"
+    title: "Głód"
+    description: "Wspólny głód i nasycenie: je jeden, najedzeni są wszyscy."
+  inventory:
+    name: "ekwipunek"
+    title: "Ekwipunek"
+    description: "Jeden ekwipunek z pancerzem dla wszystkich: przedmiot w ręce jednego gracza jest w ręce każdego."
+
+styles:
+  iron: "Żelazo"
+  copper: "Miedź"
+  exposed: "Odsłonięta miedź"
+  weathered: "Zwietrzała miedź"
+  oxidized: "Utleniona miedź"
+
+# Argument names in command usage lines
+args:
+  player1: "gracz1"
+  player2: "gracz2"
+  player: "gracz"
+  type: "typ"
+  blocks: "bloki"
+  language: "język"
+
+command:
+  player-not-found: "Gracz {player} nie został znaleziony lub jest offline"
+  player-only: "Ta komenda jest tylko dla graczy"
+  no-permission: "Brak uprawnień: {permission}"
+  not-a-number: "{input} nie jest liczbą"
+  usage: "Użycie:"
+  unknown-type: "Nieznany typ połączenia {input}. Użyj {types} lub kilku oddzielonych przecinkami"
+
+help:
+  header: "Multi Together — łączenie graczy"
+  menu: "otwórz menu"
+  link: "połącz dwóch graczy"
+  link-all: "połącz wszystkich online w jeden łańcuch"
+  list: "pokaż wszystkie połączenia"
+  length: "długość łańcucha ({min}–{max})"
+  language: "język pluginu"
+  unlink: "rozłącz parę"
+  unlink-player: "rozłącz gracza ze wszystkimi"
+  unlink-all: "usuń wszystkie połączenia"
+  types: "Typy: {all} (domyślnie), {others}; kilka naraz: {example}"
+  unlink-header: "Rozłączanie:"
+
+link:
+  self: "Nie można połączyć gracza z samym sobą"
+  already: "{first} i {second} są już połączeni: {types}"
+  done: "Połączono {first} i {second}: {types}"
+  too-few: "Potrzeba co najmniej dwóch graczy"
+  all-already: "Ci gracze są już połączeni: {types}"
+  pairs-done: "Połączonych par: {count} ({types})"
+  notify: "Połączono cię z {player}: {types}"
+  length-set: "Długość łańcucha w blokach: {length}"
+
+unlink:
+  different: "Podaj dwóch różnych graczy"
+  not-linked: "{first} i {second} nie byli połączeni: {types}"
+  done: "Rozłączono {first} i {second}: {types}"
+  notify: "Twoje połączenie z {player} zostało zerwane: {types}"
+  among-none: "Między wybranymi graczami nie ma połączeń: {types}"
+  among-done: "Rozłączonych par: {count} ({types})"
+  among-notify: "Część twoich połączeń została zerwana: {types}"
+  player-none: "{player} nie ma połączeń: {types}"
+  player-done: "Rozłączono {player} ze wszystkimi: {types}"
+  player-notify: "Rozłączono cię ze wszystkimi: {types}"
+  everything-none: "Brak połączeń: {types}"
+  everything-done: "Usunięto wszystkie połączenia ({types}), par: {count}"
+
+list:
+  header: "Połączenia graczy:"
+  none: "brak"
+  length: "Długość łańcucha w blokach: {length}"
+
+death:
+  together: "{player} zginął razem z {with}"
+
+menu:
+  title: "Multi Together"
+  select: "LPM — zaznacz"
+  deselect: "LPM — odznacz"
+  unlink-player: "PPM — rozłącz ze wszystkimi (wybrane typy)"
+  teleport: "Shift+LPM — teleportuj do gracza"
+  enabled: "● Włączone"
+  disabled: "○ Wyłączone"
+  in-commands: "W komendach: {key}"
+  type-on: "{type}: wł."
+  type-off: "{type}: wył."
+  all: "Wszystko naraz"
+  all-selected: "● Wszystkie typy są wybrane"
+  all-not-selected: "○ Nie wszystkie typy są wybrane"
+  all-click-select: "Kliknij, aby zaznaczyć wszystkie"
+  all-click-deselect: "Kliknij, aby odznaczyć wszystkie"
+  page-previous: "‹ Strona {page}"
+  page-next: "Strona {page} ›"
+  select-all: "Zaznacz wszystkich"
+  select-all-hint: "Alfabetycznie, po już zaznaczonych"
+  clear-selection: "Wyczyść zaznaczenie"
+  link: "Połącz zaznaczonych"
+  selected: "Zaznaczono: {count}"
+  types: "Typy: {types}"
+  types-none: "nic nie wybrano"
+  order: "Łańcuch: {order}"
+  need-two: "Zaznacz co najmniej dwóch graczy"
+  order-hint: "Kolejność zaznaczania to kolejność w łańcuchu"
+  no-types: "Nie wybrano żadnego typu połączenia"
+  nobody-selected: "Nikogo nie zaznaczono"
+  current-links: "Obecne połączenia"
+  chain-length: "Długość łańcucha w blokach: {length}"
+  unlink: "Rozłącz zaznaczonych"
+  unlink-hint: "Zrywa połączenia wybranych typów między wszystkimi zaznaczonymi graczami. Jeśli zaznaczono tylko jednego gracza, rozłącza go ze wszystkimi."
+  unlink-all: "Usuń wszystkie połączenia"
+  unlink-all-hint: "Wszystkie połączenia wybranych typów u wszystkich graczy."
+  shift-confirm: "Shift+klik — potwierdź"
+  unlink-all-shift: "Aby usunąć wszystkie połączenia, kliknij z Shiftem"
+  settings: "Ustawienia łańcucha"
+  settings-hint: "Długość, sztywność, styl łańcucha, teleportacje i język"
+
+settings:
+  title: "Ustawienia łańcucha"
+  info: "Dotyczą wszystkich łańcuchów naraz i resetują się po restarcie serwera."
+  length: "Długość łańcucha w blokach: {length}"
+  length-hint: "Odległość między pasami graczy, przy której łańcuch się napina."
+  length-range: "Od {min} do {max}, domyślnie {default}"
+  length-step: "Długość {delta}"
+  stiffness: "Sztywność: {value}%"
+  stiffness-hint: "Jaką część nadmiernego rozciągnięcia łańcuch niweluje w każdym ticku. Miękki działa sprężyście, twardy szarpie."
+  stiffness-default: "Domyślnie {value}%"
+  stiffness-step: "Sztywność {delta}%"
+  style: "Styl łańcucha: {style}"
+  click-to-change: "Kliknij, aby zmienić"
+  visible: "Widoczny łańcuch"
+  visible-hint: "Ogniwa to byty typu display. Fizyka działa również bez nich."
+  anchor: "Zapieranie przy skradaniu"
+  anchor-hint: "Gracz skradający się na ziemi jest przyciągany kilka razy słabiej: tak utrzymasz kogoś, kto wisi."
+  respawn: "Wspólne odrodzenie"
+  respawn-hint: "Martwy gracz odradza się obok żywego partnera z łańcucha."
+  teleport: "Wspólna teleportacja"
+  teleport-hint: "Portal, zmiana świata lub daleka teleportacja przenosi cały łańcuch."
+  sounds: "Dźwięki łańcucha"
+  sounds-hint: "Brzęk, gdy łańcuch gwałtownie się napina."
+  toggled-on: "{setting}: włączono"
+  toggled-off: "{setting}: wyłączono"
+  length-changed: "Długość łańcucha w blokach: {length}"
+  stiffness-changed: "Sztywność łańcucha: {value}%"
+  style-changed: "Styl łańcucha: {style}"
+  reset: "Resetuj ustawienia"
+  reset-shift: "Aby zresetować ustawienia, kliknij z Shiftem"
+  reset-done: "Przywrócono domyślne ustawienia"
+  language: "Język: {language}"
+  language-hint: "Język wiadomości i menu pluginu. Zapisywany w config.yml."
+  back: "‹ Wstecz"
+
+language-menu:
+  title: "Język"
+  current: "● Obecny język"
+  select: "Kliknij, aby wybrać"

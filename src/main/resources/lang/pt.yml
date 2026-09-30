@@ -1,0 +1,183 @@
+# MultiTogether — Português
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Português"
+  changed: "Idioma: {language}"
+  current: "Idioma atual: {language}"
+  available: "Disponíveis: {languages}"
+  unknown: "Idioma desconhecido {input}. Disponíveis: {languages}"
+
+types:
+  all: "tudo"
+  chain:
+    name: "corrente"
+    title: "Corrente"
+    description: "Os jogadores ficam acorrentados: não podem se afastar mais do que o comprimento da corrente, e se um for teletransportado, todos vão junto."
+  health:
+    name: "vida"
+    title: "Vida"
+    description: "Uma só barra de vida para todos. Um morre, todos morrem."
+  food:
+    name: "fome"
+    title: "Fome"
+    description: "Fome e saturação compartilhadas: um come, todos ficam saciados."
+  inventory:
+    name: "inventário"
+    title: "Inventário"
+    description: "Um só inventário com armadura para todos: um item na mão de um jogador está na mão de todos."
+
+styles:
+  iron: "Ferro"
+  copper: "Cobre"
+  exposed: "Cobre exposto"
+  weathered: "Cobre desgastado"
+  oxidized: "Cobre oxidado"
+
+# Argument names in command usage lines
+args:
+  player1: "jogador1"
+  player2: "jogador2"
+  player: "jogador"
+  type: "tipo"
+  blocks: "blocos"
+  language: "idioma"
+
+command:
+  player-not-found: "O jogador {player} não foi encontrado ou está offline"
+  player-only: "Este comando é apenas para jogadores"
+  no-permission: "Permissões insuficientes: {permission}"
+  not-a-number: "{input} não é um número"
+  usage: "Uso:"
+  unknown-type: "Tipo de vínculo desconhecido {input}. Use {types} ou vários separados por vírgulas"
+
+help:
+  header: "Multi Together — vincular jogadores"
+  menu: "abrir o menu"
+  link: "vincular dois jogadores"
+  link-all: "vincular todos os jogadores online em uma só corrente"
+  list: "mostrar todos os vínculos"
+  length: "comprimento da corrente ({min}–{max})"
+  language: "idioma do plugin"
+  unlink: "desvincular um par"
+  unlink-player: "desvincular um jogador de todos"
+  unlink-all: "remover todos os vínculos"
+  types: "Tipos: {all} (padrão), {others}; vários de uma vez: {example}"
+  unlink-header: "Desvincular:"
+
+link:
+  self: "Não é possível vincular um jogador a ele mesmo"
+  already: "{first} e {second} já estão vinculados: {types}"
+  done: "{first} e {second} vinculados: {types}"
+  too-few: "São necessários pelo menos dois jogadores"
+  all-already: "Esses jogadores já estão vinculados: {types}"
+  pairs-done: "Pares vinculados: {count} ({types})"
+  notify: "Você está vinculado a {player}: {types}"
+  length-set: "Comprimento da corrente: {length} blocos"
+
+unlink:
+  different: "Informe dois jogadores diferentes"
+  not-linked: "{first} e {second} não estavam vinculados: {types}"
+  done: "{first} e {second} desvinculados: {types}"
+  notify: "Seu vínculo com {player} foi desfeito: {types}"
+  among-none: "Não há vínculos entre os jogadores selecionados: {types}"
+  among-done: "Pares desvinculados: {count} ({types})"
+  among-notify: "Alguns dos seus vínculos foram desfeitos: {types}"
+  player-none: "{player} não tem vínculos: {types}"
+  player-done: "{player} foi desvinculado de todos: {types}"
+  player-notify: "Você foi desvinculado de todos: {types}"
+  everything-none: "Não há vínculos: {types}"
+  everything-done: "Todos os vínculos removidos ({types}), pares: {count}"
+
+list:
+  header: "Vínculos dos jogadores:"
+  none: "nenhum"
+  length: "Comprimento da corrente: {length} blocos"
+
+death:
+  together: "{player} morreu junto com {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Clique esq. — selecionar"
+  deselect: "Clique esq. — desmarcar"
+  unlink-player: "Clique dir. — desvincular de todos (tipos escolhidos)"
+  teleport: "Shift+Clique esq. — teletransportar até o jogador"
+  enabled: "● Ativado"
+  disabled: "○ Desativado"
+  in-commands: "Nos comandos: {key}"
+  type-on: "{type}: ativado"
+  type-off: "{type}: desativado"
+  all: "Tudo de uma vez"
+  all-selected: "● Todos os tipos estão selecionados"
+  all-not-selected: "○ Nem todos os tipos estão selecionados"
+  all-click-select: "Clique para selecionar todos"
+  all-click-deselect: "Clique para desmarcar todos"
+  page-previous: "‹ Página {page}"
+  page-next: "Página {page} ›"
+  select-all: "Selecionar todos"
+  select-all-hint: "Em ordem alfabética, depois dos já selecionados"
+  clear-selection: "Limpar seleção"
+  link: "Vincular selecionados"
+  selected: "Selecionados: {count}"
+  types: "Tipos: {types}"
+  types-none: "nenhum selecionado"
+  order: "Corrente: {order}"
+  need-two: "Selecione pelo menos dois jogadores"
+  order-hint: "A ordem de seleção é a ordem da corrente"
+  no-types: "Nenhum tipo de vínculo selecionado"
+  nobody-selected: "Ninguém selecionado"
+  current-links: "Vínculos atuais"
+  chain-length: "Comprimento da corrente: {length} blocos"
+  unlink: "Desvincular selecionados"
+  unlink-hint: "Desfaz os vínculos dos tipos escolhidos entre todos os jogadores selecionados. Se só um jogador estiver selecionado, ele é desvinculado de todos."
+  unlink-all: "Remover todos os vínculos"
+  unlink-all-hint: "Todos os vínculos dos tipos escolhidos, para todos os jogadores."
+  shift-confirm: "Shift+clique — confirmar"
+  unlink-all-shift: "Para remover todos os vínculos, clique com Shift"
+  settings: "Ajustes da corrente"
+  settings-hint: "Comprimento, rigidez, estilo da corrente, teletransportes e idioma"
+
+settings:
+  title: "Ajustes da corrente"
+  info: "Vale para todas as correntes ao mesmo tempo e é redefinido quando o servidor reinicia."
+  length: "Comprimento da corrente: {length} blocos"
+  length-hint: "Distância entre as cinturas dos jogadores a partir da qual a corrente fica esticada."
+  length-range: "De {min} a {max}, padrão {default}"
+  length-step: "Comprimento {delta}"
+  stiffness: "Rigidez: {value}%"
+  stiffness-hint: "Quanto do excesso de estiramento a corrente corrige por tick. Mais macia é elástica, mais dura dá trancos."
+  stiffness-default: "Padrão {value}%"
+  stiffness-step: "Rigidez {delta}%"
+  style: "Estilo da corrente: {style}"
+  click-to-change: "Clique para alterar"
+  visible: "Corrente visível"
+  visible-hint: "Os elos são entidades de exibição. A física funciona sem eles também."
+  anchor: "Firmar ao agachar"
+  anchor-hint: "Um jogador agachado no chão é puxado com uma força várias vezes menor: é assim que você segura alguém pendurado."
+  respawn: "Renascer juntos"
+  respawn-hint: "Um jogador morto renasce ao lado de um parceiro de corrente vivo."
+  teleport: "Teletransportar juntos"
+  teleport-hint: "Um portal, uma troca de mundo ou um teletransporte distante leva a corrente inteira junto."
+  sounds: "Sons da corrente"
+  sounds-hint: "Um tinido metálico quando a corrente é esticada de repente."
+  toggled-on: "{setting}: ativado"
+  toggled-off: "{setting}: desativado"
+  length-changed: "Comprimento da corrente: {length} blocos"
+  stiffness-changed: "Rigidez da corrente: {value}%"
+  style-changed: "Estilo da corrente: {style}"
+  reset: "Redefinir ajustes"
+  reset-shift: "Para redefinir os ajustes, clique com Shift"
+  reset-done: "Ajustes redefinidos para o padrão"
+  language: "Idioma: {language}"
+  language-hint: "Idioma das mensagens e dos menus do plugin. Salvo no config.yml."
+  back: "‹ Voltar"
+
+language-menu:
+  title: "Idioma"
+  current: "● Idioma atual"
+  select: "Clique para selecionar"

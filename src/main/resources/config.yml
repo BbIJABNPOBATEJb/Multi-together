@@ -1,0 +1,7 @@
+# MultiTogether
+#
+# Language of chat messages and menus. Also changed in-game: /link language <code> or the settings menu.
+# Bundled: en, ru, uk, de, fr, es, pt, it, pl, tr, nl, cs, sv, zh, ja, ko, vi, id
+# Translations are copied to plugins/MultiTogether/lang/ and can be edited there;
+# a new file (for example fi.yml) adds a language.
+language: en

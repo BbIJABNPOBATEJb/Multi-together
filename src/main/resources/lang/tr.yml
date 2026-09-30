@@ -1,0 +1,183 @@
+# MultiTogether — Türkçe
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Türkçe"
+  changed: "Dil: {language}"
+  current: "Geçerli dil: {language}"
+  available: "Mevcut diller: {languages}"
+  unknown: "Bilinmeyen dil: {input}. Mevcut diller: {languages}"
+
+types:
+  all: "hepsi"
+  chain:
+    name: "zincir"
+    title: "Zincir"
+    description: "Oyuncular birbirine zincirlenir: zincir uzunluğundan fazla uzaklaşamazlar ve biri ışınlanırsa herkes onunla birlikte gelir."
+  health:
+    name: "can"
+    title: "Can"
+    description: "Herkes için tek can barı. Biri ölürse herkes ölür."
+  food:
+    name: "açlık"
+    title: "Açlık"
+    description: "Ortak açlık ve doygunluk: biri yer, herkes doyar."
+  inventory:
+    name: "envanter"
+    title: "Envanter"
+    description: "Herkes için zırhıyla birlikte tek envanter: bir oyuncunun elindeki eşya herkesin elindedir."
+
+styles:
+  iron: "Demir"
+  copper: "Bakır"
+  exposed: "Hava almış bakır"
+  weathered: "Yıpranmış bakır"
+  oxidized: "Oksitlenmiş bakır"
+
+# Argument names in command usage lines
+args:
+  player1: "oyuncu1"
+  player2: "oyuncu2"
+  player: "oyuncu"
+  type: "tür"
+  blocks: "blok"
+  language: "dil"
+
+command:
+  player-not-found: "{player} adlı oyuncu bulunamadı veya çevrimdışı"
+  player-only: "Bu komut yalnızca oyuncular içindir"
+  no-permission: "Yetki yetersiz: {permission}"
+  not-a-number: "{input} bir sayı değil"
+  usage: "Kullanım:"
+  unknown-type: "Bilinmeyen bağ türü: {input}. {types} kullan ya da virgülle ayırarak birkaçını yaz"
+
+help:
+  header: "Multi Together — oyuncuları birbirine bağlama"
+  menu: "menüyü aç"
+  link: "iki oyuncuyu bağla"
+  link-all: "çevrimiçi herkesi tek bir zincirle bağla"
+  list: "tüm bağları göster"
+  length: "zincir uzunluğu ({min}–{max})"
+  language: "eklenti dili"
+  unlink: "bir çiftin bağını çöz"
+  unlink-player: "bir oyuncunun herkesle bağını çöz"
+  unlink-all: "tüm bağları kaldır"
+  types: "Türler: {all} (varsayılan), {others}; aynı anda birkaçı: {example}"
+  unlink-header: "Bağ çözme:"
+
+link:
+  self: "Bir oyuncu kendisiyle bağlanamaz"
+  already: "{first} ve {second} zaten bağlı: {types}"
+  done: "{first} ve {second} bağlandı: {types}"
+  too-few: "En az iki oyuncu gerekli"
+  all-already: "Bu oyuncular zaten bağlı: {types}"
+  pairs-done: "Bağlanan çift sayısı: {count} ({types})"
+  notify: "{player} ile bağlandın: {types}"
+  length-set: "Zincir uzunluğu: {length} blok"
+
+unlink:
+  different: "İki farklı oyuncu belirt"
+  not-linked: "{first} ve {second} bağlı değildi: {types}"
+  done: "{first} ve {second} arasındaki bağ çözüldü: {types}"
+  notify: "{player} ile bağın koptu: {types}"
+  among-none: "Seçili oyuncular arasında bağ yok: {types}"
+  among-done: "Bağı çözülen çift sayısı: {count} ({types})"
+  among-notify: "Bazı bağların koptu: {types}"
+  player-none: "{player} adlı oyuncunun hiç bağı yok: {types}"
+  player-done: "{player} adlı oyuncunun herkesle bağı çözüldü: {types}"
+  player-notify: "Herkesle bağın çözüldü: {types}"
+  everything-none: "Hiç bağ yok: {types}"
+  everything-done: "Tüm bağlar kaldırıldı ({types}), çift sayısı: {count}"
+
+list:
+  header: "Oyuncu bağları:"
+  none: "yok"
+  length: "Zincir uzunluğu: {length} blok"
+
+death:
+  together: "{player}, {with} ile birlikte öldü"
+
+menu:
+  title: "Multi Together"
+  select: "Sol tık — seç"
+  deselect: "Sol tık — seçimi kaldır"
+  unlink-player: "Sağ tık — herkesle bağını çöz (seçili türler)"
+  teleport: "Shift+Sol tık — oyuncuya ışınlan"
+  enabled: "● Açık"
+  disabled: "○ Kapalı"
+  in-commands: "Komutlarda: {key}"
+  type-on: "{type}: açık"
+  type-off: "{type}: kapalı"
+  all: "Hepsi birden"
+  all-selected: "● Tüm türler seçili"
+  all-not-selected: "○ Türlerin hepsi seçili değil"
+  all-click-select: "Hepsini seçmek için tıkla"
+  all-click-deselect: "Hepsinin seçimini kaldırmak için tıkla"
+  page-previous: "‹ Sayfa {page}"
+  page-next: "Sayfa {page} ›"
+  select-all: "Hepsini seç"
+  select-all-hint: "Alfabetik sırayla, zaten seçilenlerden sonra"
+  clear-selection: "Seçimi temizle"
+  link: "Seçilenleri bağla"
+  selected: "Seçili: {count}"
+  types: "Türler: {types}"
+  types-none: "hiçbiri seçili değil"
+  order: "Zincir: {order}"
+  need-two: "En az iki oyuncu seç"
+  order-hint: "Seçim sırası zincirin sırasıdır"
+  no-types: "Hiçbir bağ türü seçili değil"
+  nobody-selected: "Kimse seçili değil"
+  current-links: "Mevcut bağlar"
+  chain-length: "Zincir uzunluğu: {length} blok"
+  unlink: "Seçilenlerin bağını çöz"
+  unlink-hint: "Seçili türlerdeki bağları tüm seçili oyuncular arasında koparır. Yalnızca bir oyuncu seçiliyse onun herkesle bağını çözer."
+  unlink-all: "Tüm bağları kaldır"
+  unlink-all-hint: "Tüm oyuncuların seçili türlerdeki bütün bağları."
+  shift-confirm: "Shift+tık — onayla"
+  unlink-all-shift: "Tüm bağları kaldırmak için Shift ile tıkla"
+  settings: "Zincir ayarları"
+  settings-hint: "Uzunluk, sertlik, zincir stili, ışınlanmalar ve dil"
+
+settings:
+  title: "Zincir ayarları"
+  info: "Tüm zincirlere aynı anda uygulanır ve sunucu yeniden başlatılınca sıfırlanır."
+  length: "Zincir uzunluğu: {length} blok"
+  length-hint: "Oyuncuların belleri arasında zincirin gerildiği mesafe."
+  length-range: "{min} ile {max} arası, varsayılan {default}"
+  length-step: "Uzunluk {delta}"
+  stiffness: "Sertlik: {value}%"
+  stiffness-hint: "Zincirin, fazla gerilmenin ne kadarını bir tikte toparladığı. Yumuşak ayar esnek, sert ayar sarsıntılı hissettirir."
+  stiffness-default: "Varsayılan {value}%"
+  stiffness-step: "Sertlik {delta}%"
+  style: "Zincir stili: {style}"
+  click-to-change: "Değiştirmek için tıkla"
+  visible: "Görünür zincir"
+  visible-hint: "Halkalar display varlıklarıdır. Fizik onlarsız da çalışır."
+  anchor: "Eğilerek direnme"
+  anchor-hint: "Yerde eğilen oyuncu birkaç kat daha zayıf çekilir: asılı kalan birini böyle tutarsın."
+  respawn: "Birlikte yeniden doğma"
+  respawn-hint: "Ölen oyuncu, zincirdeki hayatta olan bir arkadaşının yanında yeniden doğar."
+  teleport: "Birlikte ışınlanma"
+  teleport-hint: "Portal, dünya değişimi veya uzak bir ışınlanma tüm zinciri beraberinde götürür."
+  sounds: "Zincir sesleri"
+  sounds-hint: "Zincir sertçe gerildiğinde şangırtı."
+  toggled-on: "{setting}: açık"
+  toggled-off: "{setting}: kapalı"
+  length-changed: "Zincir uzunluğu: {length} blok"
+  stiffness-changed: "Zincir sertliği: {value}%"
+  style-changed: "Zincir stili: {style}"
+  reset: "Ayarları sıfırla"
+  reset-shift: "Ayarları sıfırlamak için Shift ile tıkla"
+  reset-done: "Ayarlar varsayılana sıfırlandı"
+  language: "Dil: {language}"
+  language-hint: "Eklentinin mesaj ve menü dili. config.yml dosyasına kaydedilir."
+  back: "‹ Geri"
+
+language-menu:
+  title: "Dil"
+  current: "● Geçerli dil"
+  select: "Seçmek için tıkla"

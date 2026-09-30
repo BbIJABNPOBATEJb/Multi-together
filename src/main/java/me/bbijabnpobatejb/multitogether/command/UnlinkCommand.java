@@ -6,6 +6,7 @@ import dev.rollczi.litecommands.annotations.context.Sender;
 import dev.rollczi.litecommands.annotations.execute.Execute;
 import dev.rollczi.litecommands.annotations.permission.Permission;
 import me.bbijabnpobatejb.multitogether.MultiTogether;
+import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import me.bbijabnpobatejb.multitogether.link.LinkTypes;
 import me.bbijabnpobatejb.multitogether.util.Msg;
 import org.bukkit.command.CommandSender;
@@ -29,34 +30,37 @@ public class UnlinkCommand {
 
     @Execute
     void usage(@Sender CommandSender sender) {
-        String main = "<" + Msg.MAIN + ">";
-        sender.sendMessage(Msg.mm(Msg.PREFIX + "<white>Разъединение:"
-                + "<newline> " + main + "/unlink <игрок1> <игрок2> [тип]</" + Msg.MAIN + "> <gray>— разъединить пару"
-                + "<newline> " + main + "/unlink <игрок> [тип]</" + Msg.MAIN + "> <gray>— отвязать ото всех"
-                + "<newline> " + main + "/unlink all [тип]</" + Msg.MAIN + "> <gray>— снять все связи"
-                + "<newline> <gray>Типы: <white>ALL, CHAIN, HP, FOOD, INVENTORY"));
+        String player1 = Lang.plain("args.player1");
+        String player2 = Lang.plain("args.player2");
+        String type = Lang.plain("args.type");
+
+        StringBuilder text = new StringBuilder(Msg.PREFIX + "<white>" + Lang.mm("help.unlink-header"));
+        LinkCommand.line(text, "/unlink <" + player1 + "> <" + player2 + "> [" + type + "]", Lang.mm("help.unlink"));
+        LinkCommand.line(text, "/unlink <" + Lang.plain("args.player") + "> [" + type + "]", Lang.mm("help.unlink-player"));
+        LinkCommand.line(text, "/unlink all [" + type + "]", Lang.mm("help.unlink-all"));
+        sender.sendMessage(Msg.mm(text.toString()));
     }
 
     @Execute
     void unlink(@Sender CommandSender sender,
-                @Arg("игрок1") Player first,
-                @Arg("игрок2") Player second,
-                @Arg("тип") Optional<LinkTypes> types) {
+                @Arg("player1") Player first,
+                @Arg("player2") Player second,
+                @Arg("type") Optional<LinkTypes> types) {
         plugin.getActions().unlink(sender, first.getUniqueId(), second.getUniqueId(), types.orElseGet(LinkTypes::all));
     }
 
     @Execute
-    void unlinkPlayer(@Sender CommandSender sender, @Arg("игрок") Player player) {
+    void unlinkPlayer(@Sender CommandSender sender, @Arg("player") Player player) {
         plugin.getActions().unlinkPlayer(sender, player.getUniqueId(), LinkTypes.all());
     }
 
     @Execute
-    void unlinkPlayer(@Sender CommandSender sender, @Arg("игрок") Player player, @Arg("тип") LinkTypes types) {
+    void unlinkPlayer(@Sender CommandSender sender, @Arg("player") Player player, @Arg("type") LinkTypes types) {
         plugin.getActions().unlinkPlayer(sender, player.getUniqueId(), types);
     }
 
     @Execute(name = "all", aliases = {"все", "всех", "фдд"})
-    void unlinkAll(@Sender CommandSender sender, @Arg("тип") Optional<LinkTypes> types) {
+    void unlinkAll(@Sender CommandSender sender, @Arg("type") Optional<LinkTypes> types) {
         plugin.getActions().unlinkEverything(sender, types.orElseGet(LinkTypes::all));
     }
 }

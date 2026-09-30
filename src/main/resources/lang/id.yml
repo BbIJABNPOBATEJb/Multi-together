@@ -1,0 +1,183 @@
+# MultiTogether — Bahasa Indonesia
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Bahasa Indonesia"
+  changed: "Bahasa: {language}"
+  current: "Bahasa saat ini: {language}"
+  available: "Tersedia: {languages}"
+  unknown: "Bahasa {input} tidak dikenal. Tersedia: {languages}"
+
+types:
+  all: "semua"
+  chain:
+    name: "rantai"
+    title: "Rantai"
+    description: "Para pemain dirantai bersama: mereka tidak bisa berjauhan melebihi panjang rantai, dan jika satu pemain berteleportasi, semua ikut terbawa."
+  health:
+    name: "kesehatan"
+    title: "Kesehatan"
+    description: "Satu bilah kesehatan untuk semua. Satu mati, semua mati."
+  food:
+    name: "kelaparan"
+    title: "Kelaparan"
+    description: "Kelaparan dan kejenuhan dibagi bersama: satu makan, semua kenyang."
+  inventory:
+    name: "persediaan"
+    title: "Persediaan"
+    description: "Satu persediaan beserta zirah untuk semua: benda di tangan satu pemain ada di tangan semua pemain."
+
+styles:
+  iron: "Besi"
+  copper: "Tembaga"
+  exposed: "Tembaga terekspos"
+  weathered: "Tembaga berkarat"
+  oxidized: "Tembaga teroksidasi"
+
+# Argument names in command usage lines
+args:
+  player1: "pemain1"
+  player2: "pemain2"
+  player: "pemain"
+  type: "tipe"
+  blocks: "blok"
+  language: "bahasa"
+
+command:
+  player-not-found: "Pemain {player} tidak ditemukan atau sedang offline"
+  player-only: "Perintah ini hanya untuk pemain"
+  no-permission: "Izin tidak cukup: {permission}"
+  not-a-number: "{input} bukan angka"
+  usage: "Penggunaan:"
+  unknown-type: "Tipe ikatan {input} tidak dikenal. Gunakan {types} atau beberapa sekaligus dipisahkan koma"
+
+help:
+  header: "Multi Together — mengikat pemain"
+  menu: "buka menu"
+  link: "ikat dua pemain"
+  link-all: "ikat semua pemain online dalam satu rantai"
+  list: "tampilkan semua ikatan"
+  length: "panjang rantai ({min}–{max})"
+  language: "bahasa plugin"
+  unlink: "lepas ikatan satu pasangan"
+  unlink-player: "lepas ikatan pemain dari semua orang"
+  unlink-all: "hapus semua ikatan"
+  types: "Tipe: {all} (bawaan), {others}; beberapa sekaligus: {example}"
+  unlink-header: "Melepas ikatan:"
+
+link:
+  self: "Pemain tidak bisa diikat dengan dirinya sendiri"
+  already: "{first} dan {second} sudah terikat: {types}"
+  done: "{first} dan {second} telah diikat: {types}"
+  too-few: "Dibutuhkan setidaknya dua pemain"
+  all-already: "Pemain-pemain ini sudah terikat: {types}"
+  pairs-done: "Pasangan diikat: {count} ({types})"
+  notify: "Kamu terikat dengan {player}: {types}"
+  length-set: "Panjang rantai: {length} blok"
+
+unlink:
+  different: "Tentukan dua pemain yang berbeda"
+  not-linked: "{first} dan {second} tidak terikat: {types}"
+  done: "Ikatan {first} dan {second} dilepas: {types}"
+  notify: "Ikatanmu dengan {player} terputus: {types}"
+  among-none: "Tidak ada ikatan di antara pemain yang dipilih: {types}"
+  among-done: "Pasangan dilepas: {count} ({types})"
+  among-notify: "Beberapa ikatanmu terputus: {types}"
+  player-none: "{player} tidak punya ikatan: {types}"
+  player-done: "Ikatan {player} dengan semua pemain dilepas: {types}"
+  player-notify: "Ikatanmu dengan semua pemain dilepas: {types}"
+  everything-none: "Tidak ada ikatan: {types}"
+  everything-done: "Semua ikatan dihapus ({types}), pasangan: {count}"
+
+list:
+  header: "Ikatan pemain:"
+  none: "tidak ada"
+  length: "Panjang rantai: {length} blok"
+
+death:
+  together: "{player} mati bersama {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Klik kiri — pilih"
+  deselect: "Klik kiri — batal pilih"
+  unlink-player: "Klik kanan — lepas ikatan dari semua (tipe terpilih)"
+  teleport: "Shift+Klik kiri — teleportasi ke pemain"
+  enabled: "● Aktif"
+  disabled: "○ Nonaktif"
+  in-commands: "Dalam perintah: {key}"
+  type-on: "{type}: aktif"
+  type-off: "{type}: nonaktif"
+  all: "Semua sekaligus"
+  all-selected: "● Semua tipe dipilih"
+  all-not-selected: "○ Tidak semua tipe dipilih"
+  all-click-select: "Klik untuk memilih semua"
+  all-click-deselect: "Klik untuk membatalkan semua pilihan"
+  page-previous: "‹ Halaman {page}"
+  page-next: "Halaman {page} ›"
+  select-all: "Pilih semua"
+  select-all-hint: "Urut abjad, setelah yang sudah dipilih"
+  clear-selection: "Hapus pilihan"
+  link: "Ikat yang dipilih"
+  selected: "Dipilih: {count}"
+  types: "Tipe: {types}"
+  types-none: "tidak ada yang dipilih"
+  order: "Rantai: {order}"
+  need-two: "Pilih setidaknya dua pemain"
+  order-hint: "Urutan pilihan adalah urutan rantai"
+  no-types: "Tidak ada tipe ikatan yang dipilih"
+  nobody-selected: "Tidak ada yang dipilih"
+  current-links: "Ikatan saat ini"
+  chain-length: "Panjang rantai: {length} blok"
+  unlink: "Lepas yang dipilih"
+  unlink-hint: "Memutus ikatan tipe terpilih di antara semua pemain yang dipilih. Jika hanya satu pemain yang dipilih, ikatannya dengan semua pemain dilepas."
+  unlink-all: "Hapus semua ikatan"
+  unlink-all-hint: "Semua ikatan tipe terpilih untuk semua pemain."
+  shift-confirm: "Shift+Klik — konfirmasi"
+  unlink-all-shift: "Untuk menghapus semua ikatan, klik sambil menahan Shift"
+  settings: "Pengaturan rantai"
+  settings-hint: "Panjang, kekakuan, gaya rantai, teleportasi, dan bahasa"
+
+settings:
+  title: "Pengaturan rantai"
+  info: "Berlaku untuk semua rantai sekaligus dan diatur ulang saat server dimulai ulang."
+  length: "Panjang rantai: {length} blok"
+  length-hint: "Jarak antara pinggang para pemain saat rantai mulai menegang."
+  length-range: "Dari {min} sampai {max}, bawaan {default}"
+  length-step: "Panjang {delta}"
+  stiffness: "Kekakuan: {value}%"
+  stiffness-hint: "Seberapa banyak kelebihan regangan yang ditarik rantai tiap tick. Lebih lunak terasa memantul, lebih kaku terasa menyentak."
+  stiffness-default: "Bawaan {value}%"
+  stiffness-step: "Kekakuan {delta}%"
+  style: "Gaya rantai: {style}"
+  click-to-change: "Klik untuk mengubah"
+  visible: "Rantai terlihat"
+  visible-hint: "Mata rantai adalah entitas penampil. Fisika tetap bekerja tanpanya."
+  anchor: "Tahan dengan jongkok"
+  anchor-hint: "Pemain yang jongkok di tanah ditarik beberapa kali lebih lemah: begitulah cara menahan pemain yang tergantung."
+  respawn: "Bangkit bersama"
+  respawn-hint: "Pemain yang mati bangkit kembali di samping rekan rantai yang masih hidup."
+  teleport: "Teleportasi bersama"
+  teleport-hint: "Gerbang, perpindahan dunia, atau teleportasi jauh membawa seluruh rantai ikut serta."
+  sounds: "Suara rantai"
+  sounds-hint: "Bunyi gemerincing saat rantai tersentak kencang."
+  toggled-on: "{setting}: aktif"
+  toggled-off: "{setting}: nonaktif"
+  length-changed: "Panjang rantai: {length} blok"
+  stiffness-changed: "Kekakuan rantai: {value}%"
+  style-changed: "Gaya rantai: {style}"
+  reset: "Atur ulang pengaturan"
+  reset-shift: "Untuk mengatur ulang pengaturan, klik sambil menahan Shift"
+  reset-done: "Pengaturan dikembalikan ke bawaan"
+  language: "Bahasa: {language}"
+  language-hint: "Bahasa pesan dan menu plugin. Disimpan di config.yml."
+  back: "‹ Kembali"
+
+language-menu:
+  title: "Bahasa"
+  current: "● Bahasa saat ini"
+  select: "Klik untuk memilih"

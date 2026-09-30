@@ -2,7 +2,10 @@ package me.bbijabnpobatejb.multitogether.settings;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import org.bukkit.Material;
+
+import java.util.Locale;
 
 /**
  * Из какого блока собрана цепь. Медные цепи появились в 1.21.9.
@@ -11,14 +14,17 @@ import org.bukkit.Material;
 @RequiredArgsConstructor
 public enum ChainStyle {
 
-    IRON(Material.IRON_CHAIN, "Железная"),
-    COPPER(Material.COPPER_CHAIN, "Медная"),
-    EXPOSED(Material.EXPOSED_COPPER_CHAIN, "Потемневшая медь"),
-    WEATHERED(Material.WEATHERED_COPPER_CHAIN, "Выветренная медь"),
-    OXIDIZED(Material.OXIDIZED_COPPER_CHAIN, "Окисленная медь");
+    IRON(Material.IRON_CHAIN),
+    COPPER(Material.COPPER_CHAIN),
+    EXPOSED(Material.EXPOSED_COPPER_CHAIN),
+    WEATHERED(Material.WEATHERED_COPPER_CHAIN),
+    OXIDIZED(Material.OXIDIZED_COPPER_CHAIN);
 
     private final Material material;
-    private final String displayName;
+
+    public String displayName() {
+        return Lang.plain("styles." + name().toLowerCase(Locale.ROOT));
+    }
 
     public ChainStyle next() {
         ChainStyle[] values = values();

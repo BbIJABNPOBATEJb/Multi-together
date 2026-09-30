@@ -1,0 +1,183 @@
+# MultiTogether — Tiếng Việt
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Tiếng Việt"
+  changed: "Ngôn ngữ: {language}"
+  current: "Ngôn ngữ hiện tại: {language}"
+  available: "Có sẵn: {languages}"
+  unknown: "Không rõ ngôn ngữ {input}. Có sẵn: {languages}"
+
+types:
+  all: "tất cả"
+  chain:
+    name: "xích"
+    title: "Xích"
+    description: "Người chơi bị xích vào nhau: không thể cách xa nhau hơn chiều dài xích, và khi một người dịch chuyển thì tất cả đi theo."
+  health:
+    name: "máu"
+    title: "Máu"
+    description: "Một thanh máu chung cho tất cả. Một người chết, tất cả cùng chết."
+  food:
+    name: "độ đói"
+    title: "Độ đói"
+    description: "Chung độ đói và độ bão hòa: một người ăn, tất cả cùng no."
+  inventory:
+    name: "túi đồ"
+    title: "Túi đồ"
+    description: "Một túi đồ chung cho tất cả, kể cả giáp: vật phẩm trên tay một người cũng có trên tay mọi người."
+
+styles:
+  iron: "Sắt"
+  copper: "Đồng"
+  exposed: "Đồng hơi gỉ"
+  weathered: "Đồng phong hóa"
+  oxidized: "Đồng oxy hóa"
+
+# Argument names in command usage lines
+args:
+  player1: "người chơi 1"
+  player2: "người chơi 2"
+  player: "người chơi"
+  type: "loại"
+  blocks: "số khối"
+  language: "ngôn ngữ"
+
+command:
+  player-not-found: "Không tìm thấy người chơi {player} hoặc người chơi đang ngoại tuyến"
+  player-only: "Lệnh này chỉ dành cho người chơi"
+  no-permission: "Không đủ quyền: {permission}"
+  not-a-number: "{input} không phải là số"
+  usage: "Cách dùng:"
+  unknown-type: "Không rõ loại liên kết {input}. Dùng {types} hoặc nhiều loại cách nhau bằng dấu phẩy"
+
+help:
+  header: "Multi Together — liên kết người chơi"
+  menu: "mở menu"
+  link: "liên kết hai người chơi"
+  link-all: "liên kết mọi người đang trực tuyến thành một chuỗi xích"
+  list: "hiện mọi liên kết"
+  length: "chiều dài xích ({min}–{max})"
+  language: "ngôn ngữ của plugin"
+  unlink: "hủy liên kết một cặp"
+  unlink-player: "hủy mọi liên kết của một người chơi"
+  unlink-all: "xóa mọi liên kết"
+  types: "Loại: {all} (mặc định), {others}; nhiều loại cùng lúc: {example}"
+  unlink-header: "Hủy liên kết:"
+
+link:
+  self: "Không thể liên kết người chơi với chính họ"
+  already: "{first} và {second} đã được liên kết: {types}"
+  done: "Đã liên kết {first} và {second}: {types}"
+  too-few: "Cần ít nhất hai người chơi"
+  all-already: "Những người chơi này đã được liên kết: {types}"
+  pairs-done: "Số cặp đã liên kết: {count} ({types})"
+  notify: "Bạn đã được liên kết với {player}: {types}"
+  length-set: "Chiều dài xích: {length} khối"
+
+unlink:
+  different: "Hãy chỉ định hai người chơi khác nhau"
+  not-linked: "{first} và {second} chưa được liên kết: {types}"
+  done: "Đã hủy liên kết {first} và {second}: {types}"
+  notify: "Liên kết của bạn với {player} đã bị hủy: {types}"
+  among-none: "Không có liên kết nào giữa những người chơi đã chọn: {types}"
+  among-done: "Số cặp đã hủy liên kết: {count} ({types})"
+  among-notify: "Một số liên kết của bạn đã bị hủy: {types}"
+  player-none: "{player} không có liên kết nào: {types}"
+  player-done: "Đã hủy mọi liên kết của {player}: {types}"
+  player-notify: "Mọi liên kết của bạn đã bị hủy: {types}"
+  everything-none: "Không có liên kết nào: {types}"
+  everything-done: "Đã xóa mọi liên kết ({types}), số cặp: {count}"
+
+list:
+  header: "Liên kết người chơi:"
+  none: "không có"
+  length: "Chiều dài xích: {length} khối"
+
+death:
+  together: "{player} đã chết cùng với {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Chuột trái — chọn"
+  deselect: "Chuột trái — bỏ chọn"
+  unlink-player: "Chuột phải — hủy mọi liên kết (các loại đã chọn)"
+  teleport: "Shift+Chuột trái — dịch chuyển đến người chơi"
+  enabled: "● Đã bật"
+  disabled: "○ Đã tắt"
+  in-commands: "Trong lệnh: {key}"
+  type-on: "{type}: bật"
+  type-off: "{type}: tắt"
+  all: "Tất cả cùng lúc"
+  all-selected: "● Đã chọn tất cả các loại"
+  all-not-selected: "○ Chưa chọn tất cả các loại"
+  all-click-select: "Nhấp để chọn tất cả"
+  all-click-deselect: "Nhấp để bỏ chọn tất cả"
+  page-previous: "‹ Trang {page}"
+  page-next: "Trang {page} ›"
+  select-all: "Chọn tất cả"
+  select-all-hint: "Theo thứ tự bảng chữ cái, sau những người đã chọn"
+  clear-selection: "Bỏ chọn tất cả"
+  link: "Liên kết người đã chọn"
+  selected: "Đã chọn: {count}"
+  types: "Loại: {types}"
+  types-none: "chưa chọn"
+  order: "Xích: {order}"
+  need-two: "Hãy chọn ít nhất hai người chơi"
+  order-hint: "Thứ tự chọn chính là thứ tự trên xích"
+  no-types: "Chưa chọn loại liên kết nào"
+  nobody-selected: "Chưa chọn ai"
+  current-links: "Liên kết hiện tại"
+  chain-length: "Chiều dài xích: {length} khối"
+  unlink: "Hủy liên kết người đã chọn"
+  unlink-hint: "Hủy các liên kết thuộc loại đã chọn giữa tất cả người chơi đã chọn. Nếu chỉ chọn một người chơi, hủy mọi liên kết của người đó."
+  unlink-all: "Xóa mọi liên kết"
+  unlink-all-hint: "Mọi liên kết thuộc loại đã chọn của tất cả người chơi."
+  shift-confirm: "Shift+nhấp — xác nhận"
+  unlink-all-shift: "Để xóa mọi liên kết, hãy giữ Shift và nhấp"
+  settings: "Cài đặt xích"
+  settings-hint: "Chiều dài, độ cứng, kiểu xích, dịch chuyển và ngôn ngữ"
+
+settings:
+  title: "Cài đặt xích"
+  info: "Áp dụng cho mọi xích cùng lúc và được đặt lại khi máy chủ khởi động lại."
+  length: "Chiều dài xích: {length} khối"
+  length-hint: "Khoảng cách giữa eo của hai người chơi mà tại đó xích bị kéo căng."
+  length-range: "Từ {min} đến {max}, mặc định {default}"
+  length-step: "Chiều dài {delta}"
+  stiffness: "Độ cứng: {value}%"
+  stiffness-hint: "Mỗi tick, xích thu lại bao nhiêu phần bị giãn quá mức. Mềm hơn thì đàn hồi, cứng hơn thì giật mạnh."
+  stiffness-default: "Mặc định {value}%"
+  stiffness-step: "Độ cứng {delta}%"
+  style: "Kiểu xích: {style}"
+  click-to-change: "Nhấp để thay đổi"
+  visible: "Hiện xích"
+  visible-hint: "Các mắt xích là thực thể hiển thị. Vật lý vẫn hoạt động khi không có chúng."
+  anchor: "Ngồi để trụ"
+  anchor-hint: "Người chơi ngồi (Shift) trên mặt đất bị kéo yếu hơn nhiều lần: nhờ vậy có thể giữ được người đang treo lơ lửng."
+  respawn: "Hồi sinh cùng nhau"
+  respawn-hint: "Người chơi đã chết sẽ hồi sinh cạnh một đồng đội còn sống trên xích."
+  teleport: "Dịch chuyển cùng nhau"
+  teleport-hint: "Khi qua cổng, đổi thế giới hoặc dịch chuyển xa, cả chuỗi xích sẽ đi theo."
+  sounds: "Âm thanh xích"
+  sounds-hint: "Tiếng loảng xoảng khi xích bị giật căng."
+  toggled-on: "{setting}: bật"
+  toggled-off: "{setting}: tắt"
+  length-changed: "Chiều dài xích: {length} khối"
+  stiffness-changed: "Độ cứng xích: {value}%"
+  style-changed: "Kiểu xích: {style}"
+  reset: "Đặt lại cài đặt"
+  reset-shift: "Để đặt lại cài đặt, hãy giữ Shift và nhấp"
+  reset-done: "Đã đặt lại cài đặt về mặc định"
+  language: "Ngôn ngữ: {language}"
+  language-hint: "Ngôn ngữ của tin nhắn và menu trong plugin. Được lưu vào config.yml."
+  back: "‹ Quay lại"
+
+language-menu:
+  title: "Ngôn ngữ"
+  current: "● Ngôn ngữ hiện tại"
+  select: "Nhấp để chọn"

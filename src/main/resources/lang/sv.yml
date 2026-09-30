@@ -1,0 +1,183 @@
+# MultiTogether — Svenska
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Svenska"
+  changed: "Språk: {language}"
+  current: "Nuvarande språk: {language}"
+  available: "Tillgängliga: {languages}"
+  unknown: "Okänt språk {input}. Tillgängliga: {languages}"
+
+types:
+  all: "allt"
+  chain:
+    name: "kedja"
+    title: "Kedja"
+    description: "Spelarna är fastkedjade vid varandra: de kan inte komma längre ifrån varandra än kedjans längd, och om en teleporteras följer alla med."
+  health:
+    name: "hälsa"
+    title: "Hälsa"
+    description: "En hälsomätare för alla. Dör en, dör alla."
+  food:
+    name: "hunger"
+    title: "Hunger"
+    description: "Delad hunger och mättnad: en äter, alla blir mätta."
+  inventory:
+    name: "förråd"
+    title: "Förråd"
+    description: "Ett förråd med rustning för alla: ett föremål i en spelares hand finns i allas händer."
+
+styles:
+  iron: "Järn"
+  copper: "Koppar"
+  exposed: "Exponerad koppar"
+  weathered: "Väderbiten koppar"
+  oxidized: "Ärgad koppar"
+
+# Argument names in command usage lines
+args:
+  player1: "spelare1"
+  player2: "spelare2"
+  player: "spelare"
+  type: "typ"
+  blocks: "block"
+  language: "språk"
+
+command:
+  player-not-found: "Spelaren {player} hittades inte eller är offline"
+  player-only: "Det här kommandot är bara för spelare"
+  no-permission: "Otillräcklig behörighet: {permission}"
+  not-a-number: "{input} är inte ett tal"
+  usage: "Användning:"
+  unknown-type: "Okänd kopplingstyp {input}. Använd {types} eller flera separerade med kommatecken"
+
+help:
+  header: "Multi Together — koppla ihop spelare"
+  menu: "öppna menyn"
+  link: "koppla ihop två spelare"
+  link-all: "koppla ihop alla som är online i en kedja"
+  list: "visa alla kopplingar"
+  length: "kedjans längd ({min}–{max})"
+  language: "pluginets språk"
+  unlink: "koppla loss ett par"
+  unlink-player: "koppla loss en spelare från alla"
+  unlink-all: "ta bort alla kopplingar"
+  types: "Typer: {all} (standard), {others}; flera samtidigt: {example}"
+  unlink-header: "Koppla loss:"
+
+link:
+  self: "Du kan inte koppla ihop en spelare med sig själv"
+  already: "{first} och {second} är redan ihopkopplade: {types}"
+  done: "{first} och {second} har kopplats ihop: {types}"
+  too-few: "Minst två spelare behövs"
+  all-already: "De här spelarna är redan ihopkopplade: {types}"
+  pairs-done: "Par ihopkopplade: {count} ({types})"
+  notify: "Du är ihopkopplad med {player}: {types}"
+  length-set: "Kedjans längd: {length} block"
+
+unlink:
+  different: "Ange två olika spelare"
+  not-linked: "{first} och {second} var inte ihopkopplade: {types}"
+  done: "{first} och {second} har kopplats loss: {types}"
+  notify: "Din koppling med {player} är bruten: {types}"
+  among-none: "Det finns inga kopplingar mellan de valda spelarna: {types}"
+  among-done: "Par loskopplade: {count} ({types})"
+  among-notify: "Några av dina kopplingar bröts: {types}"
+  player-none: "{player} har inga kopplingar: {types}"
+  player-done: "{player} är loskopplad från alla: {types}"
+  player-notify: "Du har kopplats loss från alla: {types}"
+  everything-none: "Det finns inga kopplingar: {types}"
+  everything-done: "Alla kopplingar borttagna ({types}), par: {count}"
+
+list:
+  header: "Spelarnas kopplingar:"
+  none: "inga"
+  length: "Kedjans längd: {length} block"
+
+death:
+  together: "{player} dog tillsammans med {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Vänsterklick — välj"
+  deselect: "Vänsterklick — avmarkera"
+  unlink-player: "Högerklick — koppla loss från alla (valda typer)"
+  teleport: "Shift+vänsterklick — teleportera till spelaren"
+  enabled: "● Aktiverad"
+  disabled: "○ Inaktiverad"
+  in-commands: "I kommandon: {key}"
+  type-on: "{type}: på"
+  type-off: "{type}: av"
+  all: "Allt på en gång"
+  all-selected: "● Alla typer är valda"
+  all-not-selected: "○ Inte alla typer är valda"
+  all-click-select: "Klicka för att välja alla"
+  all-click-deselect: "Klicka för att avmarkera alla"
+  page-previous: "‹ Sida {page}"
+  page-next: "Sida {page} ›"
+  select-all: "Välj alla"
+  select-all-hint: "I bokstavsordning, efter de redan valda"
+  clear-selection: "Rensa val"
+  link: "Koppla ihop valda"
+  selected: "Valda: {count}"
+  types: "Typer: {types}"
+  types-none: "inga valda"
+  order: "Kedja: {order}"
+  need-two: "Välj minst två spelare"
+  order-hint: "Valordningen blir kedjans ordning"
+  no-types: "Ingen kopplingstyp är vald"
+  nobody-selected: "Ingen är vald"
+  current-links: "Nuvarande kopplingar"
+  chain-length: "Kedjans längd: {length} block"
+  unlink: "Koppla loss valda"
+  unlink-hint: "Bryter kopplingar av de valda typerna mellan alla valda spelare. Om bara en spelare är vald kopplas den loss från alla."
+  unlink-all: "Ta bort alla kopplingar"
+  unlink-all-hint: "Alla kopplingar av de valda typerna för alla spelare."
+  shift-confirm: "Shift+klick — bekräfta"
+  unlink-all-shift: "Klicka med Shift för att ta bort alla kopplingar"
+  settings: "Kedjeinställningar"
+  settings-hint: "Längd, styvhet, kedjestil, teleporteringar och språk"
+
+settings:
+  title: "Kedjeinställningar"
+  info: "Gäller alla kedjor på en gång och återställs när servern startas om."
+  length: "Kedjans längd: {length} block"
+  length-hint: "Avståndet mellan spelarnas midjor där kedjan sträcks."
+  length-range: "Från {min} till {max}, standard {default}"
+  length-step: "Längd {delta}"
+  stiffness: "Styvhet: {value}%"
+  stiffness-hint: "Hur stor del av översträckningen kedjan tar upp per tick. Mjukare ger fjädring, hårdare ger ryck."
+  stiffness-default: "Standard {value}%"
+  stiffness-step: "Styvhet {delta}%"
+  style: "Kedjestil: {style}"
+  click-to-change: "Klicka för att ändra"
+  visible: "Synlig kedja"
+  visible-hint: "Länkarna är visningsentiteter. Fysiken fungerar även utan dem."
+  anchor: "Smygförankring"
+  anchor-hint: "En spelare som smyger på marken dras flera gånger svagare: så håller du kvar någon som hänger."
+  respawn: "Återuppstå tillsammans"
+  respawn-hint: "En död spelare återuppstår bredvid en levande kedjepartner."
+  teleport: "Teleportera tillsammans"
+  teleport-hint: "En portal, ett världsbyte eller en lång teleportering tar med hela kedjan."
+  sounds: "Kedjeljud"
+  sounds-hint: "Ett skrammel när kedjan rycks spänd."
+  toggled-on: "{setting}: på"
+  toggled-off: "{setting}: av"
+  length-changed: "Kedjans längd: {length} block"
+  stiffness-changed: "Kedjans styvhet: {value}%"
+  style-changed: "Kedjestil: {style}"
+  reset: "Återställ inställningar"
+  reset-shift: "Klicka med Shift för att återställa inställningarna"
+  reset-done: "Inställningarna har återställts till standard"
+  language: "Språk: {language}"
+  language-hint: "Språk för pluginets meddelanden och menyer. Sparas i config.yml."
+  back: "‹ Tillbaka"
+
+language-menu:
+  title: "Språk"
+  current: "● Nuvarande språk"
+  select: "Klicka för att välja"

@@ -1,0 +1,183 @@
+# MultiTogether — Русский
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Русский"
+  changed: "Язык: {language}"
+  current: "Текущий язык: {language}"
+  available: "Доступны: {languages}"
+  unknown: "Неизвестный язык {input}. Доступны: {languages}"
+
+types:
+  all: "всё"
+  chain:
+    name: "цепь"
+    title: "Цепь"
+    description: "Игроки скованы цепью: дальше её длины не разойтись, а телепорт одного переносит всех."
+  health:
+    name: "здоровье"
+    title: "Здоровье"
+    description: "Одна полоска здоровья на всех. Умер один — умерли все."
+  food:
+    name: "голод"
+    title: "Голод"
+    description: "Общий голод и насыщение: ест один — сыты все."
+  inventory:
+    name: "инвентарь"
+    title: "Инвентарь"
+    description: "Один инвентарь с бронёй на всех: предмет в руке у одного — у всех."
+
+styles:
+  iron: "Железная"
+  copper: "Медная"
+  exposed: "Потемневшая медь"
+  weathered: "Выветренная медь"
+  oxidized: "Окисленная медь"
+
+# Argument names in command usage lines
+args:
+  player1: "игрок1"
+  player2: "игрок2"
+  player: "игрок"
+  type: "тип"
+  blocks: "блоки"
+  language: "язык"
+
+command:
+  player-not-found: "Игрок {player} не найден или не в сети"
+  player-only: "Эта команда только для игроков"
+  no-permission: "Недостаточно прав: {permission}"
+  not-a-number: "{input} — не число"
+  usage: "Использование:"
+  unknown-type: "Неизвестный вид связи {input}. Можно: {types} или несколько через запятую"
+
+help:
+  header: "Multi Together — связь игроков"
+  menu: "меню"
+  link: "связать двоих"
+  link-all: "связать всех онлайн цепочкой"
+  list: "все связи"
+  length: "длина цепи ({min}–{max})"
+  language: "язык плагина"
+  unlink: "разъединить пару"
+  unlink-player: "отвязать игрока ото всех"
+  unlink-all: "снять все связи"
+  types: "Типы: {all} (по умолчанию), {others}; можно несколько: {example}"
+  unlink-header: "Разъединение:"
+
+link:
+  self: "Нельзя связать игрока с самим собой"
+  already: "{first} и {second} уже связаны: {types}"
+  done: "Связаны {first} и {second}: {types}"
+  too-few: "Нужно хотя бы два игрока"
+  all-already: "Эти игроки уже связаны: {types}"
+  pairs-done: "Связано пар: {count} ({types})"
+  notify: "Ты связан с {player}: {types}"
+  length-set: "Длина цепи: {length} бл."
+
+unlink:
+  different: "Укажи двух разных игроков"
+  not-linked: "{first} и {second} не были связаны: {types}"
+  done: "Разъединены {first} и {second}: {types}"
+  notify: "Связь с {player} разорвана: {types}"
+  among-none: "Между выбранными нет связей: {types}"
+  among-done: "Разорвано пар: {count} ({types})"
+  among-notify: "Часть твоих связей разорвана: {types}"
+  player-none: "У {player} нет связей: {types}"
+  player-done: "{player} отвязан ото всех: {types}"
+  player-notify: "Тебя отвязали ото всех: {types}"
+  everything-none: "Связей нет: {types}"
+  everything-done: "Сняты все связи ({types}), пар: {count}"
+
+list:
+  header: "Связи игроков:"
+  none: "нет"
+  length: "Длина цепи: {length} бл."
+
+death:
+  together: "{player} погиб вместе с {with}"
+
+menu:
+  title: "Multi Together"
+  select: "ЛКМ — выбрать"
+  deselect: "ЛКМ — снять выбор"
+  unlink-player: "ПКМ — отвязать ото всех (выбранные виды)"
+  teleport: "Shift+ЛКМ — телепортироваться к игроку"
+  enabled: "● Включено"
+  disabled: "○ Выключено"
+  in-commands: "В команде: {key}"
+  type-on: "{type}: включено"
+  type-off: "{type}: выключено"
+  all: "Всё сразу"
+  all-selected: "● Выбраны все виды"
+  all-not-selected: "○ Выбраны не все"
+  all-click-select: "Нажми, чтобы выбрать все"
+  all-click-deselect: "Нажми, чтобы снять все"
+  page-previous: "‹ Страница {page}"
+  page-next: "Страница {page} ›"
+  select-all: "Выбрать всех"
+  select-all-hint: "По алфавиту, после уже выбранных"
+  clear-selection: "Сбросить выбор"
+  link: "Связать выбранных"
+  selected: "Выбрано: {count}"
+  types: "Виды: {types}"
+  types-none: "не выбраны"
+  order: "Цепь: {order}"
+  need-two: "Выбери хотя бы двоих"
+  order-hint: "Порядок выбора — порядок цепи"
+  no-types: "Не выбран ни один вид связи"
+  nobody-selected: "Никто не выбран"
+  current-links: "Текущие связи"
+  chain-length: "Длина цепи: {length} бл."
+  unlink: "Разъединить выбранных"
+  unlink-hint: "Рвёт связи выбранных видов между всеми выбранными. Выбран один — отвязывает его ото всех."
+  unlink-all: "Снять все связи"
+  unlink-all-hint: "Все связи выбранных видов у всех игроков."
+  shift-confirm: "Shift+клик — подтвердить"
+  unlink-all-shift: "Чтобы снять все связи, нажми с Shift"
+  settings: "Настройки цепи"
+  settings-hint: "Длина, жёсткость, вид цепи, телепорты и язык"
+
+settings:
+  title: "Настройки цепи"
+  info: "Действуют на все цепи сразу и сбрасываются перезапуском сервера."
+  length: "Длина цепи: {length} бл."
+  length-hint: "Расстояние между поясами игроков, на котором цепь натягивается."
+  length-range: "От {min} до {max}, по умолчанию {default}"
+  length-step: "Длина {delta}"
+  stiffness: "Жёсткость: {value}%"
+  stiffness-hint: "Сколько перетяжки цепь выбирает за тик. Мягче — пружинит, жёстче — дёргает."
+  stiffness-default: "По умолчанию {value}%"
+  stiffness-step: "Жёсткость {delta}%"
+  style: "Вид цепи: {style}"
+  click-to-change: "Нажми, чтобы сменить"
+  visible: "Цепь видна"
+  visible-hint: "Звенья из блоков-отображений. Физика работает и без них."
+  anchor: "Упор присевшего"
+  anchor-hint: "Присевший на земле тянется в разы слабее: так держат висящего."
+  respawn: "Возрождение рядом"
+  respawn-hint: "Умерший возрождается у живого напарника по цепи."
+  teleport: "Телепорт вместе"
+  teleport-hint: "Портал, смена мира или телепорт далеко переносит всю цепочку."
+  sounds: "Звуки цепи"
+  sounds-hint: "Звон, когда цепь резко натягивается."
+  toggled-on: "{setting}: включено"
+  toggled-off: "{setting}: выключено"
+  length-changed: "Длина цепи: {length} бл."
+  stiffness-changed: "Жёсткость цепи: {value}%"
+  style-changed: "Вид цепи: {style}"
+  reset: "Сбросить настройки"
+  reset-shift: "Чтобы сбросить настройки, нажми с Shift"
+  reset-done: "Настройки сброшены"
+  language: "Язык: {language}"
+  language-hint: "Язык сообщений и меню плагина. Сохраняется в config.yml."
+  back: "‹ Назад"
+
+language-menu:
+  title: "Язык"
+  current: "● Текущий язык"
+  select: "Нажми, чтобы выбрать"

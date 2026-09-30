@@ -90,7 +90,7 @@ public final class InventoryLinker implements LinkListener, Listener {
                     reconcile(group, claimed);
                 }
             } catch (Exception e) {
-                plugin.getLogger().log(Level.SEVERE, "Не удалось связать инвентари " + links.names(group), e);
+                plugin.getLogger().log(Level.SEVERE, "Failed to link inventories of " + links.names(group), e);
             }
         }
     }
@@ -197,7 +197,7 @@ public final class InventoryLinker implements LinkListener, Listener {
 
         if (dropper == null) {
             if (!leftovers.isEmpty()) {
-                plugin.getLogger().warning("Некуда выбросить " + leftovers.size() + " стаков при слиянии инвентарей");
+                plugin.getLogger().warning("Nowhere to drop " + leftovers.size() + " stacks while merging inventories");
             }
             return;
         }
@@ -248,7 +248,7 @@ public final class InventoryLinker implements LinkListener, Listener {
         try {
             if (isAttached(player, inventory)) attach(player, inventory.copy());
         } catch (IllegalAccessException e) {
-            plugin.getLogger().log(Level.SEVERE, "Не удалось отвязать инвентарь " + player.getName(), e);
+            plugin.getLogger().log(Level.SEVERE, "Failed to unlink the inventory of " + player.getName(), e);
         }
     }
 
@@ -288,7 +288,7 @@ public final class InventoryLinker implements LinkListener, Listener {
             // Загруженное с диска — снимок на момент выхода, общий список новее
             attach(player, inventory);
         } catch (IllegalAccessException e) {
-            plugin.getLogger().log(Level.SEVERE, "Не удалось вернуть общий инвентарь " + player.getName(), e);
+            plugin.getLogger().log(Level.SEVERE, "Failed to restore the shared inventory of " + player.getName(), e);
         }
     }
 
@@ -303,7 +303,7 @@ public final class InventoryLinker implements LinkListener, Listener {
             if (!isAttached(player, inventory)) reconcile(links.component(LinkType.INVENTORY, player.getUniqueId()),
                     Collections.newSetFromMap(new IdentityHashMap<>()));
         } catch (IllegalAccessException e) {
-            plugin.getLogger().log(Level.SEVERE, "Не удалось вернуть общий инвентарь " + player.getName(), e);
+            plugin.getLogger().log(Level.SEVERE, "Failed to restore the shared inventory of " + player.getName(), e);
         }
     }
 
@@ -323,7 +323,7 @@ public final class InventoryLinker implements LinkListener, Listener {
             try {
                 if (isAttached(player, entry.getValue())) attach(player, entry.getValue().copy());
             } catch (IllegalAccessException e) {
-                plugin.getLogger().log(Level.SEVERE, "Не удалось отвязать инвентарь " + player.getName(), e);
+                plugin.getLogger().log(Level.SEVERE, "Failed to unlink the inventory of " + player.getName(), e);
             }
         }
         assigned.clear();

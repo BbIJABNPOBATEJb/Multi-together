@@ -1,0 +1,183 @@
+# MultiTogether — Čeština
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Čeština"
+  changed: "Jazyk: {language}"
+  current: "Aktuální jazyk: {language}"
+  available: "Dostupné: {languages}"
+  unknown: "Neznámý jazyk {input}. Dostupné: {languages}"
+
+types:
+  all: "vše"
+  chain:
+    name: "řetěz"
+    title: "Řetěz"
+    description: "Hráči jsou spoutáni řetězem: nemohou se od sebe vzdálit víc, než dovolí délka řetězu, a teleport jednoho přenese všechny."
+  health:
+    name: "zdraví"
+    title: "Zdraví"
+    description: "Jeden ukazatel zdraví pro všechny. Umře jeden, umřou všichni."
+  food:
+    name: "hlad"
+    title: "Hlad"
+    description: "Společný hlad a nasycení: jeden jí, najedí se všichni."
+  inventory:
+    name: "inventář"
+    title: "Inventář"
+    description: "Jeden inventář s brněním pro všechny: předmět v ruce jednoho hráče je v ruce všech."
+
+styles:
+  iron: "Železo"
+  copper: "Měď"
+  exposed: "Zašlá měď"
+  weathered: "Zvětralá měď"
+  oxidized: "Zoxidovaná měď"
+
+# Argument names in command usage lines
+args:
+  player1: "hráč1"
+  player2: "hráč2"
+  player: "hráč"
+  type: "typ"
+  blocks: "bloky"
+  language: "jazyk"
+
+command:
+  player-not-found: "Hráč {player} nebyl nalezen nebo není online"
+  player-only: "Tento příkaz je jen pro hráče"
+  no-permission: "Nedostatečná oprávnění: {permission}"
+  not-a-number: "{input} není číslo"
+  usage: "Použití:"
+  unknown-type: "Neznámý typ propojení {input}. Použijte {types} nebo několik oddělených čárkou"
+
+help:
+  header: "Multi Together — propojování hráčů"
+  menu: "otevřít menu"
+  link: "propojit dva hráče"
+  link-all: "propojit všechny online do jednoho řetězu"
+  list: "zobrazit všechna propojení"
+  length: "délka řetězu ({min}–{max})"
+  language: "jazyk pluginu"
+  unlink: "rozpojit dvojici"
+  unlink-player: "odpojit hráče od všech"
+  unlink-all: "odstranit všechna propojení"
+  types: "Typy: {all} (výchozí), {others}; několik najednou: {example}"
+  unlink-header: "Rozpojení:"
+
+link:
+  self: "Hráče nelze propojit se sebou samým"
+  already: "{first} a {second} už jsou propojeni: {types}"
+  done: "{first} a {second} jsou propojeni: {types}"
+  too-few: "Jsou potřeba alespoň dva hráči"
+  all-already: "Tito hráči už jsou propojeni: {types}"
+  pairs-done: "Propojené dvojice: {count} ({types})"
+  notify: "Jste propojeni s hráčem {player}: {types}"
+  length-set: "Délka řetězu v blocích: {length}"
+
+unlink:
+  different: "Zadejte dva různé hráče"
+  not-linked: "{first} a {second} nebyli propojeni: {types}"
+  done: "{first} a {second} jsou rozpojeni: {types}"
+  notify: "Vaše propojení s hráčem {player} bylo zrušeno: {types}"
+  among-none: "Mezi vybranými hráči nejsou žádná propojení: {types}"
+  among-done: "Rozpojené dvojice: {count} ({types})"
+  among-notify: "Některá vaše propojení byla zrušena: {types}"
+  player-none: "Hráč {player} nemá žádná propojení: {types}"
+  player-done: "Hráč {player} byl odpojen od všech: {types}"
+  player-notify: "Byli jste odpojeni od všech: {types}"
+  everything-none: "Neexistují žádná propojení: {types}"
+  everything-done: "Všechna propojení odstraněna ({types}), dvojic: {count}"
+
+list:
+  header: "Propojení hráčů:"
+  none: "žádná"
+  length: "Délka řetězu v blocích: {length}"
+
+death:
+  together: "{player} zemřel spolu s {with}"
+
+menu:
+  title: "Multi Together"
+  select: "LTM — vybrat"
+  deselect: "LTM — zrušit výběr"
+  unlink-player: "PTM — odpojit od všech (vybrané typy)"
+  teleport: "Shift+LTM — teleportovat se k hráči"
+  enabled: "● Zapnuto"
+  disabled: "○ Vypnuto"
+  in-commands: "V příkazech: {key}"
+  type-on: "{type}: zapnuto"
+  type-off: "{type}: vypnuto"
+  all: "Vše najednou"
+  all-selected: "● Vybrány všechny typy"
+  all-not-selected: "○ Nejsou vybrány všechny typy"
+  all-click-select: "Klikněte pro výběr všech"
+  all-click-deselect: "Klikněte pro zrušení výběru všech"
+  page-previous: "‹ Strana {page}"
+  page-next: "Strana {page} ›"
+  select-all: "Vybrat všechny"
+  select-all-hint: "Abecedně, za již vybranými"
+  clear-selection: "Zrušit výběr"
+  link: "Propojit vybrané"
+  selected: "Vybráno: {count}"
+  types: "Typy: {types}"
+  types-none: "nic nevybráno"
+  order: "Řetěz: {order}"
+  need-two: "Vyberte alespoň dva hráče"
+  order-hint: "Pořadí výběru je pořadí v řetězu"
+  no-types: "Není vybrán žádný typ propojení"
+  nobody-selected: "Nikdo není vybrán"
+  current-links: "Aktuální propojení"
+  chain-length: "Délka řetězu v blocích: {length}"
+  unlink: "Rozpojit vybrané"
+  unlink-hint: "Zruší propojení vybraných typů mezi všemi vybranými hráči. Pokud je vybrán jen jeden hráč, odpojí ho od všech."
+  unlink-all: "Odstranit všechna propojení"
+  unlink-all-hint: "Všechna propojení vybraných typů u všech hráčů."
+  shift-confirm: "Shift+klik — potvrdit"
+  unlink-all-shift: "Pro odstranění všech propojení klikněte se Shiftem"
+  settings: "Nastavení řetězu"
+  settings-hint: "Délka, tuhost, styl řetězu, teleporty a jazyk"
+
+settings:
+  title: "Nastavení řetězu"
+  info: "Platí pro všechny řetězy najednou a po restartu serveru se resetuje."
+  length: "Délka řetězu v blocích: {length}"
+  length-hint: "Vzdálenost mezi pasy hráčů, při které se řetěz napne."
+  length-range: "Od {min} do {max}, výchozí {default}"
+  length-step: "Délka {delta}"
+  stiffness: "Tuhost: {value}%"
+  stiffness-hint: "Jakou část přetažení řetěz vyrovná za jeden tik. Měkčí je pružný, tvrdší škube."
+  stiffness-default: "Výchozí {value}%"
+  stiffness-step: "Tuhost {delta}%"
+  style: "Styl řetězu: {style}"
+  click-to-change: "Klikněte pro změnu"
+  visible: "Viditelný řetěz"
+  visible-hint: "Články jsou display entity. Fyzika funguje i bez nich."
+  anchor: "Zapření při plížení"
+  anchor-hint: "Hráč, který se plíží na zemi, je přitahován několikrát slaběji: tak udržíte někoho, kdo visí."
+  respawn: "Společné oživení"
+  respawn-hint: "Mrtvý hráč se oživí vedle živého spoluhráče z řetězu."
+  teleport: "Společný teleport"
+  teleport-hint: "Portál, změna světa nebo vzdálený teleport přenese celý řetěz."
+  sounds: "Zvuky řetězu"
+  sounds-hint: "Řinčení, když se řetěz prudce napne."
+  toggled-on: "{setting}: zapnuto"
+  toggled-off: "{setting}: vypnuto"
+  length-changed: "Délka řetězu v blocích: {length}"
+  stiffness-changed: "Tuhost řetězu: {value}%"
+  style-changed: "Styl řetězu: {style}"
+  reset: "Obnovit nastavení"
+  reset-shift: "Pro obnovení nastavení klikněte se Shiftem"
+  reset-done: "Nastavení obnoveno na výchozí"
+  language: "Jazyk: {language}"
+  language-hint: "Jazyk zpráv a menu pluginu. Ukládá se do config.yml."
+  back: "‹ Zpět"
+
+language-menu:
+  title: "Jazyk"
+  current: "● Aktuální jazyk"
+  select: "Klikněte pro výběr"

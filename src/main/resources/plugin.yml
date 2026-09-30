@@ -3,13 +3,13 @@ version: ${version}
 main: ${main}
 api-version: '1.21'
 authors: [ BbIJABNPOBATEJb ]
-description: Связывает игроков цепью, здоровьем, голодом и инвентарём — для съёмок и челленджей.
+description: Links players with a chain, shared health, hunger and inventory - for videos and challenges.
 website: https://github.com/BbIJABNPOBATEJb/Multi-together
 
-# Команды регистрирует LiteCommands при включении: /multitogether (/together, /link, /дштл...)
-# и /unlink (/гтдштл...). Описывать их здесь не нужно.
+# Commands are registered by LiteCommands on enable: /multitogether (/together, /link, /дштл...)
+# and /unlink (/гтдштл...), so they are not listed here.
 
 permissions:
   multitogether.admin:
-    description: Связывать и разъединять игроков, открывать меню и настройки
+    description: Link and unlink players, open the menu and settings, change the language
     default: op

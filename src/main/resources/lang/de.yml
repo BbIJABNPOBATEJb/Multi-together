@@ -1,0 +1,183 @@
+# MultiTogether — Deutsch
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Deutsch"
+  changed: "Sprache: {language}"
+  current: "Aktuelle Sprache: {language}"
+  available: "Verfügbar: {languages}"
+  unknown: "Unbekannte Sprache {input}. Verfügbar: {languages}"
+
+types:
+  all: "alles"
+  chain:
+    name: "Kette"
+    title: "Kette"
+    description: "Die Spieler sind aneinandergekettet: Sie können sich nicht weiter als die Kettenlänge voneinander entfernen, und wird einer teleportiert, kommen alle mit."
+  health:
+    name: "Gesundheit"
+    title: "Gesundheit"
+    description: "Eine Gesundheitsleiste für alle. Stirbt einer, sterben alle."
+  food:
+    name: "Hunger"
+    title: "Hunger"
+    description: "Geteilter Hunger und geteilte Sättigung: Isst einer, werden alle satt."
+  inventory:
+    name: "Inventar"
+    title: "Inventar"
+    description: "Ein Inventar samt Rüstung für alle: Ein Gegenstand in der Hand eines Spielers ist in der Hand aller."
+
+styles:
+  iron: "Eisen"
+  copper: "Kupfer"
+  exposed: "Angelaufenes Kupfer"
+  weathered: "Verwittertes Kupfer"
+  oxidized: "Oxidiertes Kupfer"
+
+# Argument names in command usage lines
+args:
+  player1: "spieler1"
+  player2: "spieler2"
+  player: "spieler"
+  type: "typ"
+  blocks: "blöcke"
+  language: "sprache"
+
+command:
+  player-not-found: "Spieler {player} wurde nicht gefunden oder ist offline"
+  player-only: "Dieser Befehl ist nur für Spieler"
+  no-permission: "Keine Berechtigung: {permission}"
+  not-a-number: "{input} ist keine Zahl"
+  usage: "Verwendung:"
+  unknown-type: "Unbekannter Verbindungstyp {input}. Nutze {types} oder mehrere, durch Kommas getrennt"
+
+help:
+  header: "Multi Together — Spieler verbinden"
+  menu: "Menü öffnen"
+  link: "zwei Spieler verbinden"
+  link-all: "alle Online-Spieler zu einer Kette verbinden"
+  list: "alle Verbindungen anzeigen"
+  length: "Kettenlänge ({min}–{max})"
+  language: "Sprache des Plugins"
+  unlink: "ein Paar trennen"
+  unlink-player: "einen Spieler von allen trennen"
+  unlink-all: "alle Verbindungen entfernen"
+  types: "Typen: {all} (Standard), {others}; mehrere auf einmal: {example}"
+  unlink-header: "Trennen:"
+
+link:
+  self: "Ein Spieler kann nicht mit sich selbst verbunden werden"
+  already: "{first} und {second} sind bereits verbunden: {types}"
+  done: "{first} und {second} verbunden: {types}"
+  too-few: "Es werden mindestens zwei Spieler benötigt"
+  all-already: "Diese Spieler sind bereits verbunden: {types}"
+  pairs-done: "Verbundene Paare: {count} ({types})"
+  notify: "Du bist mit {player} verbunden: {types}"
+  length-set: "Kettenlänge: {length} Blöcke"
+
+unlink:
+  different: "Gib zwei verschiedene Spieler an"
+  not-linked: "{first} und {second} waren nicht verbunden: {types}"
+  done: "{first} und {second} getrennt: {types}"
+  notify: "Deine Verbindung mit {player} wurde getrennt: {types}"
+  among-none: "Zwischen den ausgewählten Spielern gibt es keine Verbindungen: {types}"
+  among-done: "Getrennte Paare: {count} ({types})"
+  among-notify: "Einige deiner Verbindungen wurden getrennt: {types}"
+  player-none: "{player} hat keine Verbindungen: {types}"
+  player-done: "{player} wurde von allen getrennt: {types}"
+  player-notify: "Du wurdest von allen getrennt: {types}"
+  everything-none: "Es gibt keine Verbindungen: {types}"
+  everything-done: "Alle Verbindungen entfernt ({types}), Paare: {count}"
+
+list:
+  header: "Spielerverbindungen:"
+  none: "keine"
+  length: "Kettenlänge: {length} Blöcke"
+
+death:
+  together: "{player} ist zusammen mit {with} gestorben"
+
+menu:
+  title: "Multi Together"
+  select: "LMT — auswählen"
+  deselect: "LMT — abwählen"
+  unlink-player: "RMT — von allen trennen (gewählte Typen)"
+  teleport: "Shift+LMT — zum Spieler teleportieren"
+  enabled: "● Aktiviert"
+  disabled: "○ Deaktiviert"
+  in-commands: "In Befehlen: {key}"
+  type-on: "{type}: an"
+  type-off: "{type}: aus"
+  all: "Alles auf einmal"
+  all-selected: "● Alle Typen sind ausgewählt"
+  all-not-selected: "○ Nicht alle Typen sind ausgewählt"
+  all-click-select: "Klicken, um alle auszuwählen"
+  all-click-deselect: "Klicken, um alle abzuwählen"
+  page-previous: "‹ Seite {page}"
+  page-next: "Seite {page} ›"
+  select-all: "Alle auswählen"
+  select-all-hint: "Alphabetisch, nach den bereits ausgewählten"
+  clear-selection: "Auswahl aufheben"
+  link: "Ausgewählte verbinden"
+  selected: "Ausgewählt: {count}"
+  types: "Typen: {types}"
+  types-none: "keine ausgewählt"
+  order: "Kette: {order}"
+  need-two: "Wähle mindestens zwei Spieler aus"
+  order-hint: "Die Reihenfolge der Auswahl ist die Reihenfolge in der Kette"
+  no-types: "Kein Verbindungstyp ausgewählt"
+  nobody-selected: "Niemand ausgewählt"
+  current-links: "Aktuelle Verbindungen"
+  chain-length: "Kettenlänge: {length} Blöcke"
+  unlink: "Ausgewählte trennen"
+  unlink-hint: "Trennt die Verbindungen der gewählten Typen zwischen allen ausgewählten Spielern. Ist nur ein Spieler ausgewählt, wird er von allen getrennt."
+  unlink-all: "Alle Verbindungen entfernen"
+  unlink-all-hint: "Alle Verbindungen der gewählten Typen für alle Spieler."
+  shift-confirm: "Shift+Klick — bestätigen"
+  unlink-all-shift: "Klicke mit Shift, um alle Verbindungen zu entfernen"
+  settings: "Ketteneinstellungen"
+  settings-hint: "Länge, Steifigkeit, Kettenstil, Teleports und Sprache"
+
+settings:
+  title: "Ketteneinstellungen"
+  info: "Gilt für alle Ketten gleichzeitig und wird beim Neustart des Servers zurückgesetzt."
+  length: "Kettenlänge: {length} Blöcke"
+  length-hint: "Abstand zwischen den Hüften der Spieler, ab dem sich die Kette spannt."
+  length-range: "Von {min} bis {max}, Standard {default}"
+  length-step: "Länge {delta}"
+  stiffness: "Steifigkeit: {value}%"
+  stiffness-hint: "Wie viel der Überdehnung die Kette pro Tick ausgleicht. Weicher federt, härter ruckt."
+  stiffness-default: "Standard {value}%"
+  stiffness-step: "Steifigkeit {delta}%"
+  style: "Kettenstil: {style}"
+  click-to-change: "Klicken zum Ändern"
+  visible: "Kette sichtbar"
+  visible-hint: "Die Kettenglieder sind Display-Entities. Die Physik funktioniert auch ohne sie."
+  anchor: "Abstützen beim Schleichen"
+  anchor-hint: "Ein schleichender Spieler am Boden wird um ein Vielfaches schwächer gezogen: So hältst du jemanden, der in der Luft hängt."
+  respawn: "Gemeinsam wiederbeleben"
+  respawn-hint: "Ein gestorbener Spieler wird neben einem lebenden Kettenpartner wiederbelebt."
+  teleport: "Gemeinsam teleportieren"
+  teleport-hint: "Ein Portal, ein Weltwechsel oder ein weiter Teleport nimmt die ganze Kette mit."
+  sounds: "Kettengeräusche"
+  sounds-hint: "Ein Klirren, wenn sich die Kette ruckartig spannt."
+  toggled-on: "{setting}: an"
+  toggled-off: "{setting}: aus"
+  length-changed: "Kettenlänge: {length} Blöcke"
+  stiffness-changed: "Kettensteifigkeit: {value}%"
+  style-changed: "Kettenstil: {style}"
+  reset: "Einstellungen zurücksetzen"
+  reset-shift: "Klicke mit Shift, um die Einstellungen zurückzusetzen"
+  reset-done: "Die Einstellungen wurden auf Standard zurückgesetzt"
+  language: "Sprache: {language}"
+  language-hint: "Sprache der Nachrichten und Menüs des Plugins. Wird in config.yml gespeichert."
+  back: "‹ Zurück"
+
+language-menu:
+  title: "Sprache"
+  current: "● Aktuelle Sprache"
+  select: "Klicken zum Auswählen"

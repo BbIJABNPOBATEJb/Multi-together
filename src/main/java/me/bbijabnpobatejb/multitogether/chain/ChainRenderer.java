@@ -169,33 +169,41 @@ final class ChainRenderer {
         Vector[] points = new Vector[count + 1];
         for (int i = 0; i <= count; i++) {
             double t = (double) i / count;
-            Vector point = from.clone().add(chord.clone().multiply(t));
-            point.add(sagDirection.clone().multiply(sag * 4 * t * (1 - t)));
+            Vector straight = from.clone().add(chord.clone().multiply(t));
+            Vector point = straight.clone().add(sagDirection.clone().multiply(sag * 4 * t * (1 - t)));
 
-            if (i > 0 && i < count) liftOutOfBlocks(world, point);
+            if (i > 0 && i < count) liftOutOfBlocks(world, point, straight.getY());
             points[i] = point;
         }
         return points;
     }
 
     /**
-     * Если точка внутри твёрдого блока — кладёт её на его верх. Не больше трёх блоков вверх
-     * и только в загруженном чанке: грузить чанки ради картинки нельзя.
+     * Если провис ушёл в блок — кладёт точку на его верх, и цепь лежит на земле.
+     *
+     * <p>Поднимается точка не выше прямой между игроками: провис может только опустить цепь.
+     * Иначе цепь, проходящая сквозь ствол дерева или стену, взлетала бы по ним вверх — туда
+     * верёвке не с чего попасть. Такую точку лучше оставить внутри блока.</p>
+     *
+     * <p>Только в загруженном чанке: грузить чанки ради картинки нельзя.</p>
      */
-    private static void liftOutOfBlocks(World world, Vector point) {
+    private static void liftOutOfBlocks(World world, Vector point, double ceiling) {
         int x = point.getBlockX();
         int z = point.getBlockZ();
         if (!world.isChunkLoaded(x >> 4, z >> 4)) return;
 
+        double y = point.getY();
         for (int step = 0; step < 3; step++) {
-            Block block = world.getBlockAt(x, point.getBlockY(), z);
-            if (block.isPassable()) return;
+            Block block = world.getBlockAt(x, (int) Math.floor(y), z);
+            if (block.isPassable()) break;
 
             BoundingBox box = block.getBoundingBox();
-            if (point.getY() >= box.getMaxY()) return;
+            if (y >= box.getMaxY()) break;
 
-            point.setY(box.getMaxY() + 0.03);
+            y = box.getMaxY() + 0.03;
         }
+
+        if (y <= ceiling + 0.05) point.setY(y);
     }
 
     void remove() {

@@ -1,0 +1,183 @@
+# MultiTogether — Italiano
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Italiano"
+  changed: "Lingua: {language}"
+  current: "Lingua attuale: {language}"
+  available: "Disponibili: {languages}"
+  unknown: "Lingua sconosciuta {input}. Disponibili: {languages}"
+
+types:
+  all: "tutto"
+  chain:
+    name: "catena"
+    title: "Catena"
+    description: "I giocatori sono incatenati tra loro: non possono allontanarsi oltre la lunghezza della catena, e il teletrasporto di uno porta con sé tutti gli altri."
+  health:
+    name: "salute"
+    title: "Salute"
+    description: "Una sola barra della salute per tutti. Muore uno, muoiono tutti."
+  food:
+    name: "fame"
+    title: "Fame"
+    description: "Fame e sazietà condivise: uno mangia, tutti sono sazi."
+  inventory:
+    name: "inventario"
+    title: "Inventario"
+    description: "Un solo inventario con armatura per tutti: un oggetto in mano a un giocatore è in mano a tutti."
+
+styles:
+  iron: "Ferro"
+  copper: "Rame"
+  exposed: "Rame esposto"
+  weathered: "Rame corroso"
+  oxidized: "Rame ossidato"
+
+# Argument names in command usage lines
+args:
+  player1: "giocatore1"
+  player2: "giocatore2"
+  player: "giocatore"
+  type: "tipo"
+  blocks: "blocchi"
+  language: "lingua"
+
+command:
+  player-not-found: "Il giocatore {player} non è stato trovato o non è online"
+  player-only: "Questo comando è solo per i giocatori"
+  no-permission: "Permessi insufficienti: {permission}"
+  not-a-number: "{input} non è un numero"
+  usage: "Uso:"
+  unknown-type: "Tipo di collegamento sconosciuto {input}. Usa {types} o più tipi separati da virgole"
+
+help:
+  header: "Multi Together — collegamento dei giocatori"
+  menu: "apri il menu"
+  link: "collega due giocatori"
+  link-all: "collega tutti i giocatori online in un'unica catena"
+  list: "mostra tutti i collegamenti"
+  length: "lunghezza della catena ({min}–{max})"
+  language: "lingua del plugin"
+  unlink: "scollega una coppia"
+  unlink-player: "scollega un giocatore da tutti"
+  unlink-all: "rimuovi tutti i collegamenti"
+  types: "Tipi: {all} (predefinito), {others}; più tipi insieme: {example}"
+  unlink-header: "Scollegamento:"
+
+link:
+  self: "Non puoi collegare un giocatore con sé stesso"
+  already: "{first} e {second} sono già collegati: {types}"
+  done: "Collegati {first} e {second}: {types}"
+  too-few: "Servono almeno due giocatori"
+  all-already: "Questi giocatori sono già collegati: {types}"
+  pairs-done: "Coppie collegate: {count} ({types})"
+  notify: "Sei collegato a {player}: {types}"
+  length-set: "Lunghezza della catena: {length} blocchi"
+
+unlink:
+  different: "Indica due giocatori diversi"
+  not-linked: "{first} e {second} non erano collegati: {types}"
+  done: "Scollegati {first} e {second}: {types}"
+  notify: "Il tuo collegamento con {player} è stato interrotto: {types}"
+  among-none: "Non ci sono collegamenti tra i giocatori selezionati: {types}"
+  among-done: "Coppie scollegate: {count} ({types})"
+  among-notify: "Alcuni tuoi collegamenti sono stati interrotti: {types}"
+  player-none: "{player} non ha collegamenti: {types}"
+  player-done: "{player} è stato scollegato da tutti: {types}"
+  player-notify: "Sei stato scollegato da tutti: {types}"
+  everything-none: "Non ci sono collegamenti: {types}"
+  everything-done: "Tutti i collegamenti rimossi ({types}), coppie: {count}"
+
+list:
+  header: "Collegamenti dei giocatori:"
+  none: "nessuno"
+  length: "Lunghezza della catena: {length} blocchi"
+
+death:
+  together: "{player} è morto insieme a {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Clic sx — seleziona"
+  deselect: "Clic sx — deseleziona"
+  unlink-player: "Clic dx — scollega da tutti (tipi selezionati)"
+  teleport: "Shift+Clic sx — teletrasportati dal giocatore"
+  enabled: "● Attivato"
+  disabled: "○ Disattivato"
+  in-commands: "Nei comandi: {key}"
+  type-on: "{type}: sì"
+  type-off: "{type}: no"
+  all: "Tutto insieme"
+  all-selected: "● Tutti i tipi sono selezionati"
+  all-not-selected: "○ Non tutti i tipi sono selezionati"
+  all-click-select: "Clicca per selezionare tutto"
+  all-click-deselect: "Clicca per deselezionare tutto"
+  page-previous: "‹ Pagina {page}"
+  page-next: "Pagina {page} ›"
+  select-all: "Seleziona tutti"
+  select-all-hint: "In ordine alfabetico, dopo quelli già selezionati"
+  clear-selection: "Annulla selezione"
+  link: "Collega selezionati"
+  selected: "Selezionati: {count}"
+  types: "Tipi: {types}"
+  types-none: "nessuno selezionato"
+  order: "Catena: {order}"
+  need-two: "Seleziona almeno due giocatori"
+  order-hint: "L'ordine di selezione è l'ordine della catena"
+  no-types: "Nessun tipo di collegamento selezionato"
+  nobody-selected: "Nessuno selezionato"
+  current-links: "Collegamenti attuali"
+  chain-length: "Lunghezza della catena: {length} blocchi"
+  unlink: "Scollega selezionati"
+  unlink-hint: "Interrompe i collegamenti dei tipi selezionati tra tutti i giocatori selezionati. Se è selezionato un solo giocatore, lo scollega da tutti."
+  unlink-all: "Rimuovi tutti i collegamenti"
+  unlink-all-hint: "Tutti i collegamenti dei tipi selezionati per tutti i giocatori."
+  shift-confirm: "Shift+clic — conferma"
+  unlink-all-shift: "Per rimuovere tutti i collegamenti, clicca con Shift"
+  settings: "Impostazioni catena"
+  settings-hint: "Lunghezza, rigidità, stile della catena, teletrasporti e lingua"
+
+settings:
+  title: "Impostazioni catena"
+  info: "Valgono per tutte le catene insieme e si ripristinano al riavvio del server."
+  length: "Lunghezza della catena: {length} blocchi"
+  length-hint: "Distanza tra la vita dei giocatori alla quale la catena si tende."
+  length-range: "Da {min} a {max}, predefinita {default}"
+  length-step: "Lunghezza {delta}"
+  stiffness: "Rigidità: {value}%"
+  stiffness-hint: "Quanto dell'allungamento in eccesso la catena recupera a ogni tick. Più morbida è elastica, più rigida dà strattoni."
+  stiffness-default: "Predefinita {value}%"
+  stiffness-step: "Rigidità {delta}%"
+  style: "Stile della catena: {style}"
+  click-to-change: "Clicca per cambiare"
+  visible: "Catena visibile"
+  visible-hint: "Gli anelli sono entità di visualizzazione. La fisica funziona anche senza."
+  anchor: "Ancoraggio accovacciato"
+  anchor-hint: "Un giocatore accovacciato a terra viene tirato con una forza diverse volte minore: così si regge chi è appeso."
+  respawn: "Rinascita insieme"
+  respawn-hint: "Un giocatore morto rinasce accanto a un compagno di catena vivo."
+  teleport: "Teletrasporto insieme"
+  teleport-hint: "Un portale, un cambio di mondo o un teletrasporto lontano porta con sé tutta la catena."
+  sounds: "Suoni della catena"
+  sounds-hint: "Un clangore quando la catena si tende di colpo."
+  toggled-on: "{setting}: sì"
+  toggled-off: "{setting}: no"
+  length-changed: "Lunghezza della catena: {length} blocchi"
+  stiffness-changed: "Rigidità della catena: {value}%"
+  style-changed: "Stile della catena: {style}"
+  reset: "Ripristina impostazioni"
+  reset-shift: "Per ripristinare le impostazioni, clicca con Shift"
+  reset-done: "Impostazioni ripristinate ai valori predefiniti"
+  language: "Lingua: {language}"
+  language-hint: "Lingua dei messaggi e dei menu del plugin. Salvata in config.yml."
+  back: "‹ Indietro"
+
+language-menu:
+  title: "Lingua"
+  current: "● Lingua attuale"
+  select: "Clicca per selezionare"

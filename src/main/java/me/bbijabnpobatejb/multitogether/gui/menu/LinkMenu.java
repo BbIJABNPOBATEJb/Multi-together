@@ -2,6 +2,7 @@ package me.bbijabnpobatejb.multitogether.gui.menu;
 
 import me.bbijabnpobatejb.multitogether.MultiTogether;
 import me.bbijabnpobatejb.multitogether.gui.Gui;
+import me.bbijabnpobatejb.multitogether.i18n.Lang;
 import me.bbijabnpobatejb.multitogether.link.LinkActions;
 import me.bbijabnpobatejb.multitogether.link.LinkType;
 import me.bbijabnpobatejb.multitogether.link.LinkTypes;
@@ -45,7 +46,7 @@ public class LinkMenu extends Gui {
     }
 
     LinkMenu(MultiTogether plugin, Player viewer, List<UUID> selected, Set<LinkType> modes, int page) {
-        super(viewer, 6, Msg.mm("<" + Msg.MAIN + ">⛓</" + Msg.MAIN + "> <dark_gray>Multi Together"));
+        super(viewer, 6, Msg.mm("<" + Msg.MAIN + ">⛓</" + Msg.MAIN + "> <dark_gray>" + Lang.mm("menu.title")));
         this.plugin = plugin;
         this.selected = selected;
         this.modes = modes;
@@ -86,20 +87,20 @@ public class LinkMenu extends Gui {
         int index = selected.indexOf(target.getUniqueId());
         boolean chosen = index >= 0;
 
-        List<String> lore = new ArrayList<>();
-        lore.add("");
-        lore.addAll(plugin.getActions().describePlayer(target.getUniqueId()));
-        lore.add("");
-        lore.add("<" + Msg.MAIN + ">ЛКМ</" + Msg.MAIN + "> <gray>— " + (chosen ? "снять выбор" : "выбрать"));
-        lore.add("<" + Msg.MAIN + ">ПКМ</" + Msg.MAIN + "> <gray>— отвязать ото всех (выбранные виды)");
-        lore.add("<" + Msg.MAIN + ">Shift+ЛКМ</" + Msg.MAIN + "> <gray>— телепортироваться к игроку");
+        List<String> links = new ArrayList<>();
+        links.add("");
+        links.addAll(plugin.getActions().describePlayer(target.getUniqueId()));
+        links.add("");
 
         String name = Msg.name(target.getName());
         return ItemBuilder.head(target)
                 .name(chosen
                         ? "<" + Msg.GREEN + ">✔ " + name + " <gray>#" + (index + 1)
                         : "<white>" + name)
-                .lore(lore)
+                .lore(links)
+                .hint(Lang.plain(chosen ? "menu.deselect" : "menu.select"))
+                .hint(Lang.plain("menu.unlink-player"))
+                .hint(Lang.plain("menu.teleport"))
                 .amount(chosen ? index + 1 : 1)
                 .glint(chosen)
                 .build();
@@ -116,7 +117,7 @@ public class LinkMenu extends Gui {
 
         if (click.isRightClick()) {
             if (modes.isEmpty()) {
-                player.sendMessage(Msg.error("Не выбран ни один вид связи"));
+                player.sendMessage(Msg.error(Lang.mm("menu.no-types")));
                 return;
             }
             plugin.getActions().unlinkPlayer(player, uuid, LinkTypes.of(modes));
@@ -129,65 +130,62 @@ public class LinkMenu extends Gui {
     }
 
     private void drawModes() {
-        setItem(38, modeItem(LinkType.CHAIN, "Игроки скованы цепью: дальше длины не разойтись,", "телепорт одного переносит всех."),
-                (p, c) -> toggle(LinkType.CHAIN));
-        setItem(39, modeItem(LinkType.HEALTH, "Одна полоска здоровья на всех.", "Умер один — умерли все."),
-                (p, c) -> toggle(LinkType.HEALTH));
-        setItem(41, modeItem(LinkType.FOOD, "Общий голод и насыщение:", "ест один — сыты все."),
-                (p, c) -> toggle(LinkType.FOOD));
-        setItem(42, modeItem(LinkType.INVENTORY, "Один инвентарь с бронёй на всех:", "предмет в руке у одного — у всех."),
-                (p, c) -> toggle(LinkType.INVENTORY));
+        setItem(38, modeItem(LinkType.CHAIN), (p, c) -> toggle(p, LinkType.CHAIN));
+        setItem(39, modeItem(LinkType.HEALTH), (p, c) -> toggle(p, LinkType.HEALTH));
+        setItem(41, modeItem(LinkType.FOOD), (p, c) -> toggle(p, LinkType.FOOD));
+        setItem(42, modeItem(LinkType.INVENTORY), (p, c) -> toggle(p, LinkType.INVENTORY));
 
         boolean all = modes.size() == LinkType.values().length;
         setItem(40, ItemBuilder.of(Material.NETHER_STAR)
-                        .name("<" + Msg.MAIN + ">Всё сразу")
-                        .lore("",
-                                all ? "<" + Msg.GREEN + ">● Выбраны все виды" : "<gray>○ Выбраны не все",
-                                "",
-                                "<gray>Нажми, чтобы " + (all ? "снять все" : "выбрать все"))
+                        .name("<" + Msg.MAIN + ">" + Lang.mm("menu.all"))
+                        .lore("", all
+                                ? "<" + Msg.GREEN + ">" + Lang.mm("menu.all-selected")
+                                : "<gray>" + Lang.mm("menu.all-not-selected"), "")
+                        .description(Lang.plain(all ? "menu.all-click-deselect" : "menu.all-click-select"))
                         .glint(all)
                         .build(),
                 (p, c) -> {
                     if (all) modes.clear();
                     else modes.addAll(EnumSet.allOf(LinkType.class));
+                    p.sendMessage(Msg.info(Lang.mm(all ? "menu.type-off" : "menu.type-on",
+                            "type", Msg.white(Lang.plain("menu.all")))));
                     draw();
                 });
     }
 
-    private ItemStack modeItem(LinkType type, String... description) {
+    private ItemStack modeItem(LinkType type) {
         boolean enabled = modes.contains(type);
 
-        List<String> lore = new ArrayList<>();
-        lore.add("");
-        for (String line : description) {
-            lore.add("<gray>" + line);
-        }
-        lore.add("");
-        lore.add(enabled ? "<" + Msg.GREEN + ">● Включено" : "<" + Msg.RED + ">○ Выключено");
-        lore.add("<gray>В команде: <white>" + type.getKey());
-
         return ItemBuilder.of(type.getMaterial())
-                .name("<" + Msg.MAIN + ">" + type.getIcon() + " " + capitalize(type.getDisplayName()))
-                .lore(lore)
+                .name("<" + Msg.MAIN + ">" + type.getIcon() + " " + Msg.name(type.title()))
+                .lore("")
+                .description(type.description())
+                .lore("",
+                        enabled ? "<" + Msg.GREEN + ">" + Lang.mm("menu.enabled") : "<" + Msg.RED + ">" + Lang.mm("menu.disabled"),
+                        "<gray>" + Lang.mm("menu.in-commands", "key", Msg.white(type.getKey())))
                 .glint(enabled)
                 .build();
     }
 
-    private void toggle(LinkType type) {
-        if (!modes.remove(type)) modes.add(type);
+    private void toggle(Player clicker, LinkType type) {
+        boolean enabled = !modes.remove(type);
+        if (enabled) modes.add(type);
+
+        clicker.sendMessage(Msg.info(Lang.mm(enabled ? "menu.type-on" : "menu.type-off",
+                "type", Msg.white(type.getIcon() + " " + type.title()))));
         draw();
     }
 
     private void drawActions(List<Player> online, int pages) {
         if (page > 0) {
-            setItem(36, ItemBuilder.of(Material.ARROW).name("<white>‹ Страница " + page).build(),
+            setItem(36, ItemBuilder.of(Material.ARROW).name("<white>" + Lang.mm("menu.page-previous", "page", page)).build(),
                     (p, c) -> {
                         page--;
                         draw();
                     });
         }
         if (page < pages - 1) {
-            setItem(44, ItemBuilder.of(Material.ARROW).name("<white>Страница " + (page + 2) + " ›").build(),
+            setItem(44, ItemBuilder.of(Material.ARROW).name("<white>" + Lang.mm("menu.page-next", "page", page + 2)).build(),
                     (p, c) -> {
                         page++;
                         draw();
@@ -195,8 +193,9 @@ public class LinkMenu extends Gui {
         }
 
         setItem(45, ItemBuilder.of(Material.LIME_DYE)
-                        .name("<" + Msg.GREEN + ">Выбрать всех")
-                        .lore("", "<gray>По алфавиту, после уже выбранных")
+                        .name("<" + Msg.GREEN + ">" + Lang.mm("menu.select-all"))
+                        .lore("")
+                        .description(Lang.plain("menu.select-all-hint"))
                         .build(),
                 (p, c) -> {
                     for (Player target : online) {
@@ -206,64 +205,36 @@ public class LinkMenu extends Gui {
                 });
 
         setItem(46, ItemBuilder.of(Material.GRAY_DYE)
-                        .name("<white>Сбросить выбор")
+                        .name("<white>" + Lang.mm("menu.clear-selection"))
                         .build(),
                 (p, c) -> {
                     selected.clear();
                     draw();
                 });
 
-        LinkTypes types = modes.isEmpty() ? null : LinkTypes.of(modes);
-        List<String> order = new ArrayList<>();
-        for (UUID uuid : selected) {
-            order.add(Msg.name(plugin.getLinks().name(uuid)));
-        }
-
-        setItem(48, ItemBuilder.of(Material.LEAD)
-                        .name("<" + Msg.GREEN + ">Связать выбранных")
-                        .lore("",
-                                "<gray>Выбрано: <white>" + selected.size(),
-                                "<gray>Виды: <white>" + (types == null ? "не выбраны" : types.describe()),
-                                selected.size() >= 2 ? "<gray>Цепь: <white>" + String.join(" <gray>—</gray> ", order) : "<gray>Выбери хотя бы двоих",
-                                "",
-                                "<gray>Порядок выбора — порядок цепи")
-                        .glint(selected.size() >= 2 && types != null)
-                        .build(),
-                (p, c) -> {
-                    if (types == null) {
-                        p.sendMessage(Msg.error("Не выбран ни один вид связи"));
-                        return;
-                    }
-                    List<Player> players = new ArrayList<>();
-                    for (UUID uuid : selected) {
-                        Player target = Bukkit.getPlayer(uuid);
-                        if (target != null) players.add(target);
-                    }
-                    plugin.getActions().linkSequence(p, players, types);
-                    draw();
-                });
+        drawLinkButton();
 
         List<String> summary = new ArrayList<>();
         summary.add("");
         summary.addAll(plugin.getActions().describeAll());
         summary.add("");
-        summary.add("<gray>Длина цепи: <white>" + LinkActions.format(plugin.getSettings().getChainLength()) + " бл.");
-        setItem(49, ItemBuilder.of(Material.BOOK).name("<" + Msg.MAIN + ">Текущие связи").lore(summary).build());
+        summary.add("<gray>" + Lang.mm("menu.chain-length",
+                "length", Msg.white(LinkActions.format(plugin.getSettings().getChainLength()))));
+        setItem(49, ItemBuilder.of(Material.BOOK).name("<" + Msg.MAIN + ">" + Lang.mm("menu.current-links")).lore(summary).build());
 
+        LinkTypes types = modes.isEmpty() ? null : LinkTypes.of(modes);
         setItem(50, ItemBuilder.of(Material.SHEARS)
-                        .name("<" + Msg.YELLOW + ">Разъединить выбранных")
-                        .lore("",
-                                "<gray>Рвёт связи выбранных видов",
-                                "<gray>между всеми выбранными.",
-                                "<gray>Выбран один — отвязывает его ото всех.")
+                        .name("<" + Msg.YELLOW + ">" + Lang.mm("menu.unlink"))
+                        .lore("")
+                        .description(Lang.plain("menu.unlink-hint"))
                         .build(),
                 (p, c) -> {
                     if (types == null) {
-                        p.sendMessage(Msg.error("Не выбран ни один вид связи"));
+                        p.sendMessage(Msg.error(Lang.mm("menu.no-types")));
                         return;
                     }
                     if (selected.isEmpty()) {
-                        p.sendMessage(Msg.error("Никто не выбран"));
+                        p.sendMessage(Msg.error(Lang.mm("menu.nobody-selected")));
                         return;
                     }
                     plugin.getActions().unlinkAmong(p, new ArrayList<>(selected), types);
@@ -271,19 +242,19 @@ public class LinkMenu extends Gui {
                 });
 
         setItem(52, ItemBuilder.of(Material.TNT)
-                        .name("<" + Msg.RED + ">Снять все связи")
-                        .lore("",
-                                "<gray>Все связи выбранных видов у всех игроков.",
-                                "",
-                                "<" + Msg.RED + ">Shift+клик</" + Msg.RED + "> <gray>— подтвердить")
+                        .name("<" + Msg.RED + ">" + Lang.mm("menu.unlink-all"))
+                        .lore("")
+                        .description(Lang.plain("menu.unlink-all-hint"))
+                        .lore("")
+                        .hint(Lang.plain("menu.shift-confirm"))
                         .build(),
                 (p, c) -> {
                     if (!c.isShiftClick()) {
-                        p.sendMessage(Msg.warn("Чтобы снять все связи, нажми с Shift"));
+                        p.sendMessage(Msg.warn(Lang.mm("menu.unlink-all-shift")));
                         return;
                     }
                     if (types == null) {
-                        p.sendMessage(Msg.error("Не выбран ни один вид связи"));
+                        p.sendMessage(Msg.error(Lang.mm("menu.no-types")));
                         return;
                     }
                     plugin.getActions().unlinkEverything(p, types);
@@ -291,13 +262,44 @@ public class LinkMenu extends Gui {
                 });
 
         setItem(53, ItemBuilder.of(Material.COMPARATOR)
-                        .name("<" + Msg.MAIN + ">Настройки цепи")
-                        .lore("", "<gray>Длина, жёсткость, вид цепи", "<gray>и совместные телепорты")
+                        .name("<" + Msg.MAIN + ">" + Lang.mm("menu.settings"))
+                        .lore("")
+                        .description(Lang.plain("menu.settings-hint"))
                         .build(),
                 (p, c) -> switchTo(new SettingsMenu(plugin, p, selected, modes, page)));
     }
 
-    private static String capitalize(String text) {
-        return Character.toUpperCase(text.charAt(0)) + text.substring(1);
+    private void drawLinkButton() {
+        LinkTypes types = modes.isEmpty() ? null : LinkTypes.of(modes);
+
+        List<String> order = new ArrayList<>();
+        for (UUID uuid : selected) {
+            order.add(plugin.getLinks().name(uuid));
+        }
+
+        ItemBuilder button = ItemBuilder.of(Material.LEAD)
+                .name("<" + Msg.GREEN + ">" + Lang.mm("menu.link"))
+                .lore("", "<gray>" + Lang.mm("menu.selected", "count", Msg.white(String.valueOf(selected.size()))))
+                .description(Lang.plain("menu.types", "types", types == null ? Lang.plain("menu.types-none") : types.describe()))
+                .description(selected.size() >= 2
+                        ? Lang.plain("menu.order", "order", String.join(" — ", order))
+                        : Lang.plain("menu.need-two"))
+                .lore("")
+                .description(Lang.plain("menu.order-hint"))
+                .glint(selected.size() >= 2 && types != null);
+
+        setItem(48, button.build(), (p, c) -> {
+            if (types == null) {
+                p.sendMessage(Msg.error(Lang.mm("menu.no-types")));
+                return;
+            }
+            List<Player> players = new ArrayList<>();
+            for (UUID uuid : selected) {
+                Player target = Bukkit.getPlayer(uuid);
+                if (target != null) players.add(target);
+            }
+            plugin.getActions().linkSequence(p, players, types);
+            draw();
+        });
     }
 }

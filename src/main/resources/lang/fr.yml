@@ -1,0 +1,183 @@
+# MultiTogether — Français
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Français"
+  changed: "Langue : {language}"
+  current: "Langue actuelle : {language}"
+  available: "Disponibles : {languages}"
+  unknown: "Langue inconnue {input}. Disponibles : {languages}"
+
+types:
+  all: "tout"
+  chain:
+    name: "chaîne"
+    title: "Chaîne"
+    description: "Les joueurs sont enchaînés : ils ne peuvent pas s'éloigner au-delà de la longueur de la chaîne, et si l'un est téléporté, tous le suivent."
+  health:
+    name: "vie"
+    title: "Vie"
+    description: "Une seule barre de vie pour tous. Si l'un meurt, tout le monde meurt."
+  food:
+    name: "faim"
+    title: "Faim"
+    description: "Faim et saturation partagées : si l'un mange, tout le monde est rassasié."
+  inventory:
+    name: "inventaire"
+    title: "Inventaire"
+    description: "Un seul inventaire, armure comprise, pour tous : un objet dans la main d'un joueur est dans la main de tous."
+
+styles:
+  iron: "Fer"
+  copper: "Cuivre"
+  exposed: "Cuivre exposé"
+  weathered: "Cuivre érodé"
+  oxidized: "Cuivre oxydé"
+
+# Argument names in command usage lines
+args:
+  player1: "joueur1"
+  player2: "joueur2"
+  player: "joueur"
+  type: "type"
+  blocks: "blocs"
+  language: "langue"
+
+command:
+  player-not-found: "Le joueur {player} est introuvable ou hors ligne"
+  player-only: "Cette commande est réservée aux joueurs"
+  no-permission: "Permissions insuffisantes : {permission}"
+  not-a-number: "{input} n'est pas un nombre"
+  usage: "Utilisation :"
+  unknown-type: "Type de lien inconnu {input}. Utilisez {types} ou plusieurs séparés par des virgules"
+
+help:
+  header: "Multi Together — lier des joueurs"
+  menu: "ouvrir le menu"
+  link: "lier deux joueurs"
+  link-all: "lier tous les joueurs en ligne en une seule chaîne"
+  list: "afficher tous les liens"
+  length: "longueur de la chaîne ({min}–{max})"
+  language: "langue du plugin"
+  unlink: "délier une paire"
+  unlink-player: "délier un joueur de tous les autres"
+  unlink-all: "supprimer tous les liens"
+  types: "Types : {all} (par défaut), {others} ; plusieurs à la fois : {example}"
+  unlink-header: "Délier :"
+
+link:
+  self: "Impossible de lier un joueur à lui-même"
+  already: "{first} et {second} sont déjà liés : {types}"
+  done: "{first} et {second} sont liés : {types}"
+  too-few: "Il faut au moins deux joueurs"
+  all-already: "Ces joueurs sont déjà liés : {types}"
+  pairs-done: "Paires liées : {count} ({types})"
+  notify: "Vous êtes lié à {player} : {types}"
+  length-set: "Longueur de la chaîne : {length} blocs"
+
+unlink:
+  different: "Indiquez deux joueurs différents"
+  not-linked: "{first} et {second} n'étaient pas liés : {types}"
+  done: "{first} et {second} sont déliés : {types}"
+  notify: "Votre lien avec {player} est rompu : {types}"
+  among-none: "Aucun lien entre les joueurs sélectionnés : {types}"
+  among-done: "Paires déliées : {count} ({types})"
+  among-notify: "Certains de vos liens ont été rompus : {types}"
+  player-none: "{player} n'a aucun lien : {types}"
+  player-done: "{player} est délié de tous : {types}"
+  player-notify: "Vous avez été délié de tous : {types}"
+  everything-none: "Il n'y a aucun lien : {types}"
+  everything-done: "Tous les liens ont été supprimés ({types}), paires : {count}"
+
+list:
+  header: "Liens des joueurs :"
+  none: "aucun"
+  length: "Longueur de la chaîne : {length} blocs"
+
+death:
+  together: "{player} est mort avec {with}"
+
+menu:
+  title: "Multi Together"
+  select: "Clic gauche — sélectionner"
+  deselect: "Clic gauche — désélectionner"
+  unlink-player: "Clic droit — délier de tous (types choisis)"
+  teleport: "Maj+clic gauche — se téléporter au joueur"
+  enabled: "● Activé"
+  disabled: "○ Désactivé"
+  in-commands: "Dans les commandes : {key}"
+  type-on: "{type} : activé"
+  type-off: "{type} : désactivé"
+  all: "Tout à la fois"
+  all-selected: "● Tous les types sont sélectionnés"
+  all-not-selected: "○ Certains types ne sont pas sélectionnés"
+  all-click-select: "Cliquez pour tout sélectionner"
+  all-click-deselect: "Cliquez pour tout désélectionner"
+  page-previous: "‹ Page {page}"
+  page-next: "Page {page} ›"
+  select-all: "Tout sélectionner"
+  select-all-hint: "Par ordre alphabétique, après ceux déjà sélectionnés"
+  clear-selection: "Effacer la sélection"
+  link: "Lier la sélection"
+  selected: "Sélectionnés : {count}"
+  types: "Types : {types}"
+  types-none: "aucun sélectionné"
+  order: "Chaîne : {order}"
+  need-two: "Sélectionnez au moins deux joueurs"
+  order-hint: "L'ordre de sélection est l'ordre de la chaîne"
+  no-types: "Aucun type de lien sélectionné"
+  nobody-selected: "Personne n'est sélectionné"
+  current-links: "Liens actuels"
+  chain-length: "Longueur de la chaîne : {length} blocs"
+  unlink: "Délier la sélection"
+  unlink-hint: "Rompt les liens des types choisis entre tous les joueurs sélectionnés. Si un seul joueur est sélectionné, il est délié de tous."
+  unlink-all: "Supprimer tous les liens"
+  unlink-all-hint: "Tous les liens des types choisis, pour tous les joueurs."
+  shift-confirm: "Maj+clic — confirmer"
+  unlink-all-shift: "Pour supprimer tous les liens, cliquez en maintenant Maj"
+  settings: "Réglages de la chaîne"
+  settings-hint: "Longueur, rigidité, style de chaîne, téléportations et langue"
+
+settings:
+  title: "Réglages de la chaîne"
+  info: "S'applique à toutes les chaînes à la fois et se réinitialise au redémarrage du serveur."
+  length: "Longueur de la chaîne : {length} blocs"
+  length-hint: "Distance entre les hanches des joueurs à partir de laquelle la chaîne se tend."
+  length-range: "De {min} à {max}, par défaut {default}"
+  length-step: "Longueur {delta}"
+  stiffness: "Rigidité : {value}%"
+  stiffness-hint: "Part de l'excès d'étirement que la chaîne rattrape à chaque tick. Plus souple, elle fait ressort ; plus rigide, elle donne des à-coups."
+  stiffness-default: "Par défaut {value}%"
+  stiffness-step: "Rigidité {delta}%"
+  style: "Style de chaîne : {style}"
+  click-to-change: "Cliquez pour changer"
+  visible: "Chaîne visible"
+  visible-hint: "Les maillons sont des entités d'affichage. La physique fonctionne aussi sans eux."
+  anchor: "Ancrage accroupi"
+  anchor-hint: "Un joueur accroupi au sol est tiré plusieurs fois moins fort : c'est ainsi qu'on retient quelqu'un suspendu dans le vide."
+  respawn: "Réapparaître ensemble"
+  respawn-hint: "Un joueur mort réapparaît à côté d'un partenaire de chaîne encore en vie."
+  teleport: "Se téléporter ensemble"
+  teleport-hint: "Un portail, un changement de monde ou une téléportation lointaine emmène toute la chaîne."
+  sounds: "Sons de la chaîne"
+  sounds-hint: "Un cliquetis quand la chaîne se tend d'un coup."
+  toggled-on: "{setting} : activé"
+  toggled-off: "{setting} : désactivé"
+  length-changed: "Longueur de la chaîne : {length} blocs"
+  stiffness-changed: "Rigidité de la chaîne : {value}%"
+  style-changed: "Style de chaîne : {style}"
+  reset: "Réinitialiser les réglages"
+  reset-shift: "Pour réinitialiser les réglages, cliquez en maintenant Maj"
+  reset-done: "Réglages réinitialisés aux valeurs par défaut"
+  language: "Langue : {language}"
+  language-hint: "Langue des messages et des menus du plugin. Enregistrée dans config.yml."
+  back: "‹ Retour"
+
+language-menu:
+  title: "Langue"
+  current: "● Langue actuelle"
+  select: "Cliquez pour sélectionner"

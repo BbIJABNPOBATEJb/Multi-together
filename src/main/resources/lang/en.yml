@@ -1,0 +1,183 @@
+# MultiTogether — English
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "English"
+  changed: "Language: {language}"
+  current: "Current language: {language}"
+  available: "Available: {languages}"
+  unknown: "Unknown language {input}. Available: {languages}"
+
+types:
+  all: "everything"
+  chain:
+    name: "chain"
+    title: "Chain"
+    description: "Players are chained together: they can't get farther apart than the chain length, and a teleport of one brings everyone along."
+  health:
+    name: "health"
+    title: "Health"
+    description: "One health bar for everyone. One dies, everyone dies."
+  food:
+    name: "hunger"
+    title: "Hunger"
+    description: "Shared hunger and saturation: one eats, everyone is fed."
+  inventory:
+    name: "inventory"
+    title: "Inventory"
+    description: "One inventory with armor for everyone: an item in one player's hand is in everyone's hand."
+
+styles:
+  iron: "Iron"
+  copper: "Copper"
+  exposed: "Exposed copper"
+  weathered: "Weathered copper"
+  oxidized: "Oxidized copper"
+
+# Argument names in command usage lines
+args:
+  player1: "player1"
+  player2: "player2"
+  player: "player"
+  type: "type"
+  blocks: "blocks"
+  language: "language"
+
+command:
+  player-not-found: "Player {player} is not found or offline"
+  player-only: "This command is for players only"
+  no-permission: "Not enough permissions: {permission}"
+  not-a-number: "{input} is not a number"
+  usage: "Usage:"
+  unknown-type: "Unknown link type {input}. Use {types} or several separated by commas"
+
+help:
+  header: "Multi Together — linking players"
+  menu: "open the menu"
+  link: "link two players"
+  link-all: "link everyone online into one chain"
+  list: "show all links"
+  length: "chain length ({min}–{max})"
+  language: "plugin language"
+  unlink: "unlink a pair"
+  unlink-player: "unlink a player from everyone"
+  unlink-all: "remove all links"
+  types: "Types: {all} (default), {others}; several at once: {example}"
+  unlink-header: "Unlinking:"
+
+link:
+  self: "You can't link a player with themselves"
+  already: "{first} and {second} are already linked: {types}"
+  done: "Linked {first} and {second}: {types}"
+  too-few: "At least two players are needed"
+  all-already: "These players are already linked: {types}"
+  pairs-done: "Pairs linked: {count} ({types})"
+  notify: "You are linked with {player}: {types}"
+  length-set: "Chain length: {length} blocks"
+
+unlink:
+  different: "Specify two different players"
+  not-linked: "{first} and {second} were not linked: {types}"
+  done: "Unlinked {first} and {second}: {types}"
+  notify: "Your link with {player} is broken: {types}"
+  among-none: "There are no links between the selected players: {types}"
+  among-done: "Pairs unlinked: {count} ({types})"
+  among-notify: "Some of your links were broken: {types}"
+  player-none: "{player} has no links: {types}"
+  player-done: "{player} is unlinked from everyone: {types}"
+  player-notify: "You were unlinked from everyone: {types}"
+  everything-none: "There are no links: {types}"
+  everything-done: "All links removed ({types}), pairs: {count}"
+
+list:
+  header: "Player links:"
+  none: "none"
+  length: "Chain length: {length} blocks"
+
+death:
+  together: "{player} died together with {with}"
+
+menu:
+  title: "Multi Together"
+  select: "LMB — select"
+  deselect: "LMB — deselect"
+  unlink-player: "RMB — unlink from everyone (selected types)"
+  teleport: "Shift+LMB — teleport to the player"
+  enabled: "● Enabled"
+  disabled: "○ Disabled"
+  in-commands: "In commands: {key}"
+  type-on: "{type}: on"
+  type-off: "{type}: off"
+  all: "Everything at once"
+  all-selected: "● All types are selected"
+  all-not-selected: "○ Not all types are selected"
+  all-click-select: "Click to select all"
+  all-click-deselect: "Click to deselect all"
+  page-previous: "‹ Page {page}"
+  page-next: "Page {page} ›"
+  select-all: "Select all"
+  select-all-hint: "Alphabetically, after the ones already selected"
+  clear-selection: "Clear selection"
+  link: "Link selected"
+  selected: "Selected: {count}"
+  types: "Types: {types}"
+  types-none: "none selected"
+  order: "Chain: {order}"
+  need-two: "Select at least two players"
+  order-hint: "The selection order is the chain order"
+  no-types: "No link type is selected"
+  nobody-selected: "Nobody is selected"
+  current-links: "Current links"
+  chain-length: "Chain length: {length} blocks"
+  unlink: "Unlink selected"
+  unlink-hint: "Breaks links of the selected types between all selected players. If only one player is selected, unlinks them from everyone."
+  unlink-all: "Remove all links"
+  unlink-all-hint: "All links of the selected types for all players."
+  shift-confirm: "Shift+click — confirm"
+  unlink-all-shift: "To remove all links, click with Shift"
+  settings: "Chain settings"
+  settings-hint: "Length, stiffness, chain style, teleports and language"
+
+settings:
+  title: "Chain settings"
+  info: "Applied to all chains at once and reset when the server restarts."
+  length: "Chain length: {length} blocks"
+  length-hint: "Distance between the players' waists at which the chain pulls tight."
+  length-range: "From {min} to {max}, default {default}"
+  length-step: "Length {delta}"
+  stiffness: "Stiffness: {value}%"
+  stiffness-hint: "How much of the overstretch the chain takes up per tick. Softer is springy, harder is jerky."
+  stiffness-default: "Default {value}%"
+  stiffness-step: "Stiffness {delta}%"
+  style: "Chain style: {style}"
+  click-to-change: "Click to change"
+  visible: "Chain visible"
+  visible-hint: "The links are display entities. Physics works without them too."
+  anchor: "Sneak bracing"
+  anchor-hint: "A player sneaking on the ground is pulled several times weaker: that is how you hold someone hanging."
+  respawn: "Respawn together"
+  respawn-hint: "A dead player respawns next to a living chain partner."
+  teleport: "Teleport together"
+  teleport-hint: "A portal, a world change or a far teleport brings the whole chain along."
+  sounds: "Chain sounds"
+  sounds-hint: "A clank when the chain is jerked tight."
+  toggled-on: "{setting}: on"
+  toggled-off: "{setting}: off"
+  length-changed: "Chain length: {length} blocks"
+  stiffness-changed: "Chain stiffness: {value}%"
+  style-changed: "Chain style: {style}"
+  reset: "Reset settings"
+  reset-shift: "To reset the settings, click with Shift"
+  reset-done: "Settings are reset to defaults"
+  language: "Language: {language}"
+  language-hint: "Language of the plugin's messages and menus. Saved to config.yml."
+  back: "‹ Back"
+
+language-menu:
+  title: "Language"
+  current: "● Current language"
+  select: "Click to select"

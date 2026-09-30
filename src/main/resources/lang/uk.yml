@@ -1,0 +1,183 @@
+# MultiTogether — Українська
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Українська"
+  changed: "Мова: {language}"
+  current: "Поточна мова: {language}"
+  available: "Доступні: {languages}"
+  unknown: "Невідома мова {input}. Доступні: {languages}"
+
+types:
+  all: "усе"
+  chain:
+    name: "ланцюг"
+    title: "Ланцюг"
+    description: "Гравці скуті ланцюгом: вони не можуть розійтися далі, ніж дозволяє довжина ланцюга, а телепорт одного переносить усіх."
+  health:
+    name: "здоров'я"
+    title: "Здоров'я"
+    description: "Одна смужка здоров'я на всіх. Помирає один — помирають усі."
+  food:
+    name: "голод"
+    title: "Голод"
+    description: "Спільні голод і насичення: їсть один — ситі всі."
+  inventory:
+    name: "інвентар"
+    title: "Інвентар"
+    description: "Один інвентар із бронею на всіх: предмет у руці одного гравця — у руці в усіх."
+
+styles:
+  iron: "Залізо"
+  copper: "Мідь"
+  exposed: "Потьмяніла мідь"
+  weathered: "Обвітрена мідь"
+  oxidized: "Окиснена мідь"
+
+# Argument names in command usage lines
+args:
+  player1: "гравець1"
+  player2: "гравець2"
+  player: "гравець"
+  type: "тип"
+  blocks: "блоки"
+  language: "мова"
+
+command:
+  player-not-found: "Гравця {player} не знайдено або він не в мережі"
+  player-only: "Ця команда лише для гравців"
+  no-permission: "Недостатньо прав: {permission}"
+  not-a-number: "{input} — не число"
+  usage: "Використання:"
+  unknown-type: "Невідомий тип зв'язку {input}. Використовуйте {types} або кілька через кому"
+
+help:
+  header: "Multi Together — зв'язування гравців"
+  menu: "відкрити меню"
+  link: "зв'язати двох гравців"
+  link-all: "зв'язати всіх онлайн в один ланцюг"
+  list: "показати всі зв'язки"
+  length: "довжина ланцюга ({min}–{max})"
+  language: "мова плагіна"
+  unlink: "розв'язати пару"
+  unlink-player: "розв'язати гравця з усіма"
+  unlink-all: "прибрати всі зв'язки"
+  types: "Типи: {all} (за замовчуванням), {others}; кілька одразу: {example}"
+  unlink-header: "Розв'язування:"
+
+link:
+  self: "Не можна зв'язати гравця з самим собою"
+  already: "{first} і {second} вже зв'язані: {types}"
+  done: "Зв'язано {first} і {second}: {types}"
+  too-few: "Потрібно щонайменше два гравці"
+  all-already: "Ці гравці вже зв'язані: {types}"
+  pairs-done: "Зв'язано пар: {count} ({types})"
+  notify: "Вас зв'язано з {player}: {types}"
+  length-set: "Довжина ланцюга: {length} бл."
+
+unlink:
+  different: "Вкажіть двох різних гравців"
+  not-linked: "{first} і {second} не були зв'язані: {types}"
+  done: "Розв'язано {first} і {second}: {types}"
+  notify: "Ваш зв'язок із {player} розірвано: {types}"
+  among-none: "Між вибраними гравцями немає зв'язків: {types}"
+  among-done: "Розв'язано пар: {count} ({types})"
+  among-notify: "Деякі ваші зв'язки розірвано: {types}"
+  player-none: "У {player} немає зв'язків: {types}"
+  player-done: "Гравця {player} розв'язано з усіма: {types}"
+  player-notify: "Вас розв'язано з усіма: {types}"
+  everything-none: "Зв'язків немає: {types}"
+  everything-done: "Усі зв'язки прибрано ({types}), пар: {count}"
+
+list:
+  header: "Зв'язки гравців:"
+  none: "немає"
+  length: "Довжина ланцюга: {length} бл."
+
+death:
+  together: "{player} загинув разом із {with}"
+
+menu:
+  title: "Multi Together"
+  select: "ЛКМ — вибрати"
+  deselect: "ЛКМ — зняти вибір"
+  unlink-player: "ПКМ — розв'язати з усіма (вибрані типи)"
+  teleport: "Shift+ЛКМ — телепортуватися до гравця"
+  enabled: "● Увімкнено"
+  disabled: "○ Вимкнено"
+  in-commands: "У командах: {key}"
+  type-on: "{type}: увімкнено"
+  type-off: "{type}: вимкнено"
+  all: "Усе одразу"
+  all-selected: "● Вибрано всі типи"
+  all-not-selected: "○ Вибрано не всі типи"
+  all-click-select: "Натисніть, щоб вибрати всі"
+  all-click-deselect: "Натисніть, щоб зняти вибір з усіх"
+  page-previous: "‹ Сторінка {page}"
+  page-next: "Сторінка {page} ›"
+  select-all: "Вибрати всіх"
+  select-all-hint: "За алфавітом, після вже вибраних"
+  clear-selection: "Скинути вибір"
+  link: "Зв'язати вибраних"
+  selected: "Вибрано: {count}"
+  types: "Типи: {types}"
+  types-none: "нічого не вибрано"
+  order: "Ланцюг: {order}"
+  need-two: "Виберіть щонайменше двох гравців"
+  order-hint: "Порядок вибору — це порядок ланцюга"
+  no-types: "Не вибрано жодного типу зв'язку"
+  nobody-selected: "Нікого не вибрано"
+  current-links: "Поточні зв'язки"
+  chain-length: "Довжина ланцюга: {length} бл."
+  unlink: "Розв'язати вибраних"
+  unlink-hint: "Розриває зв'язки вибраних типів між усіма вибраними гравцями. Якщо вибрано лише одного гравця, розв'язує його з усіма."
+  unlink-all: "Прибрати всі зв'язки"
+  unlink-all-hint: "Усі зв'язки вибраних типів у всіх гравців."
+  shift-confirm: "Shift+клік — підтвердити"
+  unlink-all-shift: "Щоб прибрати всі зв'язки, натисніть із Shift"
+  settings: "Налаштування ланцюга"
+  settings-hint: "Довжина, жорсткість, стиль ланцюга, телепорти й мова"
+
+settings:
+  title: "Налаштування ланцюга"
+  info: "Застосовуються до всіх ланцюгів одразу й скидаються після перезапуску сервера."
+  length: "Довжина ланцюга: {length} бл."
+  length-hint: "Відстань між поясами гравців, за якої ланцюг натягується."
+  length-range: "Від {min} до {max}, за замовчуванням {default}"
+  length-step: "Довжина {delta}"
+  stiffness: "Жорсткість: {value}%"
+  stiffness-hint: "Яку частку надмірного натягу ланцюг вибирає за один тік. М'якше — пружно, жорсткіше — ривками."
+  stiffness-default: "За замовчуванням {value}%"
+  stiffness-step: "Жорсткість {delta}%"
+  style: "Стиль ланцюга: {style}"
+  click-to-change: "Натисніть, щоб змінити"
+  visible: "Видимий ланцюг"
+  visible-hint: "Ланки — це display-сутності. Фізика працює і без них."
+  anchor: "Упор при присіданні"
+  anchor-hint: "Гравця, що присів на землі, тягне в кілька разів слабше: так можна втримати того, хто висить."
+  respawn: "Спільне відродження"
+  respawn-hint: "Загиблий гравець відроджується поруч із живим напарником по ланцюгу."
+  teleport: "Спільний телепорт"
+  teleport-hint: "Портал, зміна світу чи далекий телепорт переносить увесь ланцюг."
+  sounds: "Звуки ланцюга"
+  sounds-hint: "Брязкіт, коли ланцюг різко натягується."
+  toggled-on: "{setting}: увімкнено"
+  toggled-off: "{setting}: вимкнено"
+  length-changed: "Довжина ланцюга: {length} бл."
+  stiffness-changed: "Жорсткість ланцюга: {value}%"
+  style-changed: "Стиль ланцюга: {style}"
+  reset: "Скинути налаштування"
+  reset-shift: "Щоб скинути налаштування, натисніть із Shift"
+  reset-done: "Налаштування скинуто до стандартних"
+  language: "Мова: {language}"
+  language-hint: "Мова повідомлень і меню плагіна. Зберігається в config.yml."
+  back: "‹ Назад"
+
+language-menu:
+  title: "Мова"
+  current: "● Поточна мова"
+  select: "Натисніть, щоб вибрати"

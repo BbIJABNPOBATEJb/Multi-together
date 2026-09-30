@@ -1,0 +1,183 @@
+# MultiTogether — Nederlands
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "Nederlands"
+  changed: "Taal: {language}"
+  current: "Huidige taal: {language}"
+  available: "Beschikbaar: {languages}"
+  unknown: "Onbekende taal {input}. Beschikbaar: {languages}"
+
+types:
+  all: "alles"
+  chain:
+    name: "ketting"
+    title: "Ketting"
+    description: "Spelers zijn aan elkaar geketend: ze kunnen niet verder uit elkaar dan de kettinglengte, en als één speler teleporteert, gaat iedereen mee."
+  health:
+    name: "gezondheid"
+    title: "Gezondheid"
+    description: "Eén gezondheidsbalk voor iedereen. Gaat er één dood, dan gaat iedereen dood."
+  food:
+    name: "honger"
+    title: "Honger"
+    description: "Gedeelde honger en verzadiging: eet er één, dan is iedereen verzadigd."
+  inventory:
+    name: "inventaris"
+    title: "Inventaris"
+    description: "Eén inventaris met harnas voor iedereen: een voorwerp in de hand van één speler zit in ieders hand."
+
+styles:
+  iron: "IJzer"
+  copper: "Koper"
+  exposed: "Blootgesteld koper"
+  weathered: "Verweerd koper"
+  oxidized: "Geoxideerd koper"
+
+# Argument names in command usage lines
+args:
+  player1: "speler1"
+  player2: "speler2"
+  player: "speler"
+  type: "type"
+  blocks: "blokken"
+  language: "taal"
+
+command:
+  player-not-found: "Speler {player} is niet gevonden of offline"
+  player-only: "Dit commando is alleen voor spelers"
+  no-permission: "Onvoldoende rechten: {permission}"
+  not-a-number: "{input} is geen getal"
+  usage: "Gebruik:"
+  unknown-type: "Onbekend koppelingstype {input}. Gebruik {types} of meerdere, gescheiden door komma's"
+
+help:
+  header: "Multi Together — spelers koppelen"
+  menu: "menu openen"
+  link: "twee spelers koppelen"
+  link-all: "alle online spelers in één ketting koppelen"
+  list: "alle koppelingen tonen"
+  length: "kettinglengte ({min}–{max})"
+  language: "taal van de plugin"
+  unlink: "een paar ontkoppelen"
+  unlink-player: "een speler van iedereen ontkoppelen"
+  unlink-all: "alle koppelingen verwijderen"
+  types: "Types: {all} (standaard), {others}; meerdere tegelijk: {example}"
+  unlink-header: "Ontkoppelen:"
+
+link:
+  self: "Je kunt een speler niet met zichzelf koppelen"
+  already: "{first} en {second} zijn al gekoppeld: {types}"
+  done: "{first} en {second} gekoppeld: {types}"
+  too-few: "Er zijn minstens twee spelers nodig"
+  all-already: "Deze spelers zijn al gekoppeld: {types}"
+  pairs-done: "Paren gekoppeld: {count} ({types})"
+  notify: "Je bent gekoppeld aan {player}: {types}"
+  length-set: "Kettinglengte: {length} blokken"
+
+unlink:
+  different: "Geef twee verschillende spelers op"
+  not-linked: "{first} en {second} waren niet gekoppeld: {types}"
+  done: "{first} en {second} ontkoppeld: {types}"
+  notify: "Je koppeling met {player} is verbroken: {types}"
+  among-none: "Er zijn geen koppelingen tussen de geselecteerde spelers: {types}"
+  among-done: "Paren ontkoppeld: {count} ({types})"
+  among-notify: "Sommige van je koppelingen zijn verbroken: {types}"
+  player-none: "{player} heeft geen koppelingen: {types}"
+  player-done: "{player} is van iedereen ontkoppeld: {types}"
+  player-notify: "Je bent van iedereen ontkoppeld: {types}"
+  everything-none: "Er zijn geen koppelingen: {types}"
+  everything-done: "Alle koppelingen verwijderd ({types}), paren: {count}"
+
+list:
+  header: "Koppelingen van spelers:"
+  none: "geen"
+  length: "Kettinglengte: {length} blokken"
+
+death:
+  together: "{player} is samen met {with} gestorven"
+
+menu:
+  title: "Multi Together"
+  select: "LMK — selecteren"
+  deselect: "LMK — deselecteren"
+  unlink-player: "RMK — van iedereen ontkoppelen (geselecteerde types)"
+  teleport: "Shift+LMK — naar de speler teleporteren"
+  enabled: "● Ingeschakeld"
+  disabled: "○ Uitgeschakeld"
+  in-commands: "In commando's: {key}"
+  type-on: "{type}: aan"
+  type-off: "{type}: uit"
+  all: "Alles tegelijk"
+  all-selected: "● Alle types zijn geselecteerd"
+  all-not-selected: "○ Niet alle types zijn geselecteerd"
+  all-click-select: "Klik om alles te selecteren"
+  all-click-deselect: "Klik om alles te deselecteren"
+  page-previous: "‹ Pagina {page}"
+  page-next: "Pagina {page} ›"
+  select-all: "Alles selecteren"
+  select-all-hint: "Alfabetisch, na de al geselecteerde spelers"
+  clear-selection: "Selectie wissen"
+  link: "Selectie koppelen"
+  selected: "Geselecteerd: {count}"
+  types: "Types: {types}"
+  types-none: "geen geselecteerd"
+  order: "Ketting: {order}"
+  need-two: "Selecteer minstens twee spelers"
+  order-hint: "De volgorde van selecteren is de volgorde van de ketting"
+  no-types: "Er is geen koppelingstype geselecteerd"
+  nobody-selected: "Niemand geselecteerd"
+  current-links: "Huidige koppelingen"
+  chain-length: "Kettinglengte: {length} blokken"
+  unlink: "Selectie ontkoppelen"
+  unlink-hint: "Verbreekt de koppelingen van de geselecteerde types tussen alle geselecteerde spelers. Is er maar één speler geselecteerd, dan wordt die van iedereen ontkoppeld."
+  unlink-all: "Alle koppelingen verwijderen"
+  unlink-all-hint: "Alle koppelingen van de geselecteerde types voor alle spelers."
+  shift-confirm: "Shift+klik — bevestigen"
+  unlink-all-shift: "Klik met Shift om alle koppelingen te verwijderen"
+  settings: "Kettinginstellingen"
+  settings-hint: "Lengte, stijfheid, kettingstijl, teleportaties en taal"
+
+settings:
+  title: "Kettinginstellingen"
+  info: "Geldt voor alle kettingen tegelijk en wordt gereset als de server opnieuw opstart."
+  length: "Kettinglengte: {length} blokken"
+  length-hint: "Afstand tussen het middel van de spelers waarbij de ketting strak komt te staan."
+  length-range: "Van {min} tot {max}, standaard {default}"
+  length-step: "Lengte {delta}"
+  stiffness: "Stijfheid: {value}%"
+  stiffness-hint: "Hoeveel van de overrekking de ketting per tick opvangt. Zachter is verend, harder is schokkerig."
+  stiffness-default: "Standaard {value}%"
+  stiffness-step: "Stijfheid {delta}%"
+  style: "Kettingstijl: {style}"
+  click-to-change: "Klik om te wijzigen"
+  visible: "Ketting zichtbaar"
+  visible-hint: "De schakels zijn weergave-entiteiten. De fysica werkt ook zonder."
+  anchor: "Sluipend schrap zetten"
+  anchor-hint: "Een speler die op de grond sluipt, wordt meerdere keren zwakker meegetrokken: zo houd je iemand vast die hangt."
+  respawn: "Samen respawnen"
+  respawn-hint: "Een dode speler respawnt naast een levende kettingpartner."
+  teleport: "Samen teleporteren"
+  teleport-hint: "Een portaal, een wereldwissel of een verre teleportatie neemt de hele ketting mee."
+  sounds: "Kettinggeluiden"
+  sounds-hint: "Gekletter wanneer de ketting met een ruk strak trekt."
+  toggled-on: "{setting}: aan"
+  toggled-off: "{setting}: uit"
+  length-changed: "Kettinglengte: {length} blokken"
+  stiffness-changed: "Kettingstijfheid: {value}%"
+  style-changed: "Kettingstijl: {style}"
+  reset: "Instellingen resetten"
+  reset-shift: "Klik met Shift om de instellingen te resetten"
+  reset-done: "Instellingen zijn teruggezet naar standaard"
+  language: "Taal: {language}"
+  language-hint: "Taal van de berichten en menu's van de plugin. Wordt opgeslagen in config.yml."
+  back: "‹ Terug"
+
+language-menu:
+  title: "Taal"
+  current: "● Huidige taal"
+  select: "Klik om te selecteren"

@@ -4,7 +4,9 @@ A **Paper 1.21.11** plugin (Java 21) that links players with a chain, shared hea
 and a shared inventory. Built for videos and challenges: drop the jar into `plugins`, get two or more
 players online, run `/link Player1 Player2` — done.
 
-Links live in memory until the server stops. No files, no database.
+Links live in memory until the server stops. The only file is `config.yml` with the language.
+
+Messages and menus are available in **18 languages**, English by default.
 
 ## Features
 
@@ -40,8 +42,9 @@ on the chain is not kicked for flying, even with `allow-flight=false`.
 Every link is a `BlockDisplay` of a chain block, rotated and stretched along its own segment. Position is
 smoothed with teleport duration, rotation and length with transformation interpolation, so the chain moves
 smoothly even though it updates once per tick. The sag follows a parabola based on the chain length, and
-where it would dip into a block, the link rests on top of it instead. The chain can be iron or copper
-(all four oxidation stages).
+where it would dip into a block, the link rests on top of it instead — but never above the straight line
+between the players, so a chain passing through a tree trunk or a wall does not climb up along it.
+The chain can be iron or copper (all four oxidation stages).
 
 ## Commands
 
@@ -55,18 +58,35 @@ Every command requires `multitogether.admin` (operators by default).
 | `/link list` | Show all links |
 | `/link length <blocks>` | Chain length, 1.5–32 |
 | `/link settings` | Settings menu |
+| `/link language [code]` | Show or change the language (saved to `config.yml`) |
+| `/link reload` | Reload `config.yml` and the language files |
 | `/unlink <player1> <player2> [type]` | Unlink a pair |
 | `/unlink <player> [type]` | Unlink a player from everyone |
 | `/unlink all [type]` | Remove all links |
 
 **Type:** `ALL` (default), `CHAIN`, `HP`, `FOOD`, `INVENTORY`, or several separated by commas —
-`HP,FOOD`. Russian names work too: `цепь`, `здоровье`, `голод`, `инвентарь`, `все`.
+`HP,FOOD`. Type names in the server language and in Russian work too: `kette`, `цепь`, `голод`, `все`.
 
 **Aliases.** `/multitogether` = `/together` = `/link` = `/mt` = `/связать`, and the same typed with a
 Russian keyboard layout: `/ьгдешещпуерук`, `/ещпуерук`, `/дштл`, `/ье`. `/unlink` = `/отвязать` =
 `/развязать` = `/гтдштл`. Subcommands too: `/дштл фдд` = `/link all`.
 
-In-game messages are in Russian.
+## Languages
+
+English by default. Bundled: English, Русский, Українська, Deutsch, Français, Español, Português, Italiano,
+Polski, Türkçe, Nederlands, Čeština, Svenska, 简体中文, 日本語, 한국어, Tiếng Việt, Bahasa Indonesia.
+
+Change it in any of three ways — the choice is saved to `config.yml`:
+
+- `config.yml` → `language: de`, then `/link reload` or a restart;
+- `/link language de`;
+- settings menu → the book button → pick a language.
+
+The language files are copied to `plugins/MultiTogether/lang/` on first start and can be edited there.
+A key missing from a file falls back to the bundled translation, then to English. Put a new file there
+(for example `fi.yml`, copied from `en.yml`) and it shows up as another language.
+
+Long descriptions in menus are wrapped automatically; CJK text is wrapped by width.
 
 ## Menu
 
@@ -80,7 +100,8 @@ In-game messages are in Russian.
   remove all links (Shift), settings.
 
 **Settings** apply immediately and last until restart: chain length, stiffness, chain style, visibility,
-sneak bracing, respawn next to a partner, teleport the whole chain, chain sounds.
+sneak bracing, respawn next to a partner, teleport the whole chain, chain sounds. The language is picked
+there too and is saved to `config.yml`. Every click answers in chat with what changed.
 
 ## Edge cases
 
@@ -115,7 +136,7 @@ without the shared inventory, with an error in the log.
 ./gradlew shadowJar
 ```
 
-The jar ends up in `build/libs/MultiTogether-1.0.0.jar`.
+The jar ends up in `build/libs/MultiTogether-<version>.jar`.
 
 ## Tested
 
@@ -129,5 +150,7 @@ On Paper 1.21.11-132 in Docker with mineflayer bots:
   respawning together;
 - shared hunger and eating, shared inventory with armor and offhand, lossless merge, copies on unlink,
   dropping without duplication, reattaching after rejoin;
-- menu and settings via bot clicks; commands and Russian-layout aliases;
-- link geometry: segment ends meet with no gaps from waist to waist.
+- menu and settings via bot clicks, with a chat reply to every change; commands and Russian-layout aliases;
+- switching the language by command and from the menu, wrapping of long descriptions (Latin and Japanese);
+- link geometry: segment ends meet with no gaps from waist to waist, and the chain does not climb a tree
+  trunk between the players.

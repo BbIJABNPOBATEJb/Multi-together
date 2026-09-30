@@ -1,0 +1,183 @@
+# MultiTogether — 日本語
+#
+# {placeholders} in braces are filled in by the plugin: keep them as they are, do not translate them.
+# Colors are added by the plugin. Do not use < and > in texts.
+# Long descriptions are wrapped automatically in menus, write them as one line.
+# A missing key falls back to English.
+
+language:
+  name: "日本語"
+  changed: "言語：{language}"
+  current: "現在の言語：{language}"
+  available: "利用可能：{languages}"
+  unknown: "不明な言語です：{input}。利用可能：{languages}"
+
+types:
+  all: "すべて"
+  chain:
+    name: "鎖"
+    title: "鎖"
+    description: "プレイヤー同士が鎖でつながれます。鎖の長さ以上には離れられず、誰か一人がテレポートすると全員が一緒に移動します。"
+  health:
+    name: "体力"
+    title: "体力"
+    description: "全員で一つの体力を共有します。一人が死ねば全員が死にます。"
+  food:
+    name: "満腹度"
+    title: "満腹度"
+    description: "満腹度と隠し満腹度を共有します。一人が食べれば全員が満たされます。"
+  inventory:
+    name: "インベントリ"
+    title: "インベントリ"
+    description: "防具を含むインベントリを全員で共有します。一人が手に持っているアイテムは、全員の手にあります。"
+
+styles:
+  iron: "鉄"
+  copper: "銅"
+  exposed: "少し錆びた銅"
+  weathered: "錆びた銅"
+  oxidized: "酸化した銅"
+
+# Argument names in command usage lines
+args:
+  player1: "プレイヤー1"
+  player2: "プレイヤー2"
+  player: "プレイヤー"
+  type: "種類"
+  blocks: "ブロック数"
+  language: "言語"
+
+command:
+  player-not-found: "プレイヤー {player} が見つからないか、オフラインです"
+  player-only: "このコマンドはプレイヤー専用です"
+  no-permission: "権限が不足しています：{permission}"
+  not-a-number: "{input} は数値ではありません"
+  usage: "使い方："
+  unknown-type: "不明なリンクの種類です：{input}。{types} を指定するか、カンマ区切りで複数指定してください"
+
+help:
+  header: "Multi Together — プレイヤーのリンク"
+  menu: "メニューを開く"
+  link: "2人のプレイヤーをリンク"
+  link-all: "オンラインの全員を1本の鎖でリンク"
+  list: "すべてのリンクを表示"
+  length: "鎖の長さ（{min}–{max}）"
+  language: "プラグインの言語"
+  unlink: "ペアのリンクを解除"
+  unlink-player: "プレイヤーと全員のリンクを解除"
+  unlink-all: "すべてのリンクを削除"
+  types: "種類：{all}（デフォルト）、{others}。複数同時指定：{example}"
+  unlink-header: "リンク解除："
+
+link:
+  self: "プレイヤーを自分自身とリンクすることはできません"
+  already: "{first} と {second} はすでにリンクされています：{types}"
+  done: "{first} と {second} をリンクしました：{types}"
+  too-few: "少なくとも2人のプレイヤーが必要です"
+  all-already: "これらのプレイヤーはすでにリンクされています：{types}"
+  pairs-done: "リンクしたペア：{count}（{types}）"
+  notify: "{player} とリンクされました：{types}"
+  length-set: "鎖の長さ：{length} ブロック"
+
+unlink:
+  different: "異なる2人のプレイヤーを指定してください"
+  not-linked: "{first} と {second} はリンクされていませんでした：{types}"
+  done: "{first} と {second} のリンクを解除しました：{types}"
+  notify: "{player} とのリンクが解除されました：{types}"
+  among-none: "選択したプレイヤー間にリンクはありません：{types}"
+  among-done: "リンクを解除したペア：{count}（{types}）"
+  among-notify: "あなたのリンクの一部が解除されました：{types}"
+  player-none: "{player} にはリンクがありません：{types}"
+  player-done: "{player} と全員のリンクを解除しました：{types}"
+  player-notify: "全員とのリンクが解除されました：{types}"
+  everything-none: "リンクはありません：{types}"
+  everything-done: "すべてのリンクを削除しました（{types}）。ペア数：{count}"
+
+list:
+  header: "プレイヤーのリンク："
+  none: "なし"
+  length: "鎖の長さ：{length} ブロック"
+
+death:
+  together: "{player} は {with} と共に死んだ"
+
+menu:
+  title: "Multi Together"
+  select: "左クリック — 選択"
+  deselect: "左クリック — 選択解除"
+  unlink-player: "右クリック — 全員とのリンクを解除（選択中の種類）"
+  teleport: "Shift+左クリック — このプレイヤーへテレポート"
+  enabled: "● 有効"
+  disabled: "○ 無効"
+  in-commands: "コマンドでは：{key}"
+  type-on: "{type}：オン"
+  type-off: "{type}：オフ"
+  all: "すべてまとめて"
+  all-selected: "● すべての種類を選択中"
+  all-not-selected: "○ 未選択の種類があります"
+  all-click-select: "クリックですべて選択"
+  all-click-deselect: "クリックですべて選択解除"
+  page-previous: "‹ {page} ページ"
+  page-next: "{page} ページ ›"
+  select-all: "すべて選択"
+  select-all-hint: "選択済みのプレイヤーの後ろに、アルファベット順で追加"
+  clear-selection: "選択をクリア"
+  link: "選択中をリンク"
+  selected: "選択中：{count}"
+  types: "種類：{types}"
+  types-none: "未選択"
+  order: "鎖：{order}"
+  need-two: "少なくとも2人のプレイヤーを選択してください"
+  order-hint: "選択した順番が鎖の順番になります"
+  no-types: "リンクの種類が選択されていません"
+  nobody-selected: "誰も選択されていません"
+  current-links: "現在のリンク"
+  chain-length: "鎖の長さ：{length} ブロック"
+  unlink: "選択中のリンクを解除"
+  unlink-hint: "選択したすべてのプレイヤー間で、選択中の種類のリンクを解除します。1人だけ選択している場合は、そのプレイヤーと全員のリンクを解除します。"
+  unlink-all: "すべてのリンクを削除"
+  unlink-all-hint: "全プレイヤーの、選択中の種類のリンクをすべて削除します。"
+  shift-confirm: "Shift+クリック — 確定"
+  unlink-all-shift: "すべてのリンクを削除するには Shift+クリック"
+  settings: "鎖の設定"
+  settings-hint: "長さ、硬さ、鎖のスタイル、テレポート、言語"
+
+settings:
+  title: "鎖の設定"
+  info: "すべての鎖に一括で適用され、サーバーの再起動時にリセットされます。"
+  length: "鎖の長さ：{length} ブロック"
+  length-hint: "鎖がピンと張る、プレイヤーの腰と腰の間の距離です。"
+  length-range: "{min} から {max} まで、デフォルトは {default}"
+  length-step: "長さ {delta}"
+  stiffness: "硬さ：{value}%"
+  stiffness-hint: "伸びすぎた分を鎖が1ティックごとにどれだけ引き戻すか。柔らかいと弾むように、硬いとガクンと引っ張ります。"
+  stiffness-default: "デフォルト {value}%"
+  stiffness-step: "硬さ {delta}%"
+  style: "鎖のスタイル：{style}"
+  click-to-change: "クリックで変更"
+  visible: "鎖を表示"
+  visible-hint: "鎖の輪はディスプレイエンティティです。非表示でも物理挙動は機能します。"
+  anchor: "スニークで踏ん張る"
+  anchor-hint: "地面でスニークしているプレイヤーは、引っ張られる力が数分の一になります。これで宙吊りの仲間を支えられます。"
+  respawn: "一緒にリスポーン"
+  respawn-hint: "死んだプレイヤーは、生きている鎖の仲間のそばでリスポーンします。"
+  teleport: "一緒にテレポート"
+  teleport-hint: "ポータル、ワールドの移動、遠距離テレポートの際に、鎖全体が一緒に移動します。"
+  sounds: "鎖の効果音"
+  sounds-hint: "鎖がピンと引っ張られたときにガチャンと鳴ります。"
+  toggled-on: "{setting}：オン"
+  toggled-off: "{setting}：オフ"
+  length-changed: "鎖の長さ：{length} ブロック"
+  stiffness-changed: "鎖の硬さ：{value}%"
+  style-changed: "鎖のスタイル：{style}"
+  reset: "設定をリセット"
+  reset-shift: "設定をリセットするには Shift+クリック"
+  reset-done: "設定をデフォルトに戻しました"
+  language: "言語：{language}"
+  language-hint: "プラグインのメッセージとメニューの言語です。config.yml に保存されます。"
+  back: "‹ 戻る"
+
+language-menu:
+  title: "言語"
+  current: "● 現在の言語"
+  select: "クリックで選択"
